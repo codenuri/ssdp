@@ -11,8 +11,11 @@ class Edit
 public:
 	std::string getData()
 	{
+		data.clear();
+
 		while (1)
 		{
+			
 			char c = _getch();
 
 			if (c == 13) // enter Ű
