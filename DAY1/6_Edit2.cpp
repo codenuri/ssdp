@@ -10,6 +10,15 @@ class Edit
 {
 	std::string data;
 public:
+
+	// 공통성과 가변성의 분리
+	// => 변하지 않은 코드 내부에 숨은 변해야 하는 부분을 찾는다.!!
+	// => 변해야 하는 부분을 가상함수로 분리한다.
+	virtual bool validate(char c)
+	{
+		return true;
+	}
+
 	std::string getData()
 	{
 		data.clear();
@@ -21,7 +30,7 @@ public:
 			if (c == 13)
 				break;
 
-			if (isdigit(c))
+			if ( validate(c) ) // 변해야 하는 곳은 가상함수 호출로!
 			{
 				std::cout << c;
 				data.push_back(c);
@@ -32,13 +41,21 @@ public:
 	}
 };
 
-
-
-
+// 이제 Validation 정책을 교체 하려면 Edit 파생 클래스를 설계해서
+// validate 가상함수를 재정의하면 됩니다.
+class NumEdit : public Edit
+{
+public:
+	virtual bool validate(char c) override
+	{
+		return isdigit(c);
+	}
+};
 
 int main()
 {
-	Edit e;	
+//	Edit e;	
+	NumEdit e;
 	while (1)
 	{
 		std::cout << e.getData() << std::endl;
