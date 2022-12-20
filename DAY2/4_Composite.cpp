@@ -18,17 +18,36 @@ public:
 	virtual int get_size() = 0;
 };
 
-
-
-class File  
+class File : public Item 
 {
+	int size;
 public:
+	File(const std::string& name, int size)
+		: Item(name), size(size) {}
+
+	virtual int get_size() override { return size; }
 };
 
-class Folder 
+class Folder : public Item
 {
+	std::vector<Item*> v; // ÇÙ½É
 public:
+	Folder(const std::string& name) 
+		: Item(name) {}
+
+	void add_item(Item* p) { v.push_back(p); }
+
+	virtual int get_size() override
+	{
+		int size = 0;
+		for (auto p : v)
+			size += p->get_size();
+
+		return size;
+	}
 };
+
+
 
 int main()
 {
