@@ -47,6 +47,7 @@ public:
 		int cmd;
 		std::cin >> cmd;
 
+		// 선택된 메뉴 실행
 		v[cmd - 1]->command();
 	}
 };
