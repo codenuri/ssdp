@@ -1,6 +1,11 @@
 #include "PopupMenu.h"
 
 // 방법 1. 변하는 것을 가상함수로
+// => 각 메뉴 한개당, 클래스 한개(MenuItem 파생 클래스)를 만들어야 한다.
+// => 메뉴가 많아지만 클래스가 많아진다.
+
+// => 작은 클래스가 너무 많이 생기는 특징이 있다.
+
 class MenuItem : public BaseMenu
 {
 	int  id;
