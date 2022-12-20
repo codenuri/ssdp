@@ -80,9 +80,8 @@ public:
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
-
-	PopupMenu* pm1 = new PopupMenu("해상도 변경");
-	PopupMenu* pm2 = new PopupMenu("색상   변경");
+	PopupMenu* pm1  = new PopupMenu("해상도 변경");
+	PopupMenu* pm2  = new PopupMenu("색상   변경");
 
 	root->add_menu(pm1);
 	root->add_menu(pm2);
@@ -96,6 +95,7 @@ int main()
 	pm2->add_menu(new MenuItem("BLUE",  23));
 
 	// 이제 시작하려면 ?
+	root->command();
 }
 
 
