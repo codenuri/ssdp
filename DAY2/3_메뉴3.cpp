@@ -23,6 +23,24 @@ public:
 };
 
 
+class PopupMenu
+{
+	std::string title;
+	std::vector<MenuItem*> v;
+public:
+	PopupMenu(const std::string& title) : title(title) {}
+
+	void add_menu(MenuItem* p) { v.push_back(p); }
+
+	// 팝업 메뉴를 선택할때!!
+	void command()
+	{
+
+	}
+};
+
+
+
 
 int main()
 {
