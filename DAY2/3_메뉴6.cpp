@@ -101,8 +101,7 @@ int main()
 	root->get_sub_menu(0)->add_menu(new MenuItem("HD",  21));
 	root->get_sub_menu(0)->add_menu(new MenuItem("FHD", 22));
 
-
-	root->get_sub_menu(1)->add_menu(new MenuItem("신규메뉴", 31)); // 예외!!
+//	root->get_sub_menu(1)->add_menu(new MenuItem("신규메뉴", 31)); // 예외!!
 
 	// 이제 시작하려면 ?
 	root->command();
