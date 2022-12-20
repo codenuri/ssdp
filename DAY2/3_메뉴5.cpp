@@ -84,11 +84,13 @@ int main()
 	PopupMenu* pm2  = new PopupMenu("색상   변경");
 
 	root->add_menu(pm1);
-	root->add_menu(pm2);
+//	root->add_menu(pm2);
+	pm1->add_menu(pm2);
 
 	pm1->add_menu(new MenuItem("HD",  11));
 	pm1->add_menu(new MenuItem("FHD", 12));
 	pm1->add_menu(new MenuItem("UHD", 13));
+	pm1->add_menu(new MenuItem("8K",  14));
 
 	pm2->add_menu(new MenuItem("RED",   21));
 	pm2->add_menu(new MenuItem("GREEN", 22));
