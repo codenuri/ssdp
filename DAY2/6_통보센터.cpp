@@ -44,6 +44,18 @@ int main()
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
 	nc.post_notification_with_name("LOWBATTERY", (void*)30);
+
+
+	// 도전 과제 : poco 라는 C++ 네트워크 오픈소스 가 아래 같은 기능이 있습니다.
+	// 
+	// 1. 우선순위 부여해 보세요
+	nc.add_observer("DISCONNECT_WIFI", &f1, PRIORITY_1);
+	nc.add_observer("DISCONNECT_WIFI", &f2, PRIORITY_3);
+	nc.add_observer("DISCONNECT_WIFI", &f3, PRIORITY_2);
+
+	// 2. 멀티 스레도 도입해 보세요
+	nc.add_observer("DISCONNECT_WIFI", &f4, PRIORITY_1, NEW_THREAD);
+	nc.add_observer("DISCONNECT_WIFI", &f5, PRIORITY_2);
 }
 
 
