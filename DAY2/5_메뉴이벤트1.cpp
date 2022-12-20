@@ -10,12 +10,11 @@ public:
 
 	void command()
 	{
-		std::cout << get_title() << " 메뉴 선택됨" << std::endl;
-		_getch();
+		// 여기서 어떤 작업을 직접하면
+		// 모든 메뉴가 동일한 작업을 하게 됩니다.
+		// 메뉴 선택시 해야할 일을 각 메뉴 마다 달라야 합니다.
 	}
 };
-
-
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
