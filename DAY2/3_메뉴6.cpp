@@ -3,6 +3,8 @@
 #include <vector>
 #include <conio.h> 
 
+class InvalidOperation : std::exception {};
+
 class BaseMenu
 {
 	std::string title;
@@ -13,6 +15,13 @@ public:
 
 	virtual void command() = 0;
 
+	// BaseMenu 가 아래 처럼 제공한다면.
+	// 
+	// root->get_sub_menu(0)->add_item( ....) 처럼 사용가능합니다.
+	// 단, "root->get_sub_menu(0)" 가 Popup 이 아니면 예외 발생
+
+	virtual void add_item(BaseMenu*) { throw InvalidOperation(); }
+	virtual BaseMenu* get_sub_menu(int idx) { throw InvalidOperation(); }
 };
 
 
@@ -72,10 +81,9 @@ public:
 
 
 	}
+
+	BaseMenu* get_sub_menu(int idx)	{ return v[idx];}
 };
-
-
-
 
 int main()
 {
@@ -88,7 +96,9 @@ int main()
 	root->add_menu(&mi1);
 
 	// 하위 메뉴를 얻는 get_sub_menu() 를 생각해 봅시다.
-	root->get_sub_menu(0);
+	root->get_sub_menu(0); // ok
+
+	root->get_sub_menu(0)->add_item(new MenuItem("HD", 21));
 
 
 	// 이제 시작하려면 ?
