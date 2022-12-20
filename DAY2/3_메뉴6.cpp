@@ -20,7 +20,7 @@ public:
 	// root->get_sub_menu(0)->add_item( ....) 처럼 사용가능합니다.
 	// 단, "root->get_sub_menu(0)" 가 Popup 이 아니면 예외 발생
 
-	virtual void add_item(BaseMenu*) { throw InvalidOperation(); }
+	virtual void add_menu(BaseMenu*) { throw InvalidOperation(); }
 	virtual BaseMenu* get_sub_menu(int idx) { throw InvalidOperation(); }
 };
 
@@ -92,14 +92,17 @@ int main()
 	
 	MenuItem* mi1 = new MenuItem("열기", 11);
 
-	root->add_menu(&pm1);
-	root->add_menu(&mi1);
+	root->add_menu(pm1);
+	root->add_menu(mi1);
 
 	// 하위 메뉴를 얻는 get_sub_menu() 를 생각해 봅시다.
-	root->get_sub_menu(0); // ok
+//	root->get_sub_menu(0); // ok
 
-	root->get_sub_menu(0)->add_item(new MenuItem("HD", 21));
+	root->get_sub_menu(0)->add_menu(new MenuItem("HD",  21));
+	root->get_sub_menu(0)->add_menu(new MenuItem("FHD", 22));
 
+
+	root->get_sub_menu(1)->add_menu(new MenuItem("신규메뉴", 31)); // 예외!!
 
 	// 이제 시작하려면 ?
 	root->command();
