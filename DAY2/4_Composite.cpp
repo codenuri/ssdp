@@ -3,12 +3,28 @@
 #include <string>
 
 // main 함수가 에러나지 않도록 File/Folder 완성해 보세요
-// 공통의 기반클래스는 "item" 으로 하세요.
+// 공통의 기반클래스는 "Item" 으로 하세요.
+
+class Item
+{
+	std::string name;
+public:
+	Item(const std::string& name) 
+		: name(name) {}
+
+	virtual ~Item() {}
+
+	// 파일/폴더 모두 크기는 구할수 있다
+	virtual int get_size() = 0;
+};
+
+
 
 class File  
 {
 public:
 };
+
 class Folder 
 {
 public:
