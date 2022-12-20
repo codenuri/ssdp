@@ -1,3 +1,4 @@
+#include <iostream>
 // list 에 앞에 넣는 코드는 변하지 않지만
 // 동기화 여부는 변할수 있어야 한다.
 // 
@@ -16,7 +17,24 @@ public:
 	virtual void unlock() {}
 };
 
-List<int> st; 
+// List 에 동기화 정책을 변경하려면 파생 클래스를 만들어서
+// lock/unlock 을 재정의 한다.!
+template<typename T> class ThreadSafeList : public List<T>
+{
+	// pthread_mutex_t mtx;
+public:
+	virtual void lock() override
+	{
+		std::cout << "mutex lock" << std::endl;
+	}
+	virtual void unlock() override
+	{
+		std::cout << "mutex unlock" << std::endl;
+	}
+};
+
+//List<int> st; 
+ThreadSafeList<int> st;
 
 int main()
 {
