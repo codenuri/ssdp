@@ -35,7 +35,19 @@ public:
 	// 팝업 메뉴를 선택할때!!
 	void command()
 	{
+		std::size_t sz = v.size();
 
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << ". " << v[i]->get_title() << "\n";
+		}
+		std::cout << sz + 1 << ". 종료\n";
+
+		std::cout << "메뉴를 선택하세요 >> ";
+		int cmd;
+		std::cin >> cmd;
+
+		v[cmd - 1]->command();
 	}
 };
 
@@ -48,7 +60,6 @@ int main()
 	MenuItem m2("라면", 12);
 
 	PopupMenu pm("오늘의 점심 메뉴");
-
 	pm.add_menu(&m1);
 	pm.add_menu(&m2);
 
