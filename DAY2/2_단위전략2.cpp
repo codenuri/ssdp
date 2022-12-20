@@ -4,6 +4,11 @@
 // 
 // 방법 1. 변하는 것을 가상함수로!! - template method
 
+// 특징(단점) : 동기화 관련 코드를 ThreadSafeList 가 포함하고 있다.
+//             vector, stack, queue 등도 동일하게 디자인 하면
+//				동기화 관련 코드의 중복이 발생한다!
+
+
 template<typename T> class List
 {
 public:
