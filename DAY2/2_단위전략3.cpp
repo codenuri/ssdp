@@ -1,6 +1,14 @@
 #include <iostream>
 
 // 방법 2. 변하는 것을 다른 클래스로!!
+// 장점 : 동기화 정책(PthreadLocker)를 다른 클래스(vector, stack, queue등)
+//       에서도 사용가능하다.
+
+// 단점 : 동기화 정책을 담은 lock/unlock 이 가상함수 이다. 느리다
+//		  좀더 빠른 다른 방법은 없을까 ??? 
+
+
+
 
 // 동기화 정책은 교체 가능해야 하므로 인터페이스 설계
 struct ISync
