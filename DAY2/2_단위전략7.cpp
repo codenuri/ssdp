@@ -25,9 +25,9 @@ public:
 
 	// 관례적으로 아래 3개도 필요 합니다.
 	log_alloc() {}
-	typename T value_type;
+	typedef T value_type;
 
-	template<typename U> log_alloc(const std::log_alloc<U>&) {}
+	template<typename U> log_alloc(const log_alloc<U>&) {}
 };
 int main()
 {
