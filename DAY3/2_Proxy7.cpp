@@ -29,7 +29,7 @@ int main()
 	p2->Release();
 
 	std::cout << "========" << std::endl;
-	pcalc->Release();
+	pcalc->Release();	// 이순간 참조계수 "0" 되므로 파괴!
 
 }
 
