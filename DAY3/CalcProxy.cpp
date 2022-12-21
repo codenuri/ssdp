@@ -28,6 +28,18 @@ ICalc* Create()
 
 
 
+// 1. "윈도우 시작버튼" 누르세요
+// 2. "Visual Studio 폴더" 찾으세요
+// 3. 폴더열고 "개발자 명령프롬프트(Develop command prompt) 실행하세요"
 
+// 리눅스 C++ 컴파일러     : g++
+// visual C++ 컴파일러이름 : cl.exe 
 
+// D:          => 드라이브 이동
+// cd 폴더명    => 폴더 안으로 이동
+
+// cl CalcProxy.cpp /LD /link user32.lib  gdi32.lib kernel32.lib 
+
+// => CalcProxy.dll 생성되면 됩니다.
+// => "/LD" 가 "DLL" 로 빌드 옵션입니다.
 
