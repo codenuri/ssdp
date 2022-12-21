@@ -44,8 +44,19 @@ public:
 	}
 };
 
+class EncryptDecorator : public Stream
+{
+	Stream* stream; 
+public:
+	EncryptDecorator(Stream* s) : stream(s) {}
 
+	virtual void write(const std::string& s) override
+	{
+		std::string data = s + " ¾ÏÈ£È­µÊ";
 
+		stream->write(data);
+	}
+};
 
 
 int main()
