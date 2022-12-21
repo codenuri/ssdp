@@ -40,6 +40,7 @@ int main()
 	stack1<int> s1;
 	stack2<int> s2;
 	
+
 	s1.push_front(10); // error. 이유는 private 이므로
 	s2.push_front(10); // error. 이유는 함수가 없다.
 					// => 사용자 측면에서는 "함수가 없다"가 좋습니다!
