@@ -46,6 +46,9 @@ std::map<std::string, Image*> Image::image_map;
 
 int main()
 {
+	// IOS 개발시 사용되는 "cocoa" 라이브러리가
+	// "UImage" 객체 생성시 "static 멤버함수"를 사용하도록 되어 있습니다
+	// => 동일 그림을 공유하게 됩니다.
 	Image* img1 = Image::Create("www.naver.com/a.png");
 	img1->Draw();
 
