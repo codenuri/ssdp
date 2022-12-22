@@ -128,6 +128,20 @@ int main()
 			cmd_stack.push(pcmd);
 
 		}
+		else if (cmd == 0)
+		{
+			if (!cmd_stack.empty())
+			{
+				pcmd = cmd_stack.top();
+				cmd_stack.pop();
+
+				if (pcmd->can_undo())
+					pcmd->undo();
+
+				delete pcmd;		// redo 하려면 delete 하지 말고
+									// redo_stack.push(pcmd) 하면 됩니다.
+			}
+		}
 	}
 }
 
