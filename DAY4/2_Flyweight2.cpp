@@ -53,5 +53,15 @@ int main()
 	img2->Draw();
 }
 
+// 참고 : map 에서 키값 유무 조사시 아래처럼 하지 마세요
+// if ( image_map[url] == nullptr )
+
+// 아래 처럼해야 합니다.
+// auto ret = image_map.find(url);
+// if ( ret == image_map.end()) {}
+
+// C++20 부터는 아래 처럼 가능합니다. - contain() 멤버 함수 추가됐습니다.
+// if ( image_map.contain(url) ) {}
+
 
 
