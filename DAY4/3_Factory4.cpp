@@ -66,7 +66,25 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* Create() { return new Rect; }
+
+
+	// static 멤버 데이타가 언제 생성되는지 생각해 보세요
+	static AutoRegister ar;
 };
+AutoRegister Rect::ar(1, &Rect::Create);
+
+// Rect::ar 의 생성자 => main 함수가 실행되기전 단 한번 호출됩니다.
+// 
+// new Rect() => Rect 생성자 호출
+// new Rect() => Rect 생성자 호출
+
+// 즉, 
+// 1. Rect 생성자는 "객체를 만들때 마다 호출" - 인스턴스 생성자
+// 2. Rect::ar 의 생성자는 "Rect" 타입에 대해 최초에 한번 호출
+//    => C#의 static 생성자 입니다.
+//    => C++ 에 이문법이 없어서, static 멤버로 유사한 효과를 만든것
+
+
 
 
 
@@ -76,7 +94,10 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* Create() { return new Circle; }
+
+	static AutoRegister ar;
 };
+AutoRegister Circle::ar(2, &Circle::Create);
 
 
 
@@ -90,8 +111,8 @@ int main()
 
 	ShapeFactory& factory = ShapeFactory::getInstance();
 
-	factory.Register(1, &Rect::Create);
-	factory.Register(2, &Circle::Create);
+//	factory.Register(1, &Rect::Create);
+//	factory.Register(2, &Circle::Create);
 
 
 
@@ -123,3 +144,12 @@ int main()
 
 
 
+
+// 참고 C# 코드 
+/*
+class Car
+{
+	public Car() {}			// instance 생성자 - 객체를 만들때 마다 호출
+	static public Car() {}  // static 생성자 - 최초에 1회만 호출
+};
+*/
