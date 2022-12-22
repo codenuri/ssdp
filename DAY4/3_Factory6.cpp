@@ -86,6 +86,11 @@ int main()
 	factory.Register(2, blueRect);
 	factory.Register(3, redCircle);
 
+	// 복습하다가 아래 함수 구현해 보세요
+	factory.ShowRegisteredSample(); // 등록된 모든 견본 객체를 보여준다
+									// 1. redRect
+									// 2. blueRect
+									// 3. redCircle
 
 
 
