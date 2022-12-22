@@ -17,7 +17,7 @@ public:													\
 
 class Cursor
 {
-	MAKE_SINGLETON(Cursor);
+	MAKE_SINGLETON(Cursor)
 };
 
 int main()
