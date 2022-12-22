@@ -11,6 +11,11 @@
 
 // => 구글에서 "C++IDioms" 라고 검색 해보세요.. 1번째 링크.. 
 
+// 디자인 패턴 : 언어에 무관한 객체지향 디자인 기술
+// IDioms     : 언어에 특징을 고려한 코딩 테크닉을 지칭하는 용어
+//				(C++ IDioms, Java Idioms 등)
+
+
 template<typename T> class lock_guard
 {
 	T& mtx;
