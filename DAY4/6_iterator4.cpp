@@ -17,7 +17,7 @@ public:
 	slist_iterator(Node<T>* p = nullptr) : current(p) {}
 
 
-	inilne T& operator*() { return current->data; }
+	inline T& operator*() { return current->data; }
 
 	inline slist_iterator& operator++()
 	{
