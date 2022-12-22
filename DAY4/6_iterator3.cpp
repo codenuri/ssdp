@@ -26,6 +26,28 @@ template<typename T> struct IEnumerable
 	virtual ~IEnumerable() {}
 };
 
+//=======================================
+// slist 의 반복자를 만들어 봅시다.
+template<typename T>
+class slist_enumerator : public IEnumerator<T>
+{
+	Node<T>* current;
+public:
+	slist_enumerator(Node<T>* p = nullptr) : current(p) {}
+
+	virtual T& GetObject() override { return current->data; }
+
+	virtual bool MoveNext() override
+	{
+		current = current->next;
+		return current;
+	}
+
+};
+
+//slist_enumerator<int> p1(300번지);
+//int n = p1.GetObject();
+//p1.MoveNext();
 
 
 
@@ -33,11 +55,18 @@ template<typename T> struct IEnumerable
 
 
 
-template<typename T> struct slist
+// 모든 컨테이너는 약속된 방법으로 반복자를 꺼낼수 있어야 합니다.
+template<typename T> 
+struct slist : public IEnumerable<T>
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
+
+	virtual IEnumerator<T>* GetEnumerator()
+	{
+		return new slist_enumerator<T>(head);
+	}
 };
 
 
@@ -50,4 +79,17 @@ int main()
 	s.push_front(20);
 	s.push_front(30);
 	s.push_front(40); 
+
+	//==========================
+	IEnumerator<int>* p1 = s.GetEnumerator();
+
+	do
+	{
+		std::cout << p1->GetObject() << std::endl;
+	} while (p1->MoveNext());
 }
+
+
+
+
+
