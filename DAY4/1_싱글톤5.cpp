@@ -5,6 +5,11 @@
 // "deadlock" 의 가능성이 있습니다.
 
 // 항상 자원의 관리는 생성자/소멸자를 사용해서 관리해야 합니다.
+// "RAII" 라는 이름을 가진 기술 ( C++ 진영만의 기술, C++ IDioms)
+// => "Resource Acquision Is Initialization"
+// => 자원을 획득(mtx.lock) 하게 되는 것은 (자원 관리객체가) 초기화 될때 이다.
+
+// => 구글에서 "C++IDioms" 라고 검색 해보세요.. 1번째 링크.. 
 
 template<typename T> class lock_guard
 {
@@ -29,12 +34,20 @@ public:
 
 	static Cursor& getInstance()
 	{
-		lock_guard<std::mutex> g(mtx);
+		std::lock_guard<std::mutex> g(mtx); // C++11 표준에 이미 lock_guard가 
+											// 있습니다.
+
+	//	lock_guard<std::mutex> g(mtx); // 생성자에서 "mtx.lock()" 수행
+										// 소멸자에서 "mtx.unlock()"
+										// 핵심 : 아래 코드에서 예외가 발생해도
+										//	      catch 로 이동하기 전에
+										//	      g의 소멸자는 호출됨을 보장
+										//	      스택풀기(stack unwinding)
 //		mtx.lock();
 
 		if (pinstance == nullptr)
 			pinstance = new Cursor;
-
+		
 //		mtx.unlock();
 
 		return *pinstance;
