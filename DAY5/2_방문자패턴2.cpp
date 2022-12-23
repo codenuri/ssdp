@@ -52,8 +52,17 @@ public:
 
 
 
+template<typename T> class ShowVisitor : public IVisitor<T>
+{
+public:
+	virtual void visit(T& value) { std::cout << value << std::endl; }
+};
 
-
+template<typename T> class ZeroVisitor : public IVisitor<T>
+{
+public:
+	virtual void visit(T& value) { value = 0; }
+};
 
 int main()
 {
@@ -65,7 +74,10 @@ int main()
 	ShowVisitor<int> sv;	
 	s.Accept(&sv);
 
+	ZeroVisitor<int> zv; // 모든 요소를 0으로 만드는 방문자
+	s.Accept(&zv);
 
+	s.Accept(&sv);
 }
 
 
