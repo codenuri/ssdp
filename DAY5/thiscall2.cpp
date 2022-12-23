@@ -12,7 +12,7 @@ void foo(int a) {}
 int main()
 {
 	// 핵심 1. 일반 함수 포인터에 멤버 함수의 주소를 담을수 없다.
-	// 핵심 2. 일반 함수 포인터에 static 멤버 함수의 주소를 담을수 없다.
+	// 핵심 2. 일반 함수 포인터에 static 멤버 함수의 주소를 담을수 있다.
 	void(*f1)(int) = &foo;	// ok			
 //	void(*f2)(int) = &Dialog::Close; // error. 멤버 함수는 this가 추가된다.
 	void(*f3)(int) = &Dialog::Close2; // ok.. 
