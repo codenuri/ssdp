@@ -62,8 +62,8 @@ int main()
 	TwiceVisitor<int> tv;	
 	s.Accept(&tv);			
 
-//	ShowVisitor<int> sv;	
-//	s.Accept(&sv);
+	ShowVisitor<int> sv;	
+	s.Accept(&sv);
 
 
 }
