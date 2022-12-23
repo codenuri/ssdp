@@ -79,8 +79,11 @@ int main()
 	OddHandler h2;
 	More100Handler h3;
 
+	// Ten => Odd => More100
 	h1.next = &h2;
 	h2.next = &h3;
 
-	h1.Handle(10);
+//	h1.Handle(10);
+//	h1.Handle(120);
+	h1.Handle(77);
 }
