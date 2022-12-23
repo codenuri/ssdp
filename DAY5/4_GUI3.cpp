@@ -31,10 +31,9 @@ class MainFrame : public Window
 public:
 	virtual void OnLButtonDown() override
 	{
-		std::cout << "MainFrame OnLButtonDown" << std::endl;
+		std::cout << "MainFrame OnLButtonDown" << std::endl;	
 	}
 };
-
 int main()
 {
 	MainFrame w;
