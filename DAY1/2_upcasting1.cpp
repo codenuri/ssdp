@@ -39,7 +39,10 @@ int main()
 
 	// 핵심 #4. p3로 Dog 고유 멤버에 접근 하려면
 	// => 캐스팅 해야 합니다.
-	static_cast<Dog*>(p3)->color = 10;
+	static_cast<Dog*>(p3)->color = 10; // ok
+			// 단, 이경우 p3가 가리키는 곳이
+			// Dog 라는 확신이 있을때만
+			// 사용해야 합니다.
 }
 
 
