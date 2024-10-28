@@ -12,32 +12,33 @@ public:
 	virtual void take() = 0;
 };
 
+// 실제 카메라가 없어도, 규칙이 있다.
+// 사용하는 코드를 작성할수도 있다.
+// 규칙대로만 사용하면된다.
+class People
+{
+public:
+	void use_camera(ICalc* c) { c->take(); }
+};
 
+// 모든 카메라는 규칙을 지켜야 한다.
 
-
-
-
-
-
-
-class Camera
+class Camera : public ICamera
 {
 public:
 	void take() { std::cout << "Take Picture" << std::endl; }
 };
 
-class HDCamera
+class HDCamera : public ICamera
 {
 public:
 	void take() { std::cout << "Take HD Picture" << std::endl; }
 };
 
-
-class People
+class UHDCamera : public ICamera
 {
 public:
-	void use_camera(Camera* p) { p->take(); }
-	void use_camera(HDCamera* p) { p->take(); }
+	void take() { std::cout << "Take UHD Picture" << std::endl; }
 };
 
 int main()
@@ -48,8 +49,10 @@ int main()
 	p.use_camera(&c);
 
 	HDCamera hc;
-	p.use_camera(&hc); // ???
+	p.use_camera(&hc); 
 
+	UHDCamera uhc;
+	p.use_camera(&uhc);
 }
 
 
