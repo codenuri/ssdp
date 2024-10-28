@@ -1,10 +1,20 @@
 ﻿#include <iostream>
+// 핵심 : "기반 클래스의 소멸자는 반드시 virtual" 이어야 합니다
+
+// virtual 이 아닌 경우
+// Base* p = new Derived;
+// delte p; // <<===== 이순간에 문제가 됩니다.
+//						~Derived 가 아닌 ~Base 만 호출되는 문제
+//						이 문제를 해결하려면
+//						~Base 는 가상함수 이어야 합니다.
 
 class Base
 {
 public:
-	~Base() {}
+//	~Base() {}
+	virtual ~Base() {} // 가상 소멸자 문법
 };
+
 class Derived : public Base
 {
 public:
