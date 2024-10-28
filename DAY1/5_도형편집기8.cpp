@@ -18,6 +18,7 @@ public:
 
 	void set_color(int c) { color = c; }
 
+
 protected:
 	virtual void draw_imp()
 	{
@@ -26,23 +27,15 @@ protected:
 
 public:
 
-
-
-
-
-
-
-
-
-	virtual int get_area() { return 0; }
-
-
 	virtual Shape* clone()
 	{
 		Shape* p = new Shape;
 		p->color = this->color;
 		return p;
 	}
+
+	virtual int get_area() { return 0; }
+
 };
 
 class Rect : public Shape
