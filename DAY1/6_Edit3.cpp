@@ -72,6 +72,11 @@ public:
 		return s.size() == limit;
 	}
 };
+/*
+class email_validator : public IValidator {};
+class pinnumber_validator : public IValidator {};
+class phonenumber_validator : public IValidator {};
+*/
 
 int main()
 {
