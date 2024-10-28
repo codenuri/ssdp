@@ -16,6 +16,9 @@
 // #3. 리팩토링에서 사용되는 용어 입니다. 의미를 이해해 보세요
 
 // "replace conditional with polymorphism"
+// "당신의 코드에 제어문(if, switch) 가 있다면 다형성(가상함수) 로 변경해 봐라"
+//  도형편집기3.cpp => 도형편집기4.cpp
+//  도형편집기5.cpp => 도형편집기6.cpp
 
 
 class Shape
