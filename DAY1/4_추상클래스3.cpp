@@ -6,7 +6,7 @@
 
 // 규칙 : 모든 카메라는 아래 클래스로 부터 파생되어야 한다.
 
-class ICalc
+class ICamera
 {
 public:
 	virtual void take() = 0;
@@ -18,7 +18,7 @@ public:
 class People
 {
 public:
-	void use_camera(ICalc* c) { c->take(); }
+	void use_camera(ICamera* c) { c->take(); }
 };
 
 // 모든 카메라는 규칙을 지켜야 한다.
