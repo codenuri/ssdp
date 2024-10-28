@@ -7,13 +7,18 @@
 
 //     그래야 기반 클래스 포인터로 해당 기능을 사용할수 있다.
 
+// #2. 기반 클래스가 가진 함수중에서
+//	   파생 클래스가 override 하는 것은 반드시 virtual 이어야 한다.
+//     (문법적 규칙이 아닌 디자인 규칙)
+
+
 class Shape
 {
 	int color;
 public:
 	virtual ~Shape() {}
 
-	void draw() { std::cout << "draw shape\n"; }
+	virtual void draw() { std::cout << "draw shape\n"; }
 };
 
 class Rect : public Shape
