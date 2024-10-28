@@ -32,17 +32,22 @@ int main()
 
 		if (cmd == 1)
 		{
-			Rect rc;
+//			Rect rc;	// 이렇게 만들면 {} 벗어날때 즉시 파괴 됩니다.
+			Rect* p = new Rect; // 계속 사용하려면 이렇게 해야 합니다.
+			v.push_back(p);
 		}
 		else if (cmd == 2)
 		{
-
+			v.push_back(new Circle); 
 		}
 		else if (cmd == 9)
 		{
 			for (auto e : v)
-				e->draw();
+				e->draw();	// A. error.
 		}
 	}
 }
 
+// 왜 A 부분이 에러일까요 ?
+// 
+// 해결책은 뭘까요 ?
