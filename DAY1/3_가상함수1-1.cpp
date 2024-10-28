@@ -17,8 +17,8 @@ public:
 class Dog : public Animal
 {
 public:
-	void cry1() { std::cout << "Dog cry1" << std::endl; }		
-	void cry2() { std::cout << "Dog cry2" << std::endl; }
+	        void cry1() { std::cout << "Dog cry1" << std::endl; }		
+	virtual void cry2() { std::cout << "Dog cry2" << std::endl; }
 };
 
 
@@ -29,5 +29,6 @@ int main()
 	Animal* p = &d;
 
 
-	p->cry1();	
+	p->cry1();	// static binding. Animal cry1
+	p->cry2();	// dynamic binding  Dog   cry2
 }
