@@ -49,7 +49,7 @@ int main()
 		{
 			for (auto e : v)
 			{
-				// ÇØ°áÃ¥ #2
+				e->draw();
 			}
 		}
 	}
