@@ -12,10 +12,14 @@ class Rect
 public:
 	void draw() { std::cout << "draw rect\n"; }
 };
-
+class Circle
+{
+public:
+	void draw() { std::cout << "draw circle\n"; }
+};
 
 int main()
 {
-
+	std::vector<Rect*> v;
 }
 
