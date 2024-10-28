@@ -62,6 +62,16 @@ int main()
 
 			// k번째 도형의 복사본을 생성해서 v에 추가합니다.
 			// 어떻게 해야 할까요 ? k번째 도형은 어떤 타입일까요 ?
+
+			// 방법 #1. dynamic_cast로 조사하자.
+			if (dynamic_cast<Rect*>(v[k]) != nullptr)
+			{
+				// 사각형이라고 생각해서 복사본생성
+			}
+			else if (dynamic_cast<Circle*>(v[k]) != nullptr)
+			{
+				// 원이라고 생각해서 복사본생성
+			}
 		}
 	}
 }
