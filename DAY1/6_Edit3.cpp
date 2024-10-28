@@ -54,9 +54,25 @@ public:
 	}
 };
 
+// 이제 Edit 에서 사용할 다양한 "Validator 객체(유효성 확인 전략을 담은 클래스)"
+// 를 만들면 됩니다.
+class LimitDigitValidator : public IValidator
+{
+	int limit;
+public:
+	LimitDigitValidator(int n) : limit(n) {}
+
+	bool validate(const std::string& s, char c) override
+	{
+		return s.size() < limit && isdigit(c);
+	}
+};
+
 int main()
 {
 	Edit e;
+	LimitDigitValidator v(5);
+	e.set_validator(&v); // 핵심 
 
 	while (1)
 	{
