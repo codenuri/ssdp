@@ -11,7 +11,6 @@
 //	   파생 클래스가 override 하는 것은 반드시 virtual 이어야 한다.
 //     (문법적 규칙이 아닌 디자인 규칙)
 
-
 class Shape
 {
 	int color;
@@ -19,7 +18,20 @@ public:
 	virtual ~Shape() {}
 
 	virtual void draw() { std::cout << "draw shape\n"; }
+
+	// 아래 함수는 virtual 할까요 ? non-virtual 로 할까요 ?
+
+	// 파생클래스가 override 할이유 없다. - non-virtual
+	// virtual 해도 되지만 virtual 은 "느리다."
+	void set_color(int c) { color = c; }
+
+
+	// 면적은 구하는 방법은 도형마다 다르다.
+	// => 파생클래스가 override 하게 되므로 virtual 
+	virtual int get_area() { return 0; }
 };
+
+
 
 class Rect : public Shape
 {
