@@ -66,11 +66,17 @@ public:
 	{
 		return s.size() < limit && isdigit(c);
 	}
+
+	bool is_complete(const std::string& s) override
+	{
+		return s.size() == limit;
+	}
 };
 
 int main()
 {
 	Edit e;
+
 	LimitDigitValidator v(5);
 	e.set_validator(&v); // ÇÙ½É 
 
