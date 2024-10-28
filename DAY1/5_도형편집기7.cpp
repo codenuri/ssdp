@@ -1,6 +1,17 @@
 #include <iostream>
 #include <vector>
 
+// #1. template method 패턴
+// => 변하지 않은 전체적인 흐름속에 담긴 변해야 하는 것을 찾아서
+//    별도의 가상함수로 분리하는 패턴
+
+// => 파생클래스에게
+// => 공통의 규칙을 물려 주지만
+// => 변해야 하는 것만 변경할수 있게 하는 디자인 패턴
+
+
+
+
 
 class Shape
 {
@@ -13,17 +24,18 @@ public:
 	// => 변해야 하는 코드는 분리되어야 한다.
 	// => 변하는 것을 별도의 가상함수로 분리한다.
 
+protected:
 	virtual void draw_imp()
 	{
-
+		std::cout << "draw shape\n";
 	}
-
-	virtual void draw() 
+	// 아래 함수는 변하지 않은 공통의 규칙이므로 override 하지 않게된다
+	// non-virtual 
+public:
+	void draw() 
 	{ 
 		std::cout << "lock mutex\n";
-
-		std::cout << "draw shape\n";
-		
+		draw_imp();
 		std::cout << "unlock mutex\n";
 
 	}
@@ -50,7 +62,7 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw() { std::cout << "draw rect\n"; }
+	void draw_imp() { std::cout << "draw rect\n"; }
 
 	virtual Shape* clone() { return new Rect(*this); }
 };
@@ -58,7 +70,7 @@ public:
 class Circle : public Shape
 {
 public:
-	void draw() { std::cout << "draw circle\n"; }
+	void draw_imp() { std::cout << "draw circle\n"; }
 
 	virtual Shape* clone() { return new Circle(*this); }
 };
