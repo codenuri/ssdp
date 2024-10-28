@@ -30,6 +30,11 @@ public:
 int main()
 {
 	Base* p = new Derived; 
-	delete p;				
+	delete p;	// 이순간 가상소멸자가 아니므로 ~Base를 호출해야 하는데		
+				// protected에 있으므로 error.
+				// 즉, 이렇게 할수 없다.
+
+	delete static_cast<Derived*>(p); // 이코드는 ok. 
+									// ~Derived 호출 하므로!!
 
 }
