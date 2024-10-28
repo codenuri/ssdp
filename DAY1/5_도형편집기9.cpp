@@ -3,14 +3,18 @@
 
 
 // 최종 버전
-// => 코드 정리
+// => 코드 정리 & 생각해볼 문제
 
 
 class unsupported_operation {};
 
 class Shape
 {
-	int color;
+	int color = 0;
+
+protected:
+	Shape() {}
+
 public:
 	virtual ~Shape() {}
 
@@ -40,17 +44,17 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw_imp() { std::cout << "draw rect\n"; }
+	void draw_imp() override { std::cout << "draw rect\n"; }
 
-	virtual Shape* clone() { return new Rect(*this); }
+	Shape* clone()  override { return new Rect(*this); }
 };
 
 class Circle : public Shape
 {
 public:
-	void draw_imp() { std::cout << "draw circle\n"; }
+	void draw_imp() override  { std::cout << "draw circle\n"; }
 
-	virtual Shape* clone() { return new Circle(*this); }
+	Shape* clone() override  { return new Circle(*this); }
 };
 
 int main()
@@ -61,6 +65,15 @@ int main()
 	{
 		int cmd;
 		std::cin >> cmd;
+
+		// 생각해 볼 문제 #1. 객체의 생성을 OCP를 만족하게 할수 없을까 ?
+		// => Triangle 을 추가되어도 아래 코드가 변경되지 않게!!
+		// => 팩토리 패턴을 사용하면 됩니다. (목요일날 만들게 됩니다.)
+
+		// 생각해 볼 문제 #2. Undo/Redo 기능을 추가하려면 어떻게 해야 할까 ?
+		// => Command 패턴을 배우면 됩니다.
+		// => Undo/Redo 할때 사용하는 패턴!!
+		// => 목요일날 만들게 됩니다.
 
 		if (cmd == 1)
 		{
@@ -74,10 +87,9 @@ int main()
 		{
 			for (auto e : v)
 			{
-				e->draw();
+				e->draw(); // 다형성, OCP 만족
 			}
 		}
-
 		else if (cmd == 8)
 		{
 			std::cout << "몇번째 도형을 복제 할까요 >> ";
@@ -85,8 +97,7 @@ int main()
 			int k;
 			std::cin >> k;
 
-
-			v.push_back(v[k]->clone());
+			v.push_back(v[k]->clone()); // 다형성, OCP 만족
 
 		}
 	}
