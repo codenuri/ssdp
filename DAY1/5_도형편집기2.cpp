@@ -24,5 +24,25 @@ public:
 int main()
 {
 	std::vector<Shape*> v; 
+
+	while (1)
+	{
+		int cmd;
+		std::cin >> cmd;
+
+		if (cmd == 1)
+		{
+			Rect rc;
+		}
+		else if (cmd == 2)
+		{
+
+		}
+		else if (cmd == 9)
+		{
+			for (auto e : v)
+				e->draw();
+		}
+	}
 }
 
