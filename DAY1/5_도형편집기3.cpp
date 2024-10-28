@@ -50,6 +50,10 @@ int main()
 
 				else if (dynamic_cast<Circle*>(e) != nullptr)
 					static_cast<Circle*>(e)->draw();
+
+				// 위코드는 새로운 도형 "Triangle" 이 추가 되었을때
+				// => 한줄이 추가되어야 합니다.(if 문 )
+				// => OCP 를 만족하지 않는 좋지 않은 코드. 
 			}
 		}
 	}
