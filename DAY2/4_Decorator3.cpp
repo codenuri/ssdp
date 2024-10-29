@@ -50,6 +50,10 @@ int main()
 	Emoticon e(&ps);
 	e.draw();	
 
-	Frame f(&ps);
+//	Frame f(&ps);
+	Frame f(&e); // 기능의 중첩
+				 // 현재 코드는 에러!!!
+				 // 해결은 "다음소스에서"
+				 
 	f.draw();
 }
