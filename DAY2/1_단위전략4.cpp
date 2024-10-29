@@ -18,7 +18,9 @@ public:
 };
 
 
-template<typename T, typename Alloc>
+// std::allocator<T> : C++ 표준이 제공하는 메모리 할당기
+//						new/delete 로 메모리 할당.
+template<typename T, typename Alloc = std::allocator<T> >
 class vector
 {
 	T* buff = nullptr;
@@ -44,7 +46,9 @@ public:
 int main()
 {
 
-	vector<int, MallocAllocator<int>> v(4);
+//	vector<int, MallocAllocator<int>> v(4);
+
+	vector<int> v(4);
 
 
 }
