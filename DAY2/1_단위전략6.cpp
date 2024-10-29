@@ -5,10 +5,26 @@
 // 1. 반드시 템플릿일 필요는 없지만 다양한 타입에 사용하기 위해
 //    대부분 템플릿
 // 2. 반드시 약속된 함수를 만들어야 한다.
+// => 함수 이름과 모양은 "인터페이스" 로 만들지 않고
+// => 문서화(표준문서)로 약속
 template<typename T>
 class debug_alloc
 {
+public:
+	inline T* allocate(std::size_t sz)
+	{
+		T* p = static_cast<T*>(malloc(sizeof(T) * sz));
 
+		printf("allocate %p, % cnts\n", p, sz);
+
+		return p;
+	}
+	inline void deallocate(T* p, std::size_t sz)
+	{
+		printf("deallocate %p, % cnts\n", p, sz);
+
+		free(p);
+	}
 };
 
 
