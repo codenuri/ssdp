@@ -80,6 +80,7 @@ public:
 		}
 	}
 
+	BaseMenu* submenu(int idx) { return v[idx]; }
 };
 
 int main()
@@ -91,8 +92,18 @@ int main()
 	root->add(pm1);
 	root->add(pm2);	
 	root->add(new MenuItem("재부팅", 12));
-
 	//------------------------------
+	
+	auto m1 = root->submenu(0); // "색상 메뉴 객체의 포인터"
+
+
+	// 아래 한줄에 대해서 생각해 봅시다.
+	root->submenu(1)->add(new MenuItem("HD", 21)); // ??
+
+
+
+
+
 
 
 	root->command();
