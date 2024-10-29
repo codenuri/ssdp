@@ -3,6 +3,11 @@
 #include <vector>
 #include <conio.h> 
 
+// 여기까지 핵심
+// => 메뉴 프로그램을 만들때도
+// => 모든 것을 타입으로 먼저 설계한다는 점
+// => "MenuItem", "PopupMenu" 등... 
+
 
 class MenuItem
 {
@@ -67,9 +72,6 @@ public:
 			v[cmd - 1]->command();
 
 		}
-
-
-
 	}
 
 };
