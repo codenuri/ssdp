@@ -61,13 +61,33 @@ int main()
 {
 	PhotoSticker ps;
 	ps.take();
+
 	ps.draw();
 
 	Emoticon e(&ps);
 	e.draw();
 
 	Frame f(&e);
+	f.draw();	// 기능 추가된것을 사용
 
-
-	f.draw();
+	ps.draw();	// 기능 추가전의 객체도 사용가능. 
 }
+/*
+// 자주 나오는 질문
+// => 아래처럼 "filter" 개념으로 하면 안되나요 ?
+PhotoSticker ps;
+ps.take();
+
+ps.add_filter(new Emoticon);
+ps.add_filter(new Frame);
+
+ps.draw();  // 등록된 필터를 모두 출력하고
+			// 촬영된 사진 출력
+			 // emoticon.draw()
+			 // frame.draw()
+			 // ps.draw()
+// 이 모델은 "원본 그림만 출력" 하는 기능이 없습니다.
+// => 필터를 제거후에 그려야 합니다.
+
+// decorator 는 기능 추가후에도 "원본 접근"을 허용하는 모델
+*/
