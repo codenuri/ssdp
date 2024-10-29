@@ -55,15 +55,20 @@ class Text : public TextView,	// TextView 의 모든 기능을 물려받고
 public:
 	Text(const std::string& data) : TextView(data) {}
 
+	// 핵심 : show() => draw() 로 함수 이름을 변경하는 부분
+	// "인터페이스의 불일치" 를 해결하는 코드
 	void draw() override
 	{
-		? ;
+		TextView::show();
 	}
 };
-
 int main()
 {
 	std::vector<Shape*> v;
+
+//	v.push_back(new TextView("hello")); // error
+	v.push_back(new Text("hello")); // ok
+	v[0]->draw();
 }
 
 
