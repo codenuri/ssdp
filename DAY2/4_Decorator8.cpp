@@ -24,11 +24,11 @@ public:
 	}
 };
 
-class ZipDecoator : public Stream
+class ZipDecorator : public Stream
 {
 	Stream* origin;
 public:
-	ZipDecoator(Stream* s) : origin(s) {}
+	ZipDecorator(Stream* s) : origin(s) {}
 
 	void write(const std::string& s)
 	{
