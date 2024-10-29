@@ -17,4 +17,8 @@ int main()
 	s.push_back(20);
 
 	s.pop_back();
+
+	// 단점 #1. 가독성이 좋지 않다.( stack 이 아닌 list 처럼 보인다)
+	//     #2. 실수로 앞에 넣을수도 있다.
+	s.push_front(0);// 실수
 }
