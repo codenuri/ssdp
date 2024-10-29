@@ -1,3 +1,6 @@
+#include <iostream>
+#include <cstdlib> // malloc
+
 // 방법 #2. strategy 패턴 적용
 // => 클래스(vector)가 사용하는 알고리즘(메모리할당/해지)을 다른 클래스로
 //    분리하자는 것
@@ -8,7 +11,7 @@
 template<typename T> struct IAllocator
 {
 	virtual T* allocate(std::size_t sz) = 0;
-	virtual void void deallocate(T* p, std::size_t sz) = 0;
+	virtual void deallocate(T* p, std::size_t sz) = 0;
 
 	virtual ~IAllocator() {}
 };
@@ -37,7 +40,7 @@ class vector
 	IAllocator<T>* alloc = nullptr;
 
 public:
-	vector(int sz, IAllcator<T>* a) : size(sz), alloc(a)
+	vector(int sz, IAllocator<T>* a) : size(sz), alloc(a)
 	{
 		buff = alloc->allocate(sz);
 		//....
