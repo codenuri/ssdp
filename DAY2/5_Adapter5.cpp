@@ -20,4 +20,9 @@ int main()
 	s.push(10);
 	s.push(20);
 	s.pop();
+
+	// 위 코드는 "상속을 사용한 stack adapter"
+	// 장점 : 가독성이 좋아집니다.(list 가 아닌 stack 사용)
+	// 단점 : 아래 처럼 실수 할수 있습니다.
+	s.push_front(0);
 }
