@@ -50,6 +50,28 @@ public:
 		TextView::show();
 	}
 };
+
+// 객체 어답터를 만들어 봅시다.
+class ObjectAdapter : public Shape
+{
+	TextView* tview; // 핵심 : 포인터 또는 참조 멤버 데이타
+
+
+public:
+	ObjectAdapter(TextView* t) : tview(t) {}
+
+	void draw()
+	{
+		? ;
+	}
+};
+
+
+
+
+
+
+
 int main()
 {
 	std::vector<Shape*> v;
@@ -58,7 +80,11 @@ int main()
 						  // tv        : 객체(변수)
 
 	// 이미 생성된 객체 tv 를 v 에 넣을수 있을까요 ?
-	v.push_back(&tv); // ???
+	v.push_back(&tv); // error
+
+	// tv 를 v에 넣기 위해 Text 를 사용할수 있을까 ?
+	// => 안됩니다. Text 는 클래스 어답터
+
 }
 
 
