@@ -32,9 +32,26 @@ public:
 	void add(MenuItem* m) { v.push_back(m); }
 
 	// 핵심 : PopupMenu 가 선택될때 동작을 생각해 보세요
+	// 1. 김밥
+	// 2. 라면
+	// 3. 종료
+	// 메뉴를 선택하세요 >>
 	void command()
 	{
+		auto sz = v.size();
 
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i - 1 << " . " << v[i]->get_title() << '\n';
+		}
+		std::cout << sz + 1 << ". 종료\n";
+
+		std::cout << "메뉴를 선택하세요 >> ";
+
+		int cmd;
+		std::cin >> cmd;
+
+		v[cmd - 1]->command();
 	}
 
 };
@@ -43,7 +60,6 @@ int main()
 {
 	MenuItem m1("김밥", 11);
 	MenuItem m2("라면", 11);
-
 	
 	PopupMenu pm("오늘의 점심 메뉴");
 
