@@ -14,9 +14,7 @@ public:
 	inline T* allocate(std::size_t sz)
 	{
 		T* p = static_cast<T*>(malloc(sizeof(T) * sz));
-
 		printf("allocate %p, % cnts\n", p, sz);
-
 		return p;
 	}
 	inline void deallocate(T* p, std::size_t sz)
@@ -25,7 +23,16 @@ public:
 
 		free(p);
 	}
+
+	// 위 2개위에 아래 3개가 필요 (관례적인 코드이므로, 그냥 복사해서 사용하면됩니다.)
+
+	using value_type = T;
+
+	debug_alloc() {}
+	
+	template<typename U> debug_alloc(const debug_alloc<U>&) {}
 };
+
 
 
 int main()
