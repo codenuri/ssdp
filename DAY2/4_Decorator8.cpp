@@ -70,3 +70,16 @@ int main()
 // 구글에서 "C# Stream" 검색후 "이미지 보기" 해보세요
 // 
 //
+
+// 참고
+// => Python  에서도 "decorator" 는 아주 널리 사용됩니다.
+// => "@" 로 시작하는 것이 decorator
+/*
+@wrapped    // <== 이게 decorator 입니다.
+fn add(x,y):
+	return x + y
+
+add(1, 2) => wrapped(1, 2) 를 먼저실행후 결과를 add 로 전달.
+		  => wrapped() => add()
+		  기능추가후 => 원본 호출
+*/
