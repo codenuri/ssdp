@@ -49,9 +49,16 @@ public:
 // => 인터페이스(함수이름)의 불일치 때문에 안됨. 
 
 // 인터페이스의 불일치를 해결해 봅시다.
-class Text : public TextView
+class Text : public TextView,	// TextView 의 모든 기능을 물려받고
+			 public Shape       // 시스템(도형편집기)의 요구조건도 만족
 {
+public:
+	Text(const std::string& data) : TextView(data) {}
 
+	void draw() override
+	{
+		? ;
+	}
 };
 
 int main()
