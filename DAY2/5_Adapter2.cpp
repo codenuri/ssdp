@@ -88,7 +88,7 @@ int main()
 	v.push_back( new ObjectAdapter(&tv) );
 				// µÅÁöÄÚ  !!
 
-	v[0]->draw();
+	v[0]->draw(); // tv.show()
 }
 
 
