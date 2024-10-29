@@ -38,20 +38,38 @@ public:
 	// 메뉴를 선택하세요 >>
 	void command()
 	{
-		auto sz = v.size();
-
-		for (int i = 0; i < sz; i++)
+		while (1)
 		{
-			std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+			system("cls"); // 화면 지우기
+
+			auto sz = v.size();
+
+			for (int i = 0; i < sz; i++)
+			{
+				std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+			}
+			std::cout << sz + 1 << ". 종료\n";
+
+			std::cout << "메뉴를 선택하세요 >> ";
+
+			
+
+			int cmd;
+			std::cin >> cmd;
+
+			if (cmd == sz + 1)	// 종료 메뉴 선택
+				break;
+
+			if (cmd < 1 || cmd > sz + 1) // 잘못된 입력
+				continue;
+
+
+			v[cmd - 1]->command();
+
 		}
-		std::cout << sz + 1 << ". 종료\n";
 
-		std::cout << "메뉴를 선택하세요 >> ";
 
-		int cmd;
-		std::cin >> cmd;
 
-		v[cmd - 1]->command();
 	}
 
 };
