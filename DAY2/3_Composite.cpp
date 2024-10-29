@@ -22,13 +22,17 @@ public:
 	virtual int get_size() = 0;
 };
 
-
-class File  
+class File  : public component
 {
+	int size;
 public:
+	File(const std::string& name, int size)
+		: component(name), size(size) {}
+
+	int get_size() override { return size; }
 };
 
-class Folder 
+class Folder : public component
 {
 public:
 };
