@@ -76,7 +76,10 @@ int main()
 //											vector<int, MallocAllocator<int>> 
 
 // 디자인 패턴 : 다양한 객체지향 언어로 모두 구현 가능한 범용적 디자인 ( 23개 )
+//				(template method, strategy ... )
+// 
 // IDioms     : 각 언어의 특징을 고려한 디자인 기술
+//				(policy base design ....)
 //			    C++ IDioms, Java IDioms, C# IDioms
 
 // 구글 "C++ IDioms" 검색
