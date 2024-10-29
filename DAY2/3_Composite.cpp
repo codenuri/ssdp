@@ -34,7 +34,21 @@ public:
 
 class Folder : public component
 {
+	std::vector<component*> v;
 public:
+	Folder(const std::string& name)
+		: component(name) {}
+
+	void add(component* c) { v.push_back(c); }
+
+	int get_size() override
+	{
+		int s = 0;
+		for (auto e : v)
+			s += e->get_size();
+
+		return s;
+	}
 };
 
 int main()
