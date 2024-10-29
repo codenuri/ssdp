@@ -114,7 +114,20 @@ int main()
 
 	// 캐스팅 없이 사용!!!
 	root->submenu(1)->add(new MenuItem("HD", 21));
+			// ok.. 정상동작
 
+	try
+	{
+
+		root->submenu(2)->add(new MenuItem("HD", 21));
+		// 컴파일은 되지만, 
+		// MenuItem 에 대해 add 호출이므로
+		// 실행시 예외
+	}
+	catch (unsupported_operation& e)
+	{
+		std::cout << "예외 발생\n";
+	}
 
 	root->command();
 
