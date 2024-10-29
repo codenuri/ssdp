@@ -12,7 +12,14 @@
 // 공통의 기반 클래스
 class component
 {
+	std::string name;
+public:
+	component(const std::string& name) 
+		: name(name) {}
 
+	virtual ~component() {}
+
+	virtual int get_size() = 0;
 };
 
 
