@@ -2,7 +2,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 
-class FileStream
+// 모든 Stream 의 함수가 동일함을 보장하기 위해
+// 인터페이스 설계
+struct Stream
+{
+	virtual void write(const std::string&) = 0;
+	virtual ~Stream() {}
+
+	// 이외에도 read, flush, is_open, close 등의 함수 이름을 약속
+};
+
+class FileStream : public Stream
 {
 	FILE* file;
 public:
