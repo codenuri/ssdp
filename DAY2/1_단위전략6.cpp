@@ -14,12 +14,12 @@ public:
 	inline T* allocate(std::size_t sz)
 	{
 		T* p = static_cast<T*>(malloc(sizeof(T) * sz));
-		printf("allocate %p, % cnts\n", p, sz);
+		printf("allocate %p, %zu cnts\n", p, sz);
 		return p;
 	}
 	inline void deallocate(T* p, std::size_t sz)
 	{
-		printf("deallocate %p, % cnts\n", p, sz);
+		printf("deallocate %p, %zu cnts\n", p, sz);
 
 		free(p);
 	}
@@ -41,11 +41,13 @@ int main()
 
 	std::cout << "-----------------" << std::endl;
 
-	v.resize(4);
+	v.resize(4);	// 메모리 할당기로 4개 할당
 
 	std::cout << "-----------------" << std::endl;
 
-	v.resize(8);
+	v.resize(8);	// 1. 메모리할당기로 8개 할당
+					// 2. 4개 내용 -> 8개 로 복사
+					// 3. 메모리할당기로 4개는 제거
 
 	std::cout << "-----------------" << std::endl;
 }
