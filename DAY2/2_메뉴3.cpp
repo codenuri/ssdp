@@ -42,7 +42,7 @@ public:
 
 		for (int i = 0; i < sz; i++)
 		{
-			std::cout << i - 1 << ". " << v[i]->get_title() << '\n';
+			std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
 		}
 		std::cout << sz + 1 << ". Á¾·á\n";
 
