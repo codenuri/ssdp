@@ -34,22 +34,27 @@ class vector
 	T* buff = nullptr;
 	int size;
 
-	
+	IAllocator<T>* alloc = nullptr;
+
 public:
-	vector(int sz) : size(sz)
+	vector(int sz, IAllcator<T>* a) : size(sz), alloc(a)
 	{
-		buff = new T[size];
+		buff = alloc->allocate(sz);
 		//....
 	}
 	~vector()
 	{
-		delete[] buff;
+		alloc->deallocate(buff, size);
 		//....
 	}
 };
 
 int main()
 {
-	vector<int> v(4);
+//	vector<int> v(4);
+	vector<int> v(4, new MallocAllocator<int>() );
+
+	// 이제 메모리 할당기는 다른 컨테이너에도 사용가능합니다.
+//	list<int> s(4, new MallocAllocator<int>() );
 }
 
