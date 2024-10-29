@@ -50,5 +50,28 @@ int main()
 	DNSProxy dns;	// 캐쉬를 먼저 조사
 					// 정보가 없을때만 서버에 접근
 
-	std::cout << dns.resolve("www.samsung.com") << std::endl;
+//	std::cout << dns.resolve("www.samsung.com") << std::endl;
+	std::cout << dns.resolve("www.naver.com") << std::endl;
 }
+
+// Proxy  패턴
+// => 다양한 이유로 기존 클래스를 대신하는 것을 만들어 사용하는 패턴
+
+// DNSProxy 는 DNS 에 Cache 기능을 추가하므로
+// => 기능의 추가(decorator) 패턴 아닌가요 ??
+
+// decorator : origin 도 계속 사용가능...
+// proxy     : origin 을 대신해서 사용
+
+FileStream fs("a.txt");
+ZipDecorator zd(&fs);
+zd.write("aaa"); // 기능을 추가한 것을 사용해도 되고
+fs.write("aaa"); // origin 도 사용가능. 
+
+// proxy
+//DNS dns; // 이것을 사용하지 말고!!
+DNSProxy dns; // 이것을 사용해라!!
+			  // Proxy 가 필요할때 원래 객체 사용
+
+// DNSProxy : DNS 에 캐쉬 기능을 추가하려고 만든것
+// 이외에도 다양한 Proxy 기술이 있습니다. - 다음예제.
