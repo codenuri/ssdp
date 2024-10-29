@@ -98,12 +98,18 @@ int main()
 
 
 	// 아래 한줄에 대해서 생각해 봅시다.
-	root->submenu(1)->add(new MenuItem("HD", 21)); // ??
+//	root->submenu(1)->add(new MenuItem("HD", 21)); // error
+				// submenu(1) 은 "해상도 메뉴" 이므로
+				// PopupMenu 객체가 맞지만
+				// submenu() 의 반환 타입이 BaseMenu* 이다.
+				// 따라서, PopupMenu 가 추가한 멤버에는 접근 안됨
+			
+	// 해결책 #1. 캐스팅해서 사용
+	static_cast<PopupMenu*>(root->submenu(1))->add(new MenuItem("HD", 21));
 
 
-
-
-
+	// 캐스팅 없이 사용할수 없을까 ?
+	// => 다음예제(메뉴8.cpp)
 
 
 	root->command();
