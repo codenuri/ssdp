@@ -40,11 +40,17 @@ int main()
 	//        그리고, OCP 위반
 	//        새로운 요구조건이 생길때마다 "기존 코드 수정"
 
-	// #3. 
-
+	// #3. Decorator 패턴을 사용하면 어떨까 ?
 
 	FileStream fs("a.txt");
 	fs.write("hello");
+	
+	EncrpytDecorator ed(&fs);
+	ed.write("hello");  // 1. 데이타를 암호화 하고
+						// 2. fs.write(암호화된데이타)
 
-
+	ZipDecorator zd(&ed);
+	zd.write("hello");	// 1. 압축하고
+						// 2. ed.write(압축된데이타)를 암호화
+						// 3. fs.write(압축암호화된데이타)
 }
