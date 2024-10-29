@@ -3,46 +3,40 @@
 
 // 방법 #3.
 
-template<typename T> struct IAllocator
-{
-	virtual T* allocate(std::size_t sz) = 0;
-	virtual void deallocate(T* p, std::size_t sz) = 0;
 
-	virtual ~IAllocator() {}
-};
-
-
-template<typename T> class MallocAllocator : public IAllocator<T>
+template<typename T> class MallocAllocator 
 {
 public:
-	T* allocate(std::size_t sz) override
+	inline T* allocate(std::size_t sz) 
 	{
 		return static_cast<T*>(malloc(sizeof(T) * sz));
 	}
-	void deallocate(T* p, std::size_t sz) override
+	inline void deallocate(T* p, std::size_t sz)
 	{
 		free(p);
 	}
 };
 
 
-template<typename T>
+template<typename T, typename Alloc>
 class vector
 {
 	T* buff = nullptr;
 	int size;
 
-	IAllocator<T>* alloc = nullptr;
-
+//	MallocAllocator<int> ax; // 강한 결합. 교체 안됨
+	Alloc ax;				 // 템플릿 인자로 전달된 타입 사용
+							 // 즉, 템플릿 인자로 정책 클래스 교체
 public:
-	vector(int sz, IAllocator<T>* a) : size(sz), alloc(a)
+	vector(int sz) : size(sz)
 	{
-		buff = alloc->allocate(sz);
+		buff = ax.allocate(sz); // 인라인 함수 이므로 "인라인 치환"
+								// 성능저하 없음. 아주 빠르다.
 		//....
 	}
 	~vector()
 	{
-		alloc->deallocate(buff, size);
+		ax.deallocate(buff, size);
 		//....
 	}
 };
@@ -50,7 +44,7 @@ public:
 int main()
 {
 
-	vector<int> v(4, new MallocAllocator<int>());
+	vector<int, MallocAllocator<int>> v(4);
 
 
 }
