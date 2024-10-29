@@ -38,11 +38,11 @@ public:
 	}
 };
 
-class EncryptDecoator : public Stream
+class EncryptDecorator : public Stream
 {
 	Stream* origin;
 public:
-	EncryptDecoator(Stream* s) : origin(s) {}
+	EncryptDecorator(Stream* s) : origin(s) {}
 
 	void write(const std::string& s)
 	{
@@ -57,12 +57,16 @@ int main()
 	FileStream fs("a.txt");
 	fs.write("hello");
 
-	EncryptDecoator ed(&fs);
+	EncryptDecorator ed(&fs);
 	ed.write("hello");  // 1. 데이타를 암호화 하고
-	// 2. fs.write(암호화된데이타)
+						// 2. fs.write(암호화된데이타)
 
 	ZipDecorator zd(&ed);
 	zd.write("hello");	// 1. 압축하고
-	// 2. ed.write(압축된데이타)를 암호화
-	// 3. fs.write(압축암호화된데이타)
+						// 2. ed.write(압축된데이타)를 암호화
+						// 3. fs.write(압축암호화된데이타)
 }
+
+// 구글에서 "C# Stream" 검색후 "이미지 보기" 해보세요
+// 
+//
