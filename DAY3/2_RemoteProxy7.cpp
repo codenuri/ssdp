@@ -14,10 +14,21 @@ template<typename T> class sp
 {
 	T* obj;
 public:
-	sp(T* p = nullptr) : obj(p) {}
+	sp(T* p = nullptr) : obj(p) { if (obj != nullptr) obj->AddRef(); }
+
+	sp(const sp& other) : obj(other.obj) { if (obj != nullptr) obj->AddRef(); };
+
+	~sp() { if (obj != nullptr) obj->Release(); }
 };
 
 
+int main()
+{
+	sp<ICalc> calc1 = load_proxy(); // sp<ICalc> calc1( load_proxy() )
+	sp<ICalc> calc2 = calc1;
+}
+
+/*
 int main()
 {
 	ICalc* calc1 = load_proxy();
@@ -27,15 +38,12 @@ int main()
 	calc2->AddRef(); 
 	calc1->Release(); 
 
-
 	std::cout << "-----------\n";
-
 	calc2->Release();	
-
 	std::cout << "-----------\n";
 
 }
-
+*/
 
 
 
