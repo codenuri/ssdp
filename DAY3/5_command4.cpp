@@ -50,6 +50,14 @@ public:
 		delete s;
 	}
 
+	// 아래 코드는 template method 의 전형적인 형태 입니다.
+	// 그런데, 가상함수가 하는 일(파생 클래스가 결정하는 것)이
+	// "객체의 종류(타입)" 만 결정
+
+	// factory method 라고 합니다.
+	// => 객체를 생성하기 위한 인터페이스를 제공하고 사용하지만
+	//    객체의 종류는 파생클래스가 결정
+	//    template method 와 동일한 형태
 
 	virtual Shape* create_shape() = 0;
 };
