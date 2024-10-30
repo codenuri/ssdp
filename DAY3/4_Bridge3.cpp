@@ -41,6 +41,7 @@ Point::Point()      { impl = new PointImpl; }
 void Point::print() { impl->print(); }
 
 
+
 // main.cpp
 #include "Point.h"
 int main()
@@ -50,3 +51,11 @@ int main()
 }
 
 
+// 위 기술이
+// 컴파일 시간 Bridge 패턴 입니다.
+// C++ 에서는 "PIMPL" 이라는 "C++ IDioms" 로 부릅니다.
+//			 "Pointer to IMPLementation"
+
+// 장점 1. 컴파일 속도 향상(컴파일 시간 방화벽)
+// 장점 2. 완벽한 정보 은닉(구현의 헤더를 노출할필요 없다.
+//						  추상층의 헤더만 노출하면 된다.)
