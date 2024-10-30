@@ -32,3 +32,6 @@ ICalc* create()
 {
 	return new Calc;
 }
+
+
+// cl CalcProxy.cpp /LD
