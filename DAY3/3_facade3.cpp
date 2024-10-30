@@ -86,3 +86,15 @@ int main()
 	TCPServer server;
 	server.Start("127.0.0.1", 4000);
 }
+
+// C++ MFC 라이브러리
+// => 마이크로소프트가 만든 GUI 라이브러리
+// => facade2.cpp 처럼만 되어 있음.
+// => 사용하기 어렵고 복잡하기로 악명 높음..
+
+
+// C#, Python
+// => facade3.cpp 처럼
+// => "TCPserver", "UDPServer" 같은 퍼사드 클래스가 아주 잘되어 있음.
+// => Python 의 pyexcel 등...
+// => 그래서, 사용하기 아주 쉽습니다.
