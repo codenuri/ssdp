@@ -40,6 +40,8 @@ public:
 		m.set_brightness(value);
 	}
 
+	bool can_undo() { return true;  }
+
 	void undo()
 	{
 		m.set_brightness(old);
