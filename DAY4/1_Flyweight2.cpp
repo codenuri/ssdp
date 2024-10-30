@@ -43,6 +43,9 @@ public:
 
 int main()
 {
+	// IOS 개발시 사용되는 "Cocoa Touch" 라이브러리의
+	// "UIImage"클래스가 아래처럼 사용합니다.(Swift 언어)
+
 	Image* img1 = Image::Create("www.naver.com/a.png");
 	img1->Draw();
 
