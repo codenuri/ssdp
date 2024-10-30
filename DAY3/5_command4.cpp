@@ -31,23 +31,39 @@ struct ICommand
 	virtual ~ICommand() {}
 };
 
-class AddRectCommand : public ICommand
+// 도형을 추가하는 명령은 유사한점이 많이 있습니다.
+// "기반 클래스"를 만들어서 제공합니다.
+class AddCommand : public ICommand
 {
 	std::vector<Shape*>& v;
 public:
-	AddRectCommand(std::vector<Shape*>& v) : v(v) {}
+	AddCommand(std::vector<Shape*>& v) : v(v) {}
 
-	void execute() override { v.push_back(new Rect); }
+	void execute() override { v.push_back( create_shape() ); }
 
 	bool can_undo() override { return true; }
 
 	void undo() override
 	{
-		Shape* s = v.back(); 
-		v.pop_back();		 
+		Shape* s = v.back();
+		v.pop_back();
 		delete s;
 	}
+
+
+	virtual Shape* create_shape() = 0;
 };
+
+
+class AddRectCommand : public AddCommand
+{
+public:
+	AddRectCommand(std::vector<Shape*>& v) : AddCommand(v) {}
+
+	Shape* create_shape() override { new Rect; }
+};
+
+
 
 class AddCircleCommand : public ICommand
 {
