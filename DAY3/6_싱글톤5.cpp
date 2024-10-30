@@ -7,6 +7,8 @@
 
 // RAII IDioms
 // => 자원의 할당과 해지는 생성자/소멸자에 의존해야 합니다.
+// => Resource Acquision Is (자원관리객체가) Initialization
+// => 핵심 : 소멸자에서 자원을 관리해라!!
 
 template<typename T> class lock_guard
 {
