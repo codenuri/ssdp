@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stack>
 
 class Shape
 {
@@ -91,6 +92,9 @@ int main()
 {
 	std::vector<Shape*> v;
 
+	std::stack<ICommand*> undo_stack;
+	std::stack<ICommand*> redo_stack;
+
 	ICommand* command = nullptr;
 
 	while (1)
@@ -102,16 +106,39 @@ int main()
 		{
 			command = new AddRectCommand(v);
 			command->execute();
+
+			undo_stack.push(command); // undo 를 위해서 보관
 		}
 		else if (cmd == 2) 
 		{
 			command = new AddCircleCommand(v);
 			command->execute();
+
+			undo_stack.push(command);
 		}
 		else if (cmd == 9)
 		{
 			command = new DrawCommand(v);
 			command->execute();
+
+			undo_stack.push(command);
+		}
+
+		else if (cmd == 0)
+		{
+			if (!undo_stack.empty())
+			{
+				command = undo_stack.top(); // 반환만되고
+				undo_stack.pop();			// 실제 제거는 여기서
+
+				if (command->can_undo())
+				{
+					command->undo();
+				}
+
+				delete command; // redo 도 지원하려면 지우지 말고
+								// redo_stack.push(command)
+			}
 		}
 	}
 }
