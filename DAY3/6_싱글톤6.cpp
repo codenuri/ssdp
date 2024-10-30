@@ -16,7 +16,7 @@
 template<typename T>
 class Singleton
 {
-private:
+protected:
 	Singleton() {}
 	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
@@ -35,8 +35,9 @@ public:
 		return *sinstance;
 	}
 };
-T* Singleton::sinstance = nullptr;
-std::mutex Singleton::mtx;
+
+template<typename T> T* Singleton<T>::sinstance = nullptr;
+template<typename T> std::mutex Singleton<T>::mtx;
 
 // Mouse 클래스도 위처럼 힙에 만드는 싱글톤으로 하고 싶다.
 class Mouse : public Singleton< Mouse  >
