@@ -20,8 +20,11 @@ public:
 int main()
 {
 	Monitor m;
-	m.set_brightness(90);
+	m.set_brightness(90);		// 직접 변경
 	
-	BrightCommand cmd(m, 90);
-	cmd.execute();
+	// m의 밝기 상태를 이전 상태로 복구해 보세요
+
+
+	BrightCommand cmd(m, 90);	
+	cmd.execute();				// 객체 사용
 }
