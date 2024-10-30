@@ -31,15 +31,14 @@ public:
 
 	static Cursor& get_instance()
 	{
-		mtx.lock();
+		lock_guard<std::mutex> g(mtx);
+
+//		mtx.lock();
 
 		if (sinstance == nullptr)
 			sinstance = new Cursor;
 
-
-
-
-		mtx.unlock();
+//		mtx.unlock();
 
 		return *sinstance;
 	}
