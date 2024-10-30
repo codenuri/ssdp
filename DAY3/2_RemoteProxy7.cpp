@@ -24,6 +24,11 @@ public:
 	T* operator->() { return obj; }
 	T& operator*() { return *obj; }
 };
+// 위 sp 가 C++ 진영에서 유명한 "스마트 포인터" 입니다.
+// 스마트 포인터는 "smart proxy" 입니다.
+// 즉, proxy 패턴 ( 포인터의 대행자 )
+
+// 실제 "안드로이드 내부 소스에 sp" 가 있습니다.
 
 int main()
 {
