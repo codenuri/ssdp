@@ -19,7 +19,9 @@ public:
 	// => 동기화 방법은 "spin lock(busy waiting)" 입니다.
 	static Cursor& get_instance()
 	{
-		static Cursor instance; 
+		static Cursor instance; // lock()
+								// Cursor() 호출
+								// unlock()
 
 		return instance;
 	}
