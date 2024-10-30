@@ -35,7 +35,6 @@ public:
 		return *sinstance;
 	}
 };
-
 template<typename T> T* Singleton<T>::sinstance = nullptr;
 template<typename T> std::mutex Singleton<T>::mtx;
 
@@ -52,7 +51,12 @@ int main()
 }
 
 
+// github.com/aosp-mirror  에 접속해 보세요
+//						(aosp : android open source project)
 
+// system platform core  레포지토리 선택
+
+// libutils/include/utils 에서 Singleton.h 열어 보세요
 
 
 
