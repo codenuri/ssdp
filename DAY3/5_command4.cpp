@@ -81,7 +81,8 @@ public:
 	// => 이럴때는 생성자 상속 문법을 사용하면 됩니다.
 	
 	// 생성자 상속 문법 - 기반 클래스 생성자를 상속해 달라
-	using AddCommand::AddCommand;
+	// => 아래 한줄이 위 생성자(주석)의 효과
+	using AddCommand::AddCommand;  // 클래스이름::생성자이름
 
 	Shape* create_shape() override { return new Circle; }
 };
