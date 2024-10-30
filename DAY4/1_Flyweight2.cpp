@@ -17,11 +17,22 @@ public:
 	void Draw() { std::cout << "Draw " << image_url << std::endl; }
 
 
+	static std::map<std::string, Image*> image_map;
+
 	// Image 객체를 만드는 static 멤버 함수
 	static Image* Create(const std::string& url)
 	{
-		Image* img = new Image(url);
-		return img;
+		// #1. 이미 만든 객체가 있는지 조사
+		auto it = image_map.find(url);
+
+		// #2. 없는 경우만 생성
+		if (it == image_map.end())
+		{
+			Image* img = new Image(url);
+			image_map[url] = img;
+			return img;
+		}		
+		return it->second;
 	}
 };
 
