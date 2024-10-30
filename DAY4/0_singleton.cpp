@@ -10,12 +10,15 @@ public:														\
 		static classname instance;							\
 		return instance;									\
 	}
+private:
 */
 #include "helper.h" // 이 안에 위 매크로가 있습니다.
 
 class Cursor
 {
 	MAKE_SINGLETON(Cursor)
+
+	int a;
 };
 
 int main()
