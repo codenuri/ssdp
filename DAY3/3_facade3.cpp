@@ -68,24 +68,21 @@ public:
 
 class TCPServer
 {
+	NetworkInit init;
+//	Socket sock(SOCK_STREAM); // 멤버 데이타에서는 () 초기화하면 에러
+	Socket sock{SOCK_STREAM}; // {} 로 해야 합니다.
 public:
 	void Start(const char* ip, short port)
 	{
-
+		IPAddress addr(ip, port);
+		sock.Bind(&addr);
+		sock.Listen();
+		sock.Accept();
 	}
 };
-
-
-
 int main()
 {
-	NetworkInit init;
-
-	Socket sock(SOCK_STREAM); // TCP 서버
-
-	IPAddress addr("127.0.0.1", 4000);
-	sock.Bind(&addr);
-	sock.Listen();
-	sock.Accept();
-
+	// 최종 사용자 코드
+	TCPServer server;
+	server.Start("127.0.0.1", 4000);
 }
