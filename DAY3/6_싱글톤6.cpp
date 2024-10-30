@@ -2,35 +2,39 @@
 #include <mutex>
 
 
-class Cursor
+class Singleton
 {
 private:
-	Cursor() {}
-	Cursor(const Cursor&) = delete;
-	Cursor& operator=(const Cursor&) = delete;
+	Singleton() {}
+	Singleton(const Singleton&) = delete;
+	Singleton& operator=(const Singleton&) = delete;
 
-	static Cursor* sinstance;
+	static Singleton* sinstance;
 	static std::mutex mtx;
 public:
 
-	static Cursor& get_instance()
+	static Singleton& get_instance()
 	{
 		std::lock_guard<std::mutex> g(mtx);
 
 		if (sinstance == nullptr)
-			sinstance = new Cursor;
+			sinstance = new Singleton;
 
 		return *sinstance;
 	}
+};
+Singleton* Singleton::sinstance = nullptr;
+std::mutex Singleton::mtx;
+
+// Mouse 클래스도 위처럼 힙에 만드는 싱글톤으로 하고 싶다.
+class Mouse : public Singleton
+{
 
 };
-Cursor* Cursor::sinstance = nullptr;
-std::mutex Cursor::mtx;
-
 
 int main()
 {
-	Cursor& c1 = Cursor::get_instance();
+	Mouse& c1 = Mouse::get_instance();
 
 }
 
