@@ -25,3 +25,16 @@ ICalc* create()
 
 // 새로운 Proxy DLL 을 만들때도 규칙("create" 함수가 있어야 한다는)
 // 을 지켜야 합니다.
+
+// C++ 컴파일러
+// linux 용 : g++
+// windows 용 visual studio 가 가진 컴파일러 : cl.exe
+
+// 윈도우 시작버튼
+// => 검색에서 "developer command ...."
+
+// => 현재 소스가 있는 곳으로 이동
+// cd \     => C:\ 로이동
+// cd 폴더
+
+// cl CalcProxy.cpp /LD     => /LD 가 DLL 로 빌드하라는 옵션입니다.
