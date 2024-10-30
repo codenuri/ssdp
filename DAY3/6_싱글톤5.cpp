@@ -31,12 +31,18 @@ public:
 
 	static Cursor& get_instance()
 	{
-		lock_guard<std::mutex> g(mtx);
-
+		std::lock_guard<std::mutex> g(mtx);
+//		lock_guard<std::mutex> g(mtx); // 1. g의 생성자에서 mtx.lock()
+										// 2. 지역변수 g 파괴시 소멸자에서 mtx.unlock()
+										// 장점 1. 예외 발생해도 g의 소멸자는 호출하고
+										//	      예외 핸들러로 이동
+										// 장점 2. 실수할수 없다. g의 소멸자는 항상호출
 //		mtx.lock();
 
 		if (sinstance == nullptr)
 			sinstance = new Cursor;
+	
+	//	if (실패) return 0; // 이경우도 g의 소멸자 호출..
 
 //		mtx.unlock();
 
