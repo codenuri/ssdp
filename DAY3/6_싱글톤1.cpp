@@ -17,11 +17,11 @@ private:
 	Cursor() {}
 
 	// 규칙 2. 컴파일러가 복사생성자와 대입연산자를 만들지 못하게
+	// => 함수 삭제 문법(C++11에서 도입)
 	Cursor(const Cursor&) = delete;				// 복사 생성자를 만들지말라
 	Cursor& operator=(const Cursor&) = delete;	// 관례상. 복사를 금지하면
 												//         대입도 금지
-
-
+												
 
 	// 규칙 3. 오직 한개의 객체만 만들어서 반환하는 static 멤버 함수
 public:
@@ -47,7 +47,11 @@ int main()
 }
 
 
-
+// 위 코드가 "Mayer's singleton" 입니다.
+// => Effective-C++ 책의 저자인 "scott mayer 가 처음 제안한 코드"
+// => 오직 한개의 객체를 "static 지역변수" 로 만든 것이 특징
+// 
+// => 현재 알려진 다양한 방법중에서 최선의 코드로 평가됨.
 
 
 
