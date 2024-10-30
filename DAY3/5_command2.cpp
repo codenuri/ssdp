@@ -15,8 +15,18 @@
 // => 현재 상태에서 취소가 가능한지 조사도 가능
 //    네트워크 전송된 데이타는 취소 안됨
 
+// 명령은 여러개가 필요 합니다.
+// 인터페이스를 먼저 제공
+struct ICommand
+{
+	virtual void execute() = 0;
+	virtual bool can_undo() { return false; }
+	virtual void undo() {}
 
-class BrightCommand
+	virtual ~ICommand() {}
+};
+
+class BrightCommand : public ICommand
 {
 	Monitor& m;
 	int value;
