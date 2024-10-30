@@ -17,7 +17,10 @@ public:
 	void Draw() { std::cout << "Draw " << image_url << std::endl; }
 
 
-	static std::map<std::string, Image*> image_map;
+	// inline static 문법
+	// => static 멤버 데이타를 만들때 클래스 외부 선언이 필요 없습니다
+	// => C++17 부터 지원되는 문법
+	inline static std::map<std::string, Image*> image_map;
 
 	// Image 객체를 만드는 static 멤버 함수
 	static Image* Create(const std::string& url)
@@ -35,6 +38,8 @@ public:
 		return it->second;
 	}
 };
+
+
 
 int main()
 {
