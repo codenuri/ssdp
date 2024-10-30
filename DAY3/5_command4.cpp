@@ -68,28 +68,25 @@ class AddRectCommand : public AddCommand
 public:
 	AddRectCommand(std::vector<Shape*>& v) : AddCommand(v) {}
 
-	Shape* create_shape() override { new Rect; }
+	Shape* create_shape() override { return new Rect; }
 };
 
 
-
-class AddCircleCommand : public ICommand
+class AddCircleCommand : public AddCommand
 {
-	std::vector<Shape*>& v;
 public:
-	AddCircleCommand(std::vector<Shape*>& v) : v(v) {}
+//	AddCircleCommand(std::vector<Shape*>& v) : AddCommand(v) {}
 
-	void execute() override { v.push_back(new Circle); }
+	// 위 생성자는 자신이 받은 인자를 기반 클래스에 보내는 일만 합니다.
+	// => 이럴때는 생성자 상속 문법을 사용하면 됩니다.
+	
+	// 생성자 상속 문법 - 기반 클래스 생성자를 상속해 달라
+	using AddCommand::AddCommand;
 
-	bool can_undo() override { return true; }
-
-	void undo() override
-	{
-		Shape* s = v.back(); 
-		v.pop_back();		 
-		delete s;
-	}
+	Shape* create_shape() override { return new Circle; }
 };
+
+
 
 class DrawCommand : public ICommand
 {
