@@ -8,18 +8,18 @@ class Shape
 public:
 	virtual void draw() = 0;
 	virtual ~Shape() {}
+
+	virtual Shape* clone() = 0;
 };
 
 class Rect : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
-
-
 	static Shape* create() { return new Rect; }
+
+	Shape* clone() override { return new Rect(*this); }
 };
-
-
 
 class Circle : public Shape
 {
@@ -27,6 +27,8 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	Shape* clone() override { return new Circle(*this); }
 };
 
 
@@ -34,25 +36,24 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-		using CREATOR = Shape * (*)(); 
-
-	inline static std::map<int, CREATOR> create_map;
+	inline static std::map<int, Shape*> sample_map;
 
 public:
-	void register_shape(int key, CREATOR c)
+	void register_shape(int key, Shape* c)
 	{
-		create_map[key] = c;
+		sample_map[key] = c;
 	}
 
 	Shape* create(int key)
 	{
 		Shape* p = nullptr;
 
-		auto it = create_map.find(key);
+		auto it = sample_map.find(key);
 
-		if (it != create_map.end())
+		if (it != sample_map.end())
 		{
-			p = it->second(); 
+			p = it->second->clone(); // 이렇게 사용하는 것이
+									 // "prototype" 패턴
 		}
 		return p;
 	}
@@ -75,7 +76,9 @@ int main()
 	// 공장에 자주 사용되는 도형 객체를 등록해 봅시다.
 	Rect* red_rect = new Rect;
 	Rect* blue_rect = new Rect;
-	Circle* red_circle = new Circle;
+	Circle* red_circle = new Circle; // 이 원을 만들려면
+									 // 생성자 인자가 복잡하고
+									  // 생성후 많은 추가작업 필요
 
 	factory.register_shape(1, red_rect);
 	factory.register_shape(2, blue_rect);
