@@ -41,6 +41,23 @@ public:
 
 
 
+// 공장에 도형을 자동등록하는 클래스 
+// => 생성자만 사용
+struct AutoRegiter
+{
+	AutoRegister(int key, Shape* (*f)())
+	{
+		ShapeFactory::get_instance().register_shape(key, f);
+	}
+};
+
+// 전역 변수의 생성자가 언제 호출되는지 생각해 보세요
+AutoRegiter ar(1, &Rect::create);
+
+
+
+
+
 class Rect : public Shape
 {
 public:
