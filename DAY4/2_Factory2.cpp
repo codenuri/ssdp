@@ -43,6 +43,8 @@ class Circle : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
+
+	static Shape* create() { return new Circle; }
 };
 
 
@@ -55,11 +57,23 @@ class ShapeFactory
 	inline static std::map<int, CREATOR> create_map;
 
 public:
-	Shape* create(int type)
+	void register_shape(int key, CREATOR c)
+	{
+		create_map[key] = c;
+	}
+
+	Shape* create(int key)
 	{
 		Shape* p = nullptr;
-		if (type == 1)	p = new Rect;
-		else if (type == 2)	p = new Circle;
+		
+		auto it = create_map.find(key);
+
+		if (it != create_map.end())
+		{
+			p = it->second();  // map 의 반복자는 std::pair 포인터
+							   // pair 의 first 는 키값(int)
+								// pair second 는 value(함수포인터)
+		}
 		return p;
 	}
 };
@@ -70,6 +84,10 @@ int main()
 	std::vector<Shape*> v;
 
 	ShapeFactory& factory = ShapeFactory::get_instance();
+
+	// 공장에 제품을 등록합니다.
+	factory.register_shape(1, &Rect::create);
+	factory.register_shape(2, &Circle::create);
 
 	while (1)
 	{
