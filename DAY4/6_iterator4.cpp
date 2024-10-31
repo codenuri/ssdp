@@ -29,24 +29,41 @@ struct ICollection
 // 반복자의 핵심
 // => 1번째 요소를 가리키다가 약속된 방법으로 이동
 
-template<typename T> class slist_iterator
+template<typename T> class slist_iterator : public IIterator<T>
 {
-
+	Node<T>* current;
 public:
+	slist_iterator(Node<T>* p = 0) : current(p) {}
 
+	T& next() override
+	{
+		T& temp = current->data;
+		current = current->next;
+		return temp;
+	}
+
+	bool hasNext() override
+	{
+		return current != 0;
+	}
 };
 
+// 모든 컬렉션은 반복자를 꺼낼수 있어야 한다.
 
 
-
-
-template<typename T> struct slist
+template<typename T> struct slist : public ICollection<T>
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
-};
 
+	IIterator<T>* iterator() override
+	{
+		// slist_iterator 객체를 list 첫번째 요소 주소로 초기화해서
+		// 반환하면 됩니다.
+		return new slist_iterator<T>(head);
+	}
+};
 int main()
 {
 	slist<int> s;
@@ -54,4 +71,11 @@ int main()
 	s.push_front(20);
 	s.push_front(30);
 	s.push_front(40);
+
+	auto it = s.iterator(); // auto 는 IIterator<int>* 가 됩니다
+
+	while (it->hasNext())
+	{
+		std::cout << it->next() << std::endl;
+	}
 }
