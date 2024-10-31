@@ -13,9 +13,14 @@ int main()
 	std::ranges::reverse_view rv(fv);
 	*/
 
+	// 아래 코드는 위코드와 완전히 동일합니다. ( operator | 연산자 재정의 테크닉)
+	// 리눅스 파이프 라인 처럼 사용할수 있게 지원하는 것
 	auto rv = v | std::views::take(5)
 				| std::views::filter( [](int n) { return n % 2 == 0; } )
 				| std::views::reverse;
+
+	// C# 아래 처럼 SQL 방식으로 - LINQ 라고 합니다.(Languaged Integerated Query)
+//	var rv = v.where(조건).select(조건).orderby(키);
 
 	for (auto e : rv) // 생각해보세요
 	{
