@@ -28,6 +28,8 @@ public:
 
 		++key;
 		memento_map[key] = m;
+
+		return key;
 	}
 	
 	void Restore(int key)
@@ -71,7 +73,14 @@ int main()
 }
 
 
+// Undo 기능을 만들때 사용 가능한 패턴
 
+// command 패턴 : 동작의 취소
+//				  execute() 해서 수행한 작업을
+//				  undo() 에서 취소 방법 제공
+
+// memento 패턴 : 상태를 보관..
+//				  객체의 크기가 크다면 메모리 사용량 많아 질수 있다.
 
 
 
