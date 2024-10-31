@@ -37,10 +37,11 @@ int main()
 
 //	s.accept(foo);
 
-
 	s.accept( [](int& e) { e *= 2; } );
 	s.accept( [](int& e) { std::cout << e << ", "; } );
 
+	// => java 의 컬렉션들이 위와 같은 기능이 있습니다.
+	// => 람다표현식으로 전달
 }
 
 
