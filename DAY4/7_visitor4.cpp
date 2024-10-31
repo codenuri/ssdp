@@ -35,7 +35,11 @@ int main()
 {
 	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
 
-	s.accept(foo);
+//	s.accept(foo);
+
+
+	s.accept( [](int& e) { e *= 2; } );
+	s.accept( [](int& e) { std::cout << e << ", "; } );
 
 }
 
