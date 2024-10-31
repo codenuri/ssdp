@@ -15,6 +15,12 @@ public:
 template<typename T> class MyList : public std::list<T>
 {
 public:
+
+	// std::list 의 모든 생성자를 MyList 도 사용할수 있게 해달라.
+	// => 생성자 상속
+	using std::list<T>::list;  // std::list<T> : 타입이름
+							   // list         : 함수(생성자) 이름
+
 	void accept(TwiceVisitor* visitor)
 	{
 		for (auto& e : *this)  // *this 의미를 생각해 보세요
@@ -24,7 +30,10 @@ public:
 
 int main()
 {
-	std::list<int> s = { 1,2,3,4,5,6,7,8,9,10 };
+//	std::list<int> s(10, 0); // ok. std::list 에는 인자 2개 생성자 있음
+//	MyList<int> s(10, 0);    // error.MyList<int> 에는 인자 2개 생성자 없음
+
+	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
 
 	// 방문자를 사용하는 코드
 	// 의미 : "요소한개에 대한 연산의 정의" 만 컨테이너에 전달
