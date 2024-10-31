@@ -19,13 +19,22 @@ struct IIterator
 
 // 규칙 2. 모든 컬렉션은 아래 인터페이스는 구현해야 한다.
 template<typename T>
-class ICollection
+struct ICollection
 {
 	virtual IIterator<T>* iterator() = 0;
 	virtual ~ICollection() {}
 };
 //----------------------------------------------------
+// 자바 스타일로 만든 싱글리스트 반복자
+// 반복자의 핵심
+// => 1번째 요소를 가리키다가 약속된 방법으로 이동
 
+template<typename T> class slist_iterator
+{
+
+public:
+
+};
 
 
 
