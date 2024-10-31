@@ -43,7 +43,7 @@ public:
 
 // 공장에 도형을 자동등록하는 클래스 
 // => 생성자만 사용
-struct AutoRegiter
+struct AutoRegister
 {
 	AutoRegister(int key, Shape* (*f)())
 	{
@@ -52,7 +52,8 @@ struct AutoRegiter
 };
 
 // 전역 변수의 생성자가 언제 호출되는지 생각해 보세요
-AutoRegiter ar(1, &Rect::create);
+// => 모든 전역변수의 생성자는 main 함수 이전에 호출
+// AutoRegiter ar(1, &Rect::create);
 
 
 
@@ -64,7 +65,15 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	// static 멤버 데이타의 특징을 생각해 보세요
+	// => 객체를 한개도 만들지 않아도 메모리에 생성됩니다
+	// => 프로그램 실행시 생성됩니다.(결국 전역변수)
+	static AutoRegister ar;
 };
+AutoRegister Rect::ar(1, &Rect::create);
+
+
 
 
 class Circle : public Shape
