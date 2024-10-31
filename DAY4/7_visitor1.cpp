@@ -32,6 +32,7 @@ int main()
 
 	// 규칙 #1. accept 는 모든 종류의 방문자를 받아야 한다.
 	// => 모든 방문자의 공통의 인터페이스 필요
+	// => accept( IVisitor* )
 
 	// 규칙 #2. list 뿐 아니라 vector, set, map 에는 accept 가 있어야한다.
 	// => 모든 컨테이너는 accept 가 있어야 한다.
