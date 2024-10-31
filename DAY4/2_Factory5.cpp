@@ -66,8 +66,22 @@ int main()
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
 	
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
+	// 공장에 "생성함수 포인터"를 등록하는 코드
+	// => 결국 "클래스"를 등록하는 의미
+//	factory.register_shape(1, &Rect::create);
+//	factory.register_shape(2, &Circle::create);
+
+	
+	// 공장에 자주 사용되는 도형 객체를 등록해 봅시다.
+	Rect* red_rect = new Rect;
+	Rect* blue_rect = new Rect;
+	Circle* red_circle = new Circle;
+
+	factory.register_shape(1, red_rect);
+	factory.register_shape(2, blue_rect);
+	factory.register_shape(3, red_circle);
+
+
 
 	while (1)
 	{
