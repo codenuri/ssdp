@@ -22,6 +22,21 @@ public:
 	void visit(T& e) { e *= 2; }
 };
 
+// ShowVisitor, ZeroVisitor 만드세요
+
+template<typename T>
+class ShowVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { std::cout << e << std::endl; }
+};
+
+template<typename T>
+class ZeroVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { e = 0; }
+};
 
 template<typename T> class MyList : public std::list<T>
 {
