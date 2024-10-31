@@ -14,12 +14,24 @@ template<typename T> class slist_iterator
 public:
 	slist_iterator(Node<T>* p = 0) : current(p) {}
 
+	// 진짜 포인터와 동일하게 사용하려면 4개의 연산자 재정의 필요
+	// => ++, *, ==, !=  
 	inline slist_iterator& operator++()
 	{
 		current = current->next;
 		return *this;
 	}
 	inline T& operator*() { return current->data; }
+
+	inline bool operator==(const slist_iterator& other)
+	{
+		return current == other.current;
+	}
+	inline bool operator!=(const slist_iterator& other)
+	{
+		return current != other.current;
+	}
+
 };
 
 
@@ -33,6 +45,11 @@ public:
 	{
 		return slist_iterator<T>(head); 
 	}
+
+	slist_iterator<T> end()
+	{
+		return slist_iterator<T>(0);
+	}
 };
 int main()
 {
@@ -45,7 +62,7 @@ int main()
 	auto first = s.begin();
 	auto last  = s.end();
 
-	while (first != last)
+	while (first != last) // first.operator!=(last)
 	{
 		std::cout << *first << std::endl;
 		++first;
