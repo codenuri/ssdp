@@ -49,8 +49,6 @@ struct OSXStyle
 };
 
 
-
-
 template<typename T>
 class Dialog
 {
@@ -60,7 +58,7 @@ public:
 		// 이제 T 는 컨트롤의 이름이 아닌
 		// 컨트롤의 이름만 관리하는 타입
 		// => 즉, 여러 이름을 한개의 타입으로 전달 받은것
-		IButton* btn = new typename T::Button;
+		IButton* btn = new typename T::Button; 
 		IEdit* edit = new typename  T::Edit;
 
 		// btn->Move(); edit->Move();
@@ -68,7 +66,6 @@ public:
 		btn->Draw();
 		edit->Draw();
 	}
-
 };
 
 int main(int argc, char** argv)
