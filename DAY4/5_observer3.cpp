@@ -73,6 +73,11 @@ public:
 
 		// 이제 data 배열을 사용해서 그래프를 update 하면 됩니다.
 
+		// 관찰자 패턴은 라이브러리들이 아주 많이 사용합니다.
+		// 그런데, 이름을 자신들만의 이름으로 변경해서 사용. 
+		// C++ MFC : Document(Table)/View(Graph)
+		//     QT  : Model(Table)/View(Graph)
+
 
 		std::cout << "Bar Graph : ";
 
