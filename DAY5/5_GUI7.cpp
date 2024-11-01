@@ -84,9 +84,14 @@ public:
 	bool lbutton_down() override 
 	{ 
 		std::cout << "ImageView lbutton_down\n"; 
-		return true;
+
+		// return true;	// 이벤트 처리를 종료해 달라.
+
+		return false;	// 이벤트를 부모윈도우에도 보내 달라.
 	}
+
 };
+
 
 int main()
 {
@@ -102,3 +107,9 @@ int main()
 
 }
 
+// C# WPF 는 위와 같은 이벤트 처리를
+// "Bubbling Event" 라는 용어를 사용
+
+// C++ MFC : Command Routing 이라고 하고
+
+// Swift IOS : Responder Chain 이라고 합니다
