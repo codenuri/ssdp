@@ -46,11 +46,26 @@ public:
 	virtual void key_down() {}
 };
 
+// 위 클래스는 "라이브러리 설계자"가 제공
+// 사용자는 아래 처럼
+class MainWindow : public Window
+{
+public:
+	void lbutton_down() override {std::cout << "MainWindow lbutton_down\n";	}
+};
+class ImageView : public Window
+{
+public:
+	void lbutton_down() override { std::cout << "ImageView lbutton_down\n";}
+};
 
 int main()
 {
-	Window w;
-	w.create("Title");
+	MainWindow w1;
+	w1.create("MainWindow");
+
+	ImageView w2;
+	w2.create("ImageView");
 
 	ec_process_message();
 
