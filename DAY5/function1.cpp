@@ -23,7 +23,9 @@ int main()
 	f2(4, 7); // foo(3, 8, 4, 7)
 
 
-	auto f3 = std::bind(&foo, ?, ?, ? , ? );
+	auto f3 = std::bind(&foo, _2, 3, _3 , _1 );
 
 	f3(8, 2, 6); // foo(2, 3, 6, 8) 되도록 ? 채우세요
 }
+
+// 파이썬 : functools.partial(함수, 인자...) 
