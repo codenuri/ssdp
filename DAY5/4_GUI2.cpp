@@ -18,9 +18,21 @@ int foo(int hwnd, int msg, int a, int b)
 	return 0;
 }
 
+class Window
+{
+	int handle; // 윈도우 번호(핸들)
+public:
+	void create(const std::string& title)
+	{
+		handle = ec_make_window(foo, title);
+		ec_set_window_rect(handle, 0, 0, 500, 500);
+	}
+};
+
 int main()
 {
-
+	Window w;
+	w.create("Title");	// 이순간 윈도우가 생성되어야 합니다.
 
 	ec_process_message();
 
