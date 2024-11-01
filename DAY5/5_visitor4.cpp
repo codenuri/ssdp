@@ -149,9 +149,19 @@ public:
 
 	void visit(PopupMenu* m) override 
 	{
+		auto s = m->get_title();
+
+		s = s + popup_deco;
+
+		m->set_title(s);
 	}
 	void visit(MenuItem* m) override 
 	{
+		auto s = m->get_title();
+
+		s = s + item_deco;
+
+		m->set_title(s);
 	}
 };
 
@@ -177,8 +187,8 @@ int main()
 	pm2->add_menu(new MenuItem("BLUE", 23));
 
 	
-//	TitleChangeVisitor tcv;
-//	root->accept(&tvc);
+	TitleDecorateVisitor tdv(" >", "");
+	root->accept(&tdv);
 
 	root->command();
 }
