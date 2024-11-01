@@ -8,14 +8,21 @@
 // => 200개 가상함수 * 함수주소크기(8바이트) => 1600 바이트.
 
 
-class Window;
+// 아래 코드가 
+// => CRTP 를 사용해서 "가상이 아닌 함수"를 가상함수 처럼 동작하게 하는 기술
+// => MS 의 WTL 이 이렇게 설계
+// => C++20 Range 라이브러리도 이기술로 설계
 
-std::map<int, Window*> this_map;  
+
+
+
 
 
 template<typename T>
 class Window
 {
+	inline static std::map<int, Window*> this_map;
+
 	int handle;
 public:
 	void create(const std::string& title)
