@@ -134,7 +134,26 @@ public:
 
 };
 
+// 위 코드는 이제 "메뉴에 방문자 패턴을 사용할수 있도록 설계"
+// 되었습니다.
 
+// 이제 다양한 방문자(한개요소에 대한연산정의)를 만들면 됩니다.
+
+class TitleDecorateVisitor : public IMenuVisitor
+{
+	std::string popup_deco;
+	std::string item_deco;
+public:
+	TitleDecorateVisitor(const std::string& s1, const std::string& s2)
+		: popup_deco(s1), item_deco(s2) {}
+
+	void visit(PopupMenu* m) override 
+	{
+	}
+	void visit(MenuItem* m) override 
+	{
+	}
+};
 
 
 
