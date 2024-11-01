@@ -14,7 +14,6 @@ class Window
 	Window* parent = nullptr;          // 부모윈도우는 한개
 	std::vector<Window*> child_vector; // 자식윈도우는 여러개
 public:
-
 	void add_child(Window* child)
 	{
 		child->parent = this;
@@ -74,6 +73,8 @@ int main()
 
 	ImageView w2;
 	w2.create("ImageView");
+
+	w1.add_child(&w2);
 
 	ec_process_message();
 
