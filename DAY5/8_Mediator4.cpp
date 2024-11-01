@@ -36,8 +36,8 @@ int main()
 	NotificationCenter nc;
 
 	nc.addObserver("LOWBATTERY", &foo);
-	nc.addObserver("LOWBATTERY", &goo);
-	nc.addObserver("DISCONNECT_WIFI", &goo);
+	nc.addObserver("LOWBATTERY",      std::bind(&goo, _1, 11));
+	nc.addObserver("DISCONNECT_WIFI", std::bind(&goo, _1, 12));
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
 	nc.postNotificationWithName("LOWBATTERY", (void*)30);
