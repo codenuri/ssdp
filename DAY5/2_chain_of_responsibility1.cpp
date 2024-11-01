@@ -90,5 +90,9 @@ int main()
 	t3.next = 0;
 
 	// 문제가 발생하면 1번팀에 전달
-	t1.Handle(7);
+//	t1.Handle(7); // Team1 이 해결
+//	t1.Handle(20); // Team2 가 해결
+
+//	t1.Handle(5);	// Team3 이 해결
+	t1.Handle(15);	// 해결 안됨
 }
