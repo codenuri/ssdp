@@ -30,11 +30,20 @@ int main()
 
 	// 장점 : std::function 은 std::bind 결과를 담을수도 있다.
 	f1 = std::bind(&foo2, 3, _1);
+
 	f1(10); // foo2(3, 10);
 
 
-	f1 = ? ? ;
+	f1 = std::bind(&foo, 3, 5, _1, 0);
 
 	f1(9); // foo(3, 5, 9, 0);
+
+	// 결론
+	// std::function<void(int)> 는
+	// 인자가 int 한개 이상인 함수라도
+	// std::bind() 를 사용하면 모두 주소를 담을수 있다.
+
+
+	// std::function<void()> 는 모든 종류의 함수를 담는다.
 }
 
