@@ -18,25 +18,58 @@ struct IState
 class NoItem : public IState
 {
 public:
-	// character 멤버 복사
+	void run()    { std::cout << "run" << std::endl; }
+	void attack() { std::cout << "attack" << std::endl; }
 };
 
+class SuperItem : public IState
+{
+public:
+	void run() { std::cout << "fast run" << std::endl; }
+	void attack() { std::cout << "power attack" << std::endl; }
+};
 
-
+class RedItem : public IState
+{
+public:
+	void run() { std::cout << "slow run" << std::endl; }
+	void attack() { std::cout << "weak attack" << std::endl; }
+};
 
 class Character
 {
+	// 결국 각 멤버 함수를 3쌍으로 만들어 둔것
+	NoItem state1;
+	SuperItem state2;
+	RedItem state3;
+
+	IState* state = &state1;
+
 	int gold;
 	int item;
+	
 public:
-	void run() { std::cout << "run" << std::endl; }
-	void attack() { std::cout << "attack" << std::endl; }
+	void run() { state->run(); }
+	void attack() { state->attack(); }
+
+	void get_super_item()
+	{
+		state = &state2;
+
+		// 타이머 설치후 3분뒤에 호출되는 함수에서
+		// state = &state1;
+	}
 };
 int main()
 {
 	Character* p = new Character;
 	p->run();
 	p->attack();
+
+	p->get_super_item();
+	p->run();
+	p->attack();
+
 }
 
 
