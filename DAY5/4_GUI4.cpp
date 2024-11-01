@@ -22,7 +22,16 @@ public:
 	{
 		switch (msg)
 		{
-		case WM_LBUTTONDOWN: lbutton_down() ; break;
+		case WM_LBUTTONDOWN: 
+			lbutton_down();		// 멤버 함수는 "객체.함수()" 가되어야합니다
+								// 따라서 이코드는
+								// "this->lbutton_down()" 되어야 합니다.
+								// 그런데, static 멤버 함수에서는
+								// this가 없기때문에 에러
+								// error.
+								// 해결책은 "다음소스"
+			break;
+
 		case WM_KEYDOWN:     key_down();      break;
 		}
 		return 0;
@@ -31,6 +40,7 @@ public:
 	virtual void lbutton_down() {}
 	virtual void key_down() {}
 };
+
 
 int main()
 {
