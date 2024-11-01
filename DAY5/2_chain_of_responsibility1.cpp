@@ -32,6 +32,63 @@ struct Handler
 	virtual bool HandleRequest(int problem) = 0;
 };
 
+class Team1 : public Handler
+{
+public:
+	bool HandleRequest(int problem) override
+	{
+		std::cout << "Start Team1\n";
+
+		if (problem == 7)
+		{
+			std::cout << "Resolved by Team1\n";
+			return true;
+		}
+		return false;
+	}
+};
+
+class Team2 : public Handler
+{
+public:
+	bool HandleRequest(int problem) override
+	{
+		std::cout << "Start Team2\n";
+
+		if (problem % 2 == 0)
+		{
+			std::cout << "Resolved by Team2\n";
+			return true;
+		}
+		return false;
+	}
+};
+
+class Team3 : public Handler
+{
+public:
+	bool HandleRequest(int problem) override
+	{
+		std::cout << "Start Team3\n";
+
+		if ( problem < 10)
+		{
+			std::cout << "Resolved by Team3\n";
+			return true;
+		}
+		return false;
+	}
+};
 int main()
 {
+	Team1 t1;
+	Team2 t2;
+	Team3 t3;
+
+	t1.next = &t2;
+	t2.next = &t3;
+	t3.next = 0;
+
+	// 문제가 발생하면 1번팀에 전달
+	t1.Handle(7);
 }
