@@ -32,7 +32,8 @@ class FlyingCar : public Car
 {
 public:
 	void Fly() {}
-	void Go() override { throw UnsupportedOperation(); }
+	void Go() override { throw UnsupportedOperation(); } // 기반 클래스 기능
+										// 제거!!
 };
 
 void foo(Car* c) // 기반 클래스가 사용되는 곳
@@ -43,6 +44,7 @@ void foo(Car* c) // 기반 클래스가 사용되는 곳
 foo(new SuperCar);	// LSP 위반 아님.
 foo(new FlyingCar); // LSP 위반!!! 기반 클래스 기능이 제거 되었다
 					// 나쁜 코드!!
+					// 컴파일 에러는 아니지만 Go 기능이 없다.
 
 //---------------------------------------------------
 // ISP ( Interface Segregation Principle )
@@ -86,7 +88,7 @@ void only_listening_music(IMP3* mp3)
 // DIP ( Dependency Inversion Principle )
 // => 의존 관계 역전의 법칙
 // => 상위 모듈은 하위 모듈의 세부 구현에 의존하면 안된다.
-// => 상위 모듈은 추상에 의존해야 한다.
+// => 상위 모듈은 하위 모듈의 추상에 의존해야 한다.
 // => 세부 사항에 의존하지 말고, 추상에 의존하라는 것
 class People
 {
