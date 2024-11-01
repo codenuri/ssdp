@@ -185,14 +185,21 @@ int main()
 	pm2->add_menu(new MenuItem("RED", 21));
 	pm2->add_menu(new MenuItem("GREEN", 22));
 	pm2->add_menu(new MenuItem("BLUE", 23));
-
 	
-	TitleDecorateVisitor tdv(" >", "");
+//	TitleDecorateVisitor tdv(" >", "");
+	TitleDecorateVisitor tdv(" >", "*");
 	root->accept(&tdv);
 
 	root->command();
 }
 
+// 메뉴 구조
+// => TREE 형태로 많은 메뉴 객체가 놓여 있습니다.
+
+// => 하지만 반복자 같은 것이 없으므로 외부에서 "for" 등으로 열거안됩니다.
+
+// => 하지만, 방문자 패턴이 지원되므로
+// => 모든 요소에 어떤 작업을 하려면 "방문자"를 만들어서 넣으면 됩니다.  
 
 
 
