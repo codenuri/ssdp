@@ -10,10 +10,11 @@
 class PopupMenu; // 전방 선언
 class MenuItem;  
 
-// 방문자 인터페이스
+// 메뉴 방문자 인터페이스
 struct IMenuVisitor
 {
-	virtual void visit(int& e) = 0;
+	virtual void visit(PopupMenu* m) = 0;
+	virtual void visit(MenuItem* m) = 0;
 
 	virtual ~IMenuVisitor() {}
 };
@@ -50,12 +51,51 @@ public:
 		std::cout << get_title() << " 메뉴가 선택됨" << std::endl;
 		_getch();
 	}
+
+
+	void accept(IMenuVisitor* visitor)
+	{
+		// 자신만 방문자에 전달 하면 됩니다.
+		// => 하위 메뉴 없음
+		visitor->visit(this);
+	}
 };
+
+
+
+
+
+
 
 class PopupMenu : public BaseMenu
 {
 	std::vector<BaseMenu*> v;
 public:
+
+	// 팝업메뉴에 방문자가 방문 할때 - 핵심.. 제일 중요!!
+	void accept(IMenuVisitor* visitor)
+	{
+		// #1. 자신을 방문자에 전달
+		visitor->visit(this);
+
+		// #2. 자신이 가진 하위 메뉴 전달 하면 안됩니다.
+		// => 아래 처럼하면 "직계자식메뉴만 전달됩니다."
+		/*
+		for (auto m : v)
+			visitor->visit(m);
+		*/
+
+		// #2. 방문자를 하위메뉴에 전달해야 합니다.
+		// => 방문자가 하위 메뉴를 다시 방문
+		for (auto m : v)
+			m->accept(visitor);
+
+	}
+
+
+
+
+
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
 	void add_menu(BaseMenu* p) { v.push_back(p); }
