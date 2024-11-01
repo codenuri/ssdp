@@ -25,5 +25,16 @@ int main()
 
 	f1 = &foo1;
 	f1(10); // foo1(10)
+
+//	f1 = &foo2; // error. foo2는 인자2개라서
+
+	// 장점 : std::function 은 std::bind 결과를 담을수도 있다.
+	f1 = std::bind(&foo2, 3, _1);
+	f1(10); // foo2(3, 10);
+
+
+	f1 = ? ? ;
+
+	f1(9); // foo(3, 5, 9, 0);
 }
 
