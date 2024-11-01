@@ -2,6 +2,7 @@
 #include <iostream>
 #include <functional>
 
+// 4항함수 : 인자가 4개인 함수
 void foo(int a, int b, int c, int d)
 {
 	printf("foo : %d, %d, %d, %d\n", a, b, c, d);
@@ -10,4 +11,8 @@ void foo(int a, int b, int c, int d)
 int main()
 {
 	foo(1, 2, 3, 4);
+
+	auto f1 = std::bind(&foo, 1, 2, 3, 4); // foo의 인자4개를
+						// 1, 2, 3,4, 로 고정한 새로운 함수 f1
+	f1();
 }
