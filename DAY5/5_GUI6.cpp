@@ -21,7 +21,9 @@ public:
 		child_vector.push_back(child);
 
 		// 실제 GUI의 자식윈도우 부착은 C함수사용
-		ec_add_child(this->handle, child->child_vector);
+		ec_add_child(this->handle, child->handle);
+
+		ec_set_window_rect(child->handle, 100, 100, 200, 200); // 자식윈도우 크기변경
 	}
 
 
