@@ -37,6 +37,8 @@ public:
 	void set_title(const std::string& s) { title = s; }
 
 	virtual void command() = 0;
+
+	virtual void accept(IMenuVisitor* visitor) = 0;
 };
 
 
