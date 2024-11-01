@@ -27,8 +27,15 @@ public:
 };
 
 void foo(void* p)		 { std::cout << "foo : " << (int)p << std::endl; }
-void goo(void* p, int a) { std::cout << "goo : " << (int)p << std::endl; }
+void goo(void* p, int a) 
+{
+	std::cout << "goo : " << (int)p << std::endl; 
 
+	if (a == 11)
+		std::cout << "배터리부족\n";
+	else if ( a == 12)
+		std::cout << "disconnect wifi\n";
+}
 
 int main()
 {
