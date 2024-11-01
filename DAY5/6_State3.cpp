@@ -52,7 +52,7 @@ public:
 	void run() { state->run(); }
 	void attack() { state->attack(); }
 
-	void get_super_item()
+	void acquire_super_item()
 	{
 		state = &state2;
 
@@ -66,11 +66,26 @@ int main()
 	p->run();
 	p->attack();
 
-	p->get_super_item();
+	p->acquire_super_item();	// 의미
+								// 1. p의 상태(멤버 데이타)는 계속 유지 되지만
+								// 2. 이 순간 모든 멤버 함수가 교체 됩니다.
+								// 마치 다른 클래스 처럼 보이게 됩니다.
+								// "state 패턴" 입니다.	
+
 	p->run();
 	p->attack();
 
 }
+// 자판기를 생각해 봅시다.
+// => 돈을 넣었을때와 넣지 않을때의 모든 동작이 다릅니다.
+
+// => 동작을 2쌍을 준비합니다.
+
+// => "돈이 입력" 되면 "동작을 교체 하고"
+// => "음료를 가져가면" 다시 "동작을 교체"
+
+// => 하지만 자판기의 데이타는 계속유지..!!
+
 
 
 
