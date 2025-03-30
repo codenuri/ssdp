@@ -36,7 +36,7 @@ public:
 };
 int main()
 {
-	Derived d1;
-//	Derived d2(5);
+//	Derived d1;
+	Derived d2(5);	// call Derived::Derived(int).
 
 }
