@@ -2,7 +2,7 @@
 
 // 추상 클래스 : 순수 가상함수가 한개 이상 있는 클래스
 // 특징 : 객체를 생성할수 없다.
-// 의도 : 
+// 의도 : 파생 클래스에게 "약속된 함수" 를 만들라고 지시 하는 것 
 class Shape
 {
 public:
@@ -22,3 +22,18 @@ int main()
 	Shape* p; // ok 
 	Rect  r;  // ok 
 }
+//----------------------
+// C++
+/*
+class Shape
+{
+public:
+	virtual void draw() = 0;
+};
+// java, C# : abstract 라는 키워드가 존재 합니다.
+//			  C++은 오직 순수 가상함수 문법 한개만 존재
+abstract class Shape
+{
+	public abstract void draw();
+};
+*/
