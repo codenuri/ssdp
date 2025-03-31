@@ -7,8 +7,15 @@ struct IValidator
 {
 	virtual bool validate(const std::string& s, char c) = 0;
 
+	// 입력이 완료되었는가 ?
+	// 주민 번호에 대한 validator 라면 13자리가 입력 되어야 한다.
+	virtual bool is_complete(const std::string& s) { return true; }
+
+
 	virtual ~IValidator() {}
 };
+
+
 
 class LimitDigitValidator : public IValidator
 {
@@ -19,6 +26,11 @@ public:
 	bool validate(const std::string& s, char c)
 	{
 		return s.size() < value && isdigit(c);
+	}
+
+	bool is_complete(const std::string& s) override
+	{
+		return s.size() == value;
 	}
 };
 
@@ -40,7 +52,7 @@ public:
 		{
 			char c = _getch();
 
-			if (c == 13)
+			if (c == 13 && (val == nullptr || val->is_complete(data)) )
 				break;
 
 			if (val == nullptr || val->validate(data, c)) 
