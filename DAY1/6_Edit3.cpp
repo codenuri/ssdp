@@ -2,7 +2,12 @@
 #include <string>
 #include <conio.h>
 
-// 33page ~
+// 변하는 것을 분리하는 2가지 기술
+// 1. 변하는 것을 가상함수로 분리 - 파생 클래스가 override 해서 교체
+//    => template method 패턴의 모양
+
+// 2. 변하는 것을 다른 클래스로!!
+
 
 class Edit
 {
@@ -25,7 +30,7 @@ public:
 				std::cout << c;
 			}
 		}
-		std::cout << std::endl; // 개행
+		std::cout << std::endl; 
 		return data;
 	}
 };
