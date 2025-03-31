@@ -15,6 +15,9 @@ public:
 	virtual int get_area() { return -1; }
 
 	virtual void draw() { std::cout << "draw shape\n"; }
+
+	// 자신의 복사본을 만드는 가상함수는 아주 유용하게 활용 됩니다.
+	virtual Shape* clone() { return new Shape(*this); }
 };
 
 
@@ -22,19 +25,17 @@ public:
 class Rect : public Shape
 {
 public:
-	void draw() { std::cout << "draw rect\n"; }
+	void draw() override  { std::cout << "draw rect\n"; }
+
+	Shape* clone() override { return new Rect(*this); }
 };
 
 class Circle : public Shape
 {
 public:
-	void draw() { std::cout << "draw circle\n"; }
-};
+	void draw() override { std::cout << "draw circle\n"; }
 
-class Triangle : public Shape
-{
-public:
-	void draw() { std::cout << "draw triangle\n"; }
+	Shape* clone() override { return new Circle(*this); }
 };
 
 int main()
@@ -64,6 +65,27 @@ int main()
 			// k번째 도형을 복제본을 만들어서 v에 추가합니다.
 			// 어떻게 구현해야 할까요 ?
 			// k번째 도형은 어떤 도형일까요 ?
+			
+			// 해결책 #1. 타입 조사 !!
+			// => OCP 를 만족하지 못하는 나쁜 디자인..
+			/*
+			if (dynamic_cast<Rect*>(v[k]) != nullptr)
+			{
+				v.push_back(new Rect(*(static_cast<Rect*>(v[k])));
+			}
+			else if((dynamic_cast<Circle*>(v[k]) != nullptr)
+			{
+				v.push_back(new Circle((*(static_cast<Rect*>(v[k])));
+			}
+			*/
+
+			// 해결책 #2. 다형성 활용 - 좋은 코드
+			v.push_back(v[k]->clone()); // ok 다형성
+
+			// java 진영에서는 위 기술을
+			// "don't ask, do it" 이라고 합니다. 
+			// 
+			// 의미를 생각해 보세요
 		}
 	}
 }
