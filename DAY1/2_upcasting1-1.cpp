@@ -35,6 +35,14 @@ int main()
 
 	
 	// dynamic_cast : 실행 시간 캐스팅
+	// => 실행시 p가 가리키는 곳이 Dog 라면 성공
+	// => Dog 가 아니면 0 반환
+	// => 단, 가상함수를 가진 타입만 사용할수 있다.
+	//   (가상함수 테이블을 사용해서 조사하므로)
+
+	Dog* p2 = dynamic_cast<Dog*>(p);
+
+	std::cout << p2 << std::endl;
 }
 
 
