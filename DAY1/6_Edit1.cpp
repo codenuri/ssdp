@@ -17,7 +17,7 @@ public:
 			char c = _getch();
 
 			if (c == 13) // enter
-				return;
+				break;
 
 			if (isdigit(c))
 			{
