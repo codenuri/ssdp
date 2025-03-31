@@ -19,7 +19,11 @@ int main()
 {
 //	Derived d;	// ok. 아무문제 없는 코드
 
-	Derived* p = new Derived;
+//	Derived* p = new Derived;
+//	delete p;	// ok. 아무문제 없는 코드
+
+	// 아래 코드가 문제입니다.
+	Base* p = new Derived;
 	delete p;
 
 }	
