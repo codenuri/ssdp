@@ -53,7 +53,7 @@ public:
 				break;
 
 //			if (isdigit(c)) // 직접 validation
-			if (val->validate(data, c)) // validation 을 외부객체에 위임
+			if ( val == nullptr || val->validate(data, c)) // validation 을 외부객체에 위임
 			{
 				data.push_back(c);
 				std::cout << c;
@@ -64,9 +64,24 @@ public:
 	}
 };
 
+// 문자만(숫자안됨) 10자 까지만 입력받는 validator 만들어 보세요
+class TenCharacterValidator : public IValidator
+{
+
+};
+
+
 int main()
 {
 	Edit e;
+
+//	LimitDigitValidator v1(5);
+//	e.set_validator(&v1);	// e 에게 validation 이 필요 하면
+							// v1 을 사용하라고 전달!!
+
+	TenCharacterValidator v2;
+	e.set_validator(&v2);
+
 	while (1)
 	{
 		std::cout << e.get_data() << std::endl;
