@@ -9,8 +9,17 @@
 // 2. 변하는 것을 다른 클래스로!!
 
 // validation 정책을 담은 클래스 설계
+// => 교체 가능해야 하므로 interface 기반 설계
 
-class LimitDigitValidator
+struct IValidator
+{
+	virtual bool validate(const std::string& s, char c) = 0;
+
+	virtual ~IValidator() {}
+};
+
+// 이제 모든 validator 는 IValidator 인터페이스를 구현해야 합니다.
+class LimitDigitValidator : public IValidator
 {
 	int value;
 public:
@@ -22,11 +31,16 @@ public:
 	}
 };
 
-
 class Edit
 {
 	std::string data;
+
+	IValidator* val = nullptr;
+
 public:
+	void set_validator(IValidator* p) { val = p; }
+
+
 	std::string get_data()
 	{
 		data.clear();
@@ -38,7 +52,8 @@ public:
 			if (c == 13) 
 				break;
 
-			if (isdigit(c))
+//			if (isdigit(c)) // 직접 validation
+			if (val->validate(data, c)) // validation 을 외부객체에 위임
 			{
 				data.push_back(c);
 				std::cout << c;
