@@ -5,6 +5,10 @@
 
 // => 모든 도형(파생 클래스)의 공통의 특징은 반드시 Shape 에도 있어야 한다.
 //    문법적인 제약이 아닌 디자인 원칙
+//    그래야만, Shape* 로 해당 특징을 사용할수 있다.
+
+// #4. 기반 클래스 함수중에서 파생 클래스가 override 하는 것은
+//     가상함수로 만들어야 한다.
 
 class Shape
 {
@@ -12,7 +16,7 @@ class Shape
 public:
 	virtual ~Shape() {}
 
-	void draw() { std::cout << "draw shape\n"; }
+	virtual void draw() { std::cout << "draw shape\n"; }
 };
 
 
