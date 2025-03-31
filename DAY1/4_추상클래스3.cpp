@@ -79,6 +79,7 @@ int main()
 // => 교체 불가능한 경직된 디자인
 // => People::use_camera(HDCamera*)
 
+
 // 약한 결합(loosely coupling)
 // => 클래스가 다른 클래스 사용시 규칙을 담은 인터페이스로 사용하는 것
 // => 교체 가능한 유연한 디자인
