@@ -8,6 +8,20 @@
 
 // 2. 변하는 것을 다른 클래스로!!
 
+// validation 정책을 담은 클래스 설계
+
+class LimitDigitValidator
+{
+	int value;
+public:
+	LimitDigitValidator(int v) : value(v) {}
+
+	bool validate(const std::string& s, char c)
+	{
+		return s.size() < value && isdigit(c);
+	}
+};
+
 
 class Edit
 {
@@ -21,7 +35,7 @@ public:
 		{
 			char c = _getch();
 
-			if (c == 13) // enter
+			if (c == 13) 
 				break;
 
 			if (isdigit(c))
