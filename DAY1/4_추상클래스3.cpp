@@ -15,33 +15,27 @@ public:
 class People
 {
 public:
-	void use_camera(? c) { c->take(); }
+	void use_camera(ICamera* c) { c->take(); }
 };
 
+// 모든 카메라는 규칙대로 설계 되어야 합니다.
 
-
-
-
-
-
-
-class Camera
+class Camera : public ICamera
 {
 public:
 	void take() { std::cout << "Take Picture" << std::endl; }
 };
 
-class HDCamera
+class HDCamera : public ICamera
 {
 public:
 	void take() { std::cout << "Take HD Picture" << std::endl; }
 };
 
-class People
+class UHDCamera : public ICamera
 {
 public:
-	void use_camera(Camera* p) { p->take(); }
-	void use_camera(HDCamera* p) { p->take(); }
+	void take() { std::cout << "Take UHD Picture" << std::endl; }
 };
 
 int main()
@@ -54,6 +48,10 @@ int main()
 	HDCamera hc;
 	p.use_camera(&hc); 
 
+	UHDCamera uhc;
+	p.use_camera(&uhc); // ok.. People 을 수정하지 않아도
+						// 미래에 나온 새로운 카메라 사용가능!!
+						// OCP 만족
 }
 
 
