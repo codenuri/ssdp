@@ -16,6 +16,16 @@ class Shape
 public:
 	virtual ~Shape() {}
 
+	// 아래 함수는 가상으로 할까요? 비가상으로 할까요 ?
+	// => 파생 클래스가 override 할 이유 없습니다.
+	// => non-virtual
+	void set_color(int c) { color = c; }
+
+	// => 아래 함수는 파생 클래스가 override 하게 됩니다.
+	// => 면적을 구하는 것은 각 도형이 다르므로!!
+	// => virtual 이어야 합니다.
+	virtual int get_area() { return -1; }
+
 	virtual void draw() { std::cout << "draw shape\n"; }
 };
 
