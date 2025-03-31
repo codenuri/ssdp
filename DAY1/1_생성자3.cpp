@@ -17,10 +17,24 @@ public:
 // 3. Student 생성자 만들어 보세요
 // 4. main 에서 Student 객체 생성해 보세요
 
+class Student : public Person
+{
+	int id;
+public:
+	// #1. 아래 처럼만 만들면 Person 에 디폴트 생성자가 없으므로
+	//     에러 입니다. (컴파일러가 추가한 코드를 생각해 보세요)
+//	Student(int d) : id(d) {} // call Person::Person()
 
+	// #2. 해결책 : Person 의 다른 생성자를 명시적으로 호출 해야 합니다.
+	// => 초기화 리스트 문법으로
+	Student(const std::string& name, int age, int id) 
+		: Person(name, age), id(id) {
+	}
+};
 
 int main()
 {
+	Student s("kim", 30, 99); 
 	
 //	Person p1;	// 이렇게 객체를 만들수 있다는 것이 좋을까요 ? (초기화 되지 않은 객체)
 	Person p1("kim", 20);
