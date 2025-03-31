@@ -2,6 +2,10 @@
 #include <vector>
 
 // #5. 다형성(Polymorphism) 이라는 용어!
+// => 결국, 가상함수를 만들라는 것
+// => OCP 를 만족하는 설계(main 주석 참고)
+// => C++에서 가상함수를 가진 클래스를 "polymorphic type" 이라고 합니다.
+
 
 class Shape
 {
