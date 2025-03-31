@@ -42,9 +42,15 @@ int main()
 	// => 단, 가상함수를 가진 타입만 사용할수 있다.
 	//   (가상함수 테이블을 사용해서 조사하므로)
 
+
 	Dog* p2 = dynamic_cast<Dog*>(p);
 
 	std::cout << p2 << std::endl;
+
+
+	// dynamic_cast 가 C#, Java 의 is 연산자 입니다.
+	// => 단, dynamic_cast 를 사용하는 것은 "나쁜 디자인" 입니다.
+	// => 이유는 오후 수업에서.. 
 }
 
 
