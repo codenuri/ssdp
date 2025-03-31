@@ -30,9 +30,22 @@ int main()
 
 	// 핵심 #3. p3 를 사용해서는 Animal 로 부터 상속받는 멤버만 접근
 	// 가능. Dog 가 추가한 멤버는 접근 안됨
+	// 이유는 "컴파일 시간에 타입을 체크" 하기 때문에
+	// => 컴파일 시간에는 p3가 "Animal*" 라는 것만 알수있으므로!
+
+	// C++, Java, C#, Rust : static type check(컴파일 시간 타입확인)
+	// Python : dynamic type check(실행시간에 타입 확인)
 
 	p3->age = 10; // ok
 	p3->color = 10; // error
+
+
+	// #4. p3를 사용해서 Dog 고유의 멤버에 접근하려면
+	//     캐스팅 해야 합니다.(컴파일러에게 Dog 라고 알리는 작업)
+	static_cast<Dog*>(p3)->color = 10;
+
+	// 단, 이경우 p3가 가리키는 곳이 Dog라는 확신이 있어야 합니다
+	// Dog 가 아닌 경우 "미정의 동작" 발생
 }
 
 
