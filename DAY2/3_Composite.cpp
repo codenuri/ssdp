@@ -23,17 +23,23 @@ public:
 	File(const std::string& name, int size)
 		: Component(name), size(size) {
 	}
-
 	int get_size() override { return size; }
 };
 
 // main 이 실행되도록 아래 폴더 완성해 보세요. 
-class Folder 
+class Folder : public Component
 {
+	// ?
 public:
+	Folder(const std::string& name) : Component(name) {}
+
+	void add(? ) { ? }
+
+	int get_size() override
+	{
+
+	}
 };
-
-
 
 int main()
 {
