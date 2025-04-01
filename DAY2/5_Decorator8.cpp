@@ -38,6 +38,18 @@ public:
 	}
 };
 
+class EncryptDecorator : public Stream
+{
+	Stream* origin; 
+public:
+	EncryptDecorator(Stream* s) : origin(s) {}
+
+	void write(const std::string& s) override
+	{
+		auto s2 = "[( " + s + " ) ¾ÏÈ£È­ µÊ]";
+		origin->write(s2);
+	}
+};
 
 int main()
 {
