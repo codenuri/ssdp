@@ -43,5 +43,20 @@ int main()
 	std::cout << dns.get_host_ip("www.naver.com") << std::endl;
 }
 
+// proxy 패턴
+// => 다양한 이유로 기존 요소를 대신하는 클래스를 만든 것
+
+// DNSProxy 는 "DNS 에 캐쉬 기능 추가" 이므로 
+// => 기능의 추가, Decorator 아닌 가요?
+
+// Decorator
+FileStream fs("a.txt");// 원본 객체를 먼저 만들고
+ZipDecorator zd(&fs);  // "객체" 에 기능 추가!!
+					   // 원본 객체는 언제라도 사용가능.
+
+// Proxy 패턴
+//DNS dns;  // 원본을 사용하지 말고
+DNSProxy dns; // 대행자를 만들라는 것
+			  // 대행자가 내부적으로 필요할때 DNS 객체 생성
 
 
