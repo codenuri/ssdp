@@ -97,8 +97,15 @@ int main()
 	auto m1 = root->get_submenu(0);
 
 	// 아래 코드를 생각해 보세요
-	root->get_submenu(0)->add(new MenuItem("8K", 15)); // ??
+//	root->get_submenu(0)->add(new MenuItem("8K", 15)); // error
+						// root 의 0 번 하위 메뉴는 팝업메뉴가 맞지만
+						// 반환 타입이 BaseMenu* 이다.
+						// BaseMenu 에는 add 가 없으므로 컴파일에러!!
 
+	// 아래 처럼 캐스팅 필요		
+	static_cast<PopupMenu*>(root->get_submenu(0))->add(new MenuItem("8K", 15));
+
+	// 캐스팅을 없앨수 없을까 ??? => 다음소스에서
 
 	root->command();
 }
