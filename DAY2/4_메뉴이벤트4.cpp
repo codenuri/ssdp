@@ -7,6 +7,17 @@
 using namespace std::placeholders;
 
 
+class Dialog
+{
+public:
+	void close(int a, int b) 
+	{ 
+		printf("Dialog::close, %d, %d\n", a, b); 
+		_getch();
+	}
+};
+
+
 class unsupported_operation {};
 
 class BaseMenu
@@ -124,7 +135,11 @@ int main()
 	// Dialog 클래스 복사해 오세요
 	// 아래 메뉴 에 핸들러 2개 등록해 보세요
 	// => Dialog::close 와 f0 등록
-	MenuItem* m = new MenuItem("화면끄기", 14);
+	MenuItem* m = new MenuItem("화면끄기", 14, &f0 );
+
+	Dialog dlg;
+	m->add_handler( std::bind(&Dialog::close, &dlg, 0, 0) );
+
 	root->add(m); 
 	//-------------------------------------------------------
 
