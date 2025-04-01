@@ -75,8 +75,9 @@ public:
 
 
 	}
-};
 
+	BaseMenu* get_submenu(int idx) { return v[idx]; }
+};
 
 
 int main()
@@ -95,8 +96,17 @@ int main()
 	// 아래 멤버 함수를 생각해 봅시다.
 	auto m1 = root->get_submenu(0);
 
+	// 아래 코드를 생각해 보세요
+	root->get_submenu(0)->add(new MenuItem("8K", 15)); // ??
+
+
 	root->command();
 }
+
+
+
+
+
 
 
 
