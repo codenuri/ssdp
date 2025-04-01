@@ -40,6 +40,22 @@ int main()
 
 	f(10); // f2(0, 10);
 
-	f = std::bind(&f4, ? ); // ? 채우세요. 한개 아닙니다.
+
+	f = std::bind(&f4, 9, 3, _1 ,2 ); // ? 채우세요. 한개 아닙니다.
+
 	f(10); // f4(9, 3, 10, 2) 나오게 하세요
+
+
+	// 멤버 함수 : 객체가 있어야 호출가능
+	// => 따라서, std::bind 사용시 2번째 인자로 객체 주소도 전달
+	Dialog dlg;
+	dlg.close(1, 2);
+
+	f = std::bind(&Dialog::close, &dlg, 0, _1);
+	f(10); // dlg.close(0, 10)
+
+
+	f = [](int a) { std::cout << "lambda\n"; };
+
+	f(10);
 }
