@@ -14,17 +14,23 @@ public:
 	inline T* allocate(std::size_t sz)
 	{
 		T* p = static_cast<T*>(malloc(sizeof(T) * sz));
-
-		printf("allocate %p %d\n", p, sz);
-
+		printf("allocate %p %zu\n", p, sz);
 		return p;
 	}
 	inline void deallocate(T* p, std::size_t sz)
 	{
-		printf("deallocate %p %d\n", p, sz);
-
+		printf("deallocate %p %zu\n", p, sz);
 		free(p);
 	}
+	// 위 2개 함수 외에 아래 3개가 더 필요 합니다
+	// => 관례적인 코드이고, 무조건 아래처럼 만들면 됩니다.
+	using value_type = T;
+
+	debug_alloc() {}
+
+	template<typename U> debug_alloc(const debug_alloc<U>&) {}
+			// => generic 생성자라는 개념.. 
+			// => 항상 위처럼 만들면 됩니다.
 };
 
 
