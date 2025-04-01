@@ -28,9 +28,15 @@ int main()
 
 
 
-	auto f3 = std::bind(&foo, ?, ?,?,? ); //? 채우세요
+	auto f3 = std::bind(&foo, _3, 2, _1, _2 );  // ? 채우세요
+
 
 	f3(9, 3, 1);  // foo(1, 2, 9, 3) 되도록 위 ? 채우세요
+
+	// std::bind 의 반환 타입은
+	// => std::bind() 의 인자에 따라 다른 타입으로 반환 됩니다.
+	// => 그래서 auto 에 담아서 사용했습니다.
+	// => 다른 방법은 "다음예제" 에서.. 
 
 
 	// 파이썬 : functools.partial() 이 std::bind 역활
