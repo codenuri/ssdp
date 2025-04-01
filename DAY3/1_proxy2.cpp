@@ -36,9 +36,11 @@ public:
 
 int main()
 {
-	DNS dns;
+//	DNS dns;
+	DNSProxy dns;
 
 	std::cout << dns.get_host_ip("www.samsung.com") << std::endl;
+	std::cout << dns.get_host_ip("www.naver.com") << std::endl;
 }
 
 
