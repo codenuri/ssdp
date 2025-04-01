@@ -55,10 +55,10 @@ public:
 			std::cin >> cmd;
 
 			if (cmd == sz + 1) // 종료 선택 
-				? ;
+				break ;
 
 			if (cmd < 1 || cmd > sz + 1) // 잘못된 입력
-				? ;
+				continue ;
 
 			v[cmd - 1]->command();
 		}
