@@ -105,13 +105,21 @@ public:
 	}
 };
 
+void f0() { std::cout << "f0\n"; _getch(); }
+
+void f1(int n) { printf("f1 : %d\n", a); _getch(); }
+
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
 
-	root->add(new MenuItem("HD", 11));
-	root->add(new MenuItem("FHD", 12));
-	root->add(new MenuItem("UHD", 13));
+	root->add(new MenuItem("HD", 11 , &f0));
+	root->add(new MenuItem("FHD", 12, &f1 ));
+	root->add(new MenuItem("UHD", 13, &f1 ));
+
+
+	MenuItem* m = new MenuItem("È­¸é²ô±â", 14);
+	root->add(m);
 	//-------------------------------------------------------
 
 
