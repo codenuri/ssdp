@@ -78,7 +78,9 @@ public:
 			if (cmd < 1 || cmd > sz + 1)
 				continue;
 
-			v[cmd - 1]->command();
+			v[cmd - 1]->command(); // 다형성!!
+						// MenuItem::command() 또는
+						// PopupMenu::command() 호출
 		}
 
 
