@@ -41,5 +41,6 @@ int main()
 	Image img("www.image.com/car.png");
 	img.draw();
 
-	
+	Emoticon e("www.image.com/car.png");
+	e.draw();
 }
