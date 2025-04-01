@@ -29,14 +29,19 @@ public:
 // main 이 실행되도록 아래 폴더 완성해 보세요. 
 class Folder : public Component
 {
-	// ?
+	std::vector< Component* > v;
 public:
 	Folder(const std::string& name) : Component(name) {}
 
-	void add(? ) { ? }
+	void add(Component* c) { v.push_back(c); }
 
 	int get_size() override
 	{
+		int sz = 0;
+		for (auto p : v)
+			sz += p->get_size();
+
+		return sz;
 
 	}
 };
