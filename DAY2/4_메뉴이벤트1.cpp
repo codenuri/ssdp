@@ -85,7 +85,7 @@ class MenuItem : public BaseMenu
 				// 대부분의 언어에는 이런 용도로 사용하기 위한 도구가 있습니다.
 				// C#   : delegate
 				// java :  ?
-				// C++  : std::function
+				// C++  : std::function, std::bind
 
 public:
 	MenuItem(const std::string& title, int id)
