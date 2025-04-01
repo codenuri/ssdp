@@ -41,6 +41,11 @@ int main()
 	Image img("www.image.com/car.png");
 	img.draw();
 
+	// 아래 코드는 이미 존재하는 "img" 객체에 기능을 추가하는 것이 아니다.!!
+	// 기능(이모티콘그림)을 추가하기 위해 그림을 다시 download 하는 것 
+	// 상속 : 객체가 아닌 클래스에 기능 추가한것
+	//        우리가 원하는 것은 img 라는 이미 생성된 객체에 기능을 추가하는것
+	//        다음예제에서.. 해결..
 	Emoticon e("www.image.com/car.png");
 	e.draw();
 }
