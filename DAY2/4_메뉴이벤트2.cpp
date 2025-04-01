@@ -1,7 +1,7 @@
 // git 에서 4_메뉴이벤트2.cpp 복사하세요
 #include <iostream>
-#include <functional>
-
+#include <functional> // 이헤더에 std::bind() 있습니다.
+using namespace std::placeholders; // _1, _2, _3 ....
 
 void foo(int a, int b, int c, int d)
 {
@@ -20,4 +20,20 @@ int main()
 	auto f1 = std::bind(&foo, 1, 2, 3, 4); // 4항함수 => 0항 함수로 변경
 
 	f1();	// foo(1,2,3,4)
+
+
+	auto f2 = std::bind(&foo, 3, _1, 7, _2); // 4항수 => 2항함수로
+
+	f2(6, 9); // foo(3, 6, 7, 9);
+
+
+
+	auto f3 = std::bind(&foo, ?, ?,?,? ); //? 채우세요
+
+	f3(9, 3, 1);  // foo(1, 2, 9, 3) 되도록 위 ? 채우세요
+
+
+	// 파이썬 : functools.partial() 이 std::bind 역활
+
+
 }
