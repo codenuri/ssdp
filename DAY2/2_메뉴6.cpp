@@ -82,11 +82,12 @@ public:
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
-	PopupMenu* pm1 = new PopupMenu("해상도 변경");
-	PopupMenu* pm2 = new PopupMenu("색상 변경");
+	PopupMenu* pm1  = new PopupMenu("해상도 변경");
+	PopupMenu* pm2  = new PopupMenu("색상 변경");
 
 	root->add(pm1);
-	root->add(pm2);
+//	root->add(pm2);
+	pm1->add(pm2); // !
 
 	pm1->add(new MenuItem("HD",  11));
 	pm1->add(new MenuItem("FHD", 12));
@@ -95,11 +96,20 @@ int main()
 	pm2->add(new MenuItem("RED",   21));
 	pm2->add(new MenuItem("GREEN", 22));
 	pm2->add(new MenuItem("BLUE",  23));
+	pm2->add(new MenuItem("WHITE", 24));
 
 	// 이제 시작하려면 ??
-	// ?
+	root->command();
 }
 
+// "객체지향 언어가 바라보는 프로그램이란 ?"
 
+// 1. 객체를 생성하고
+// 2. 객체간의 관계를 설정하고
+// 3. 객체간의 메세지를 주고 받는 과정이다(서로의 멤버 함수를 호출 한다는 의미)
+// 4. 프로그램의 기본 단위는 "함수" 가 아닌 "클래스"이다.
+
+// 장점 : 유지보수가 쉽고, 확장성이 좋다.
+// 단점 : 메모리 사용량이 늘어나고, 어렵다( 디자인을 배우는 것은 쉽지않다.)
 
 
