@@ -1,10 +1,11 @@
+// git 에서 4_메뉴이벤트2.cpp 복사하세요
 #include <iostream>
 #include <functional>
 
 
 void foo(int a, int b, int c, int d)
 {
-	printf("f4 : %d, %d, %d, %d\n", a, b, c, d);
+	printf("foo : %d, %d, %d, %d\n", a, b, c, d);
 }
 
 int main()
@@ -16,6 +17,7 @@ int main()
 
 	// 사용법 : std::bind( M항 함수주소, M개 인자 )
 
-	auto f1 = std::bind(&foo, 1, 2, 3, 4);
-	f1();
+	auto f1 = std::bind(&foo, 1, 2, 3, 4); // 4항함수 => 0항 함수로 변경
+
+	f1();	// foo(1,2,3,4)
 }
