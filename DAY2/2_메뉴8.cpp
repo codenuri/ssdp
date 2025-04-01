@@ -106,11 +106,18 @@ int main()
 	//------------------------------------
 	root->get_submenu(0)->add(new MenuItem("8K", 15)); 
 
-
+//	root->get_submenu(1)->add(new MenuItem("8K", 15));
+				// 1번째 메뉴가 Popup 이 아니므로 예외 발생
+			
 	root->command();
 }
 
 
+// menu7.cpp : get_submenu() 의 반환 타입을 사용자가 캐스팅해서 사용
+//				=> 안전성을 위한 모델
+// 
+// menu8.cpp : 캐스팅 필요 없다.
+//				=> 편의성을 위한 모델.
 
 
 
