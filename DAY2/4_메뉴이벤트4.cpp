@@ -113,13 +113,19 @@ int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
 
-	root->add(new MenuItem("HD", 11 , &f0));
-	root->add(new MenuItem("FHD", 12, &f1 ));
-	root->add(new MenuItem("UHD", 13, &f1 ));
+	root->add(new MenuItem("HD",  11, &f0 ));
 
+	// 아래 코드의 의미는
+	// => 2개의 메뉴를 동일한 함수에서 처리하는데..
+	// => 함수 인자로 메뉴 ID 를 전달해서 구분하는 것
+	root->add(new MenuItem("FHD", 12, std::bind(&f1, 12) ));
+	root->add(new MenuItem("UHD", 13, std::bind(&f1, 13)));
 
+	// Dialog 클래스 복사해 오세요
+	// 아래 메뉴 에 핸들러 2개 등록해 보세요
+	// => Dialog::close 와 f0 등록
 	MenuItem* m = new MenuItem("화면끄기", 14);
-	root->add(m);
+	root->add(m); 
 	//-------------------------------------------------------
 
 
