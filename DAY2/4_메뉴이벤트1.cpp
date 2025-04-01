@@ -28,21 +28,7 @@ public:
 
 
 
-class MenuItem : public BaseMenu
-{
-	int id;
-public:
-	MenuItem(const std::string& title, int id)
-		: BaseMenu(title), id(id) {
-	}
 
-	void command()
-	{
-		std::cout << get_title() << " 메뉴 선택\n";
-
-		_getch();
-	}
-};
 
 
 class PopupMenu : public BaseMenu
@@ -88,15 +74,42 @@ public:
 	BaseMenu* get_submenu(int idx) { return v[idx]; }
 };
 
+class MenuItem : public BaseMenu
+{
+	int id;
+
+	void(*handler)() = nullptr; // 메뉴 선택시 호출될 함수 포인터!
+								// 단점 : 일반 함수 밖에 등록할수 없습니다.
+								//        멤버 함수, 람다 표현식등을 등록안됨
+
+				// 대부분의 언어에는 이런 용도로 사용하기 위한 도구가 있습니다.
+				// C#   : delegate
+				// java :  ?
+				// C++  : std::function
+
+public:
+	MenuItem(const std::string& title, int id)
+		: BaseMenu(title), id(id) {	}
+
+	void command()
+	{
+		// 여기서 직접 작업을 하면 모든 메뉴(아이템)이 동일한 작업을 하게
+		// 됩니다.
+		// 여기서 등록된 함수를 호출하게 합니다.
+
+		if (handler != nullptr)
+			handler();
+	
+	}
+};
 
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
-	PopupMenu* pm1 = new PopupMenu("해상도 변경");
-
-	pm1->add(new MenuItem("HD", 11));
-	pm1->add(new MenuItem("FHD", 12));
-	pm1->add(new MenuItem("UHD", 13));
+	
+	root->add(new MenuItem("HD", 11));
+	root->add(new MenuItem("FHD", 12));
+	root->add(new MenuItem("UHD", 13));
 	//-------------------------------------------------------
 
 
