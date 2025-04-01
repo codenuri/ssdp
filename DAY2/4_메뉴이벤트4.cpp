@@ -107,7 +107,7 @@ public:
 
 void f0() { std::cout << "f0\n"; _getch(); }
 
-void f1(int n) { printf("f1 : %d\n", a); _getch(); }
+void f1(int n) { printf("f1 : %d\n", n); _getch(); }
 
 int main()
 {
