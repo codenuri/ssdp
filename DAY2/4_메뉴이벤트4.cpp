@@ -82,18 +82,26 @@ class MenuItem : public BaseMenu
 {
 	int id;
 
-	void(*handler)() = nullptr; 
+	using HANDLER = std::function<void()>;
+
+	std::vector< HANDLER > v;
+
 public:
-	MenuItem(const std::string& title, int id)
-		: BaseMenu(title), id(id) {
+	MenuItem(const std::string& title, int id, HANDLER h = nullptr )
+		: BaseMenu(title), id(id) 
+	{
+		if (h != nullptr)
+			v.push_back(h);
 	}
+
+	void add_handler(HANDLER h) { v.push_back(h); }
+
 
 	void command()
 	{
-	
-		if (handler != nullptr)
-			handler();
-
+		for (auto h : v)
+			h();	// 여기서 h 는 std::function<void()> 입니다.
+					// 결국 등록된 함수
 	}
 };
 
