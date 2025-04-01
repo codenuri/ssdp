@@ -23,11 +23,17 @@ public:
 	}
 };
 
-
+// adapter : 기능은 동일한데, 함수이름을 변경하려는 것
+//			 인터페이스의 변경
 TextView tv("hello");
 ObjectAdapter oa(&tv);
+tv.show();
+oa.draw();
 
-
-
+// decorator : 인터페이스는 동일한데, 기능이 추가된것
 FileStream fs("a.txt");
 ZipDecorator zd(&fs);
+fs.write("hello");
+zd.write("hello");
+
+// 다양한 패턴이 헷갈릴때는 항상 "의도" 를 생각하세요
