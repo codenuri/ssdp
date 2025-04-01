@@ -13,7 +13,7 @@ void f4(int a, int b, int c, int d)
 class Dialog 
 {
 public:
-	void close(int a, int b) {printf("Dialog::close, %d, %d\n", a, b)}
+	void close(int a, int b) { printf("Dialog::close, %d, %d\n", a, b); }
 };
 
 int main()
