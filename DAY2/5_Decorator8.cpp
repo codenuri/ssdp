@@ -63,4 +63,9 @@ int main()
 	EncryptDecorator ed(&zd);
 	ed.write("hello");	// 1. "hello" 를 암호화 하고
 						// 2. zd.write(암호화된 데이타)
+
+	// 언제라도 기능 추가하기 전의 객체인 fs 에 접근도 가능하다.
+	fs.write("hello");
 }
+
+// 구글에서 "C# stream" 검색후 "이미지 보기" 선택해 보세요
