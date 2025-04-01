@@ -43,7 +43,7 @@ class PopupMenu : public BaseMenu
 public:
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
-	void add(MenuItem* m) { v.push_back(m); }
+	void add(BaseMenu* m) { v.push_back(m); }
 
 	void command()
 	{
