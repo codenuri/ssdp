@@ -40,9 +40,7 @@ public:
 		int sz = 0;
 		for (auto p : v)
 			sz += p->get_size();
-
 		return sz;
-
 	}
 };
 
