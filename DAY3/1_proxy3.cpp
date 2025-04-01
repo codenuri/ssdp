@@ -42,7 +42,7 @@ class Machine
 public:
 	void work(IDNS* dns)
 	{
-		std::cout << dns.get_host_ip("www.samsung.com") << std::endl;
+		std::cout << dns->get_host_ip("www.samsung.com") << std::endl;
 	}
 };
 
