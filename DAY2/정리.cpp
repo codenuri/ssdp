@@ -33,4 +33,11 @@
 // IDioms : 각 언어에 특징을 고려한 디자인 기술
 //			(C++ IDioms, Java IDioms, C# IDioms 등)
 //			Policy Base Design
+// 
 // 구글에서 "C++ IDIoms" 검색후 1번째 링크,
+
+// Policy Base Design
+// => C#, Java, python 등에서는 거의 사용안함, strategy 로 대부분 설계
+// => RUST : 아주 널리 사용, C++ 개념이 거의 유사, 성능 향상
+// => 이외 Haskell, TypeScript, D 등의 언어에서 볼수있습니다. 
+// => C++에서는 STL 에서 아주 널리 사용됩니다.
