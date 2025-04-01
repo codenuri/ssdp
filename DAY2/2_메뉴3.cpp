@@ -36,7 +36,19 @@ public:
 	// 아래 함수가 핵심 - 팝업메뉴를 선택할때 해야 할일
 	void command()
 	{
+		int sz = v.size();
 
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << ". " << v[i]->get_title() << std::endl;
+		}
+
+		std::cout << sz + 1 << ". 종료\n";
+
+		int cmd;
+		std::cin >> cmd;
+
+		v[cmd - 1]->command();
 	}
 };
 
