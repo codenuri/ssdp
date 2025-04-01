@@ -57,7 +57,9 @@ int main()
 	Emoticon e(&img); 
 	e.draw();
 
-	Frame f(&img);
+//	Frame f(&img);
+	Frame f(&e);	// error. 기능을 추가한 객체에 다시 기능추가
+					//		  해결은 다음소스. 
 	f.draw();
 
 }
