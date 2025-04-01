@@ -1,3 +1,4 @@
+// git 에서 메뉴이벤트 3번 복사
 #include <iostream>
 #include <functional>
 using namespace std::placeholders;
@@ -17,8 +18,15 @@ public:
 
 int main()
 {
-	// C 함수 포인터 : 
-	void(*f)(int);
-	f = &f1; // ok
-	f = &f2; // error 
+	// C 함수 포인터 : 유연성이 없습니다
+	//				signature가 동일한 함수주소만 담을수 있습니다.
+//	void(*f)(int);
+//	f = &f1; // ok
+//	f = &f2; // error 
+
+	// C++ std::function : 함수 포인터의 일반화 버전
+	std::function<void(int)> f;
+
+	f = &f1;
+	f(10); // f1(10)
 }
