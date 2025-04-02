@@ -9,7 +9,7 @@ int main()
 	calc1->AddRef();	// 규칙 #1. proxy 를 처음 만들면 참조계수 증가
 
 	
-	ICalc* calc2 = cacl1;
+	ICalc* calc2 = calc1;
 	calc2->AddRef();	// 규칙 #2. proxy 를 다른 포인터로 가리키게되면
 						//			참조계수 증가
 
