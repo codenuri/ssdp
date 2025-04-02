@@ -19,7 +19,8 @@ int main()
 	std::string_view sv1 = "DEFG";
 	std::string_view sv2 = "DEFG";
 
-	printf("%p, %p\n", sv1.data(), sv1.data());
+	printf("%p, %p\n", s1.data(), s2.data());
+	printf("%p, %p\n", sv1.data(), sv2.data());
 
 	// C#
 //	string s1 = "ABCD";
