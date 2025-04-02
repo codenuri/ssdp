@@ -14,7 +14,10 @@ class Cursor
 private:
 	Cursor() {}
 
-	// 규칙 #2
+	// 규칙 #2. 복사 생성자와 대입연산자를 컴파일러가 만들지 못하게!!
+	Cursor(const Cursor&) = delete;
+	Cursor& operator=(const Cursor&) = delete;
+
 
 	// 규칙 #3. 오직 한개의 객체를 만들어 반환하는 static 멤버 함수
 public:
@@ -30,6 +33,9 @@ int main()
 	Cursor& c2 = Cursor::get_instance();
 
 	std::cout << &c1 << ", " << &c2 << std::endl;
+
+	// 아래 처럼만드는 것도 막아야 합니다.
+//	Cursor c3 = c1;
 
 //	Cursor c1, c2;
 }
