@@ -30,6 +30,15 @@ public:
 	}
 	void play() { engine->play(); }
 	void stop() { engine->stop(); }
+
+	// 추상층에서 사용자 요청을 처리
+	void play_one_minute()
+	{
+		engine->play();
+
+		// 타이머 설치해서 1분후에
+		engine->stop();
+	}
 };
 
 class People
