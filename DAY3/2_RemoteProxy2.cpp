@@ -15,7 +15,7 @@ class Calc
 {
 	int server;
 public:
-	Cacl() { server = ec_find_server("Calc"); }
+	Calc() { server = ec_find_server("Calc"); }
 
 	int Add(int a, int b) { return ec_send_server(server, 1, a, b); }
 	int Sub(int a, int b) { return ec_send_server(server, 2, a, b); }
