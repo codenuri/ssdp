@@ -20,7 +20,11 @@ class Subject
 	std::vector<IGraph*> v;
 public:
 	virtual ~Subject() {}
-	void attach(IGraph* p) { v.push_back(p); }
+	void attach(IGraph* p) 
+	{ 
+		v.push_back(p); 
+		p->subject = this;
+	}
 	void detach(IGraph* p) {}
 	void notify(int data)
 	{
@@ -35,7 +39,7 @@ class Table : public Subject
 	int data[4] = { 1,2,3,4 };
 public:
 	
-	int* get_data() const { return data; }
+	int* get_data() { return data; }
 
 	void edit()
 	{
@@ -55,6 +59,20 @@ class BarGraph : public IGraph
 public:
 	void update(int n) override
 	{
+
+		// Table 이 수정되었다고 통보가 왔으므로
+		// Table 에 접근해서 data 를 얻어온후..
+		// 그래프를 그리면 됩니다.
+
+//		int* data = subject->get_data();
+						// error.
+						// subject 는 Subject* 타입이기 때문에
+						// Table 고유 함수 접근 안됩니다. 캐스팅 필요
+
+		int* data = static_cast<Table*>(subject)->get_data();
+
+		// 이제 data 의 내용으로 그래프를 그리면 됩니다.
+
 		std::cout << "Bar Graph : ";
 
 		for (int i = 0; i < n; i++)
@@ -63,6 +81,10 @@ public:
 		std::cout << std::endl;
 	}
 };
+
+
+
+
 
 class PieGraph : public IGraph
 {
