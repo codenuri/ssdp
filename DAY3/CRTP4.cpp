@@ -1,6 +1,11 @@
 #include <iostream>
 
-
+// C++ Idioms
+// => policy base desing
+// => CRTP
+// => thin Template
+// => RAII
+// => PIMPL
 
 // 클래스 템플릿을 만들때 T 를 사용하지 않은 멤버는
 // "템플릿이 아닌 기반 클래스"를 만들어서 제공해라!!
@@ -24,7 +29,6 @@ public:
 	{
 		static_cast<T*>(this)->click();
 	}
-
 };
 
 class MainWindow : public EventWindow< MainWindow >
