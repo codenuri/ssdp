@@ -67,24 +67,24 @@ public:
 
 class TCPServer
 {
-
+	NetworkInit init;
+	Socket sock(SOCK_STREAM); 
 public:
 	void Start(const char* ip, short port)
 	{
-
+		IPAddress addr(ip, port);
+		sock.Bind(&addr);
+		sock.Listen();
+		sock.Accept();
 	}
 };
 
-
 int main()
 {
-	NetworkInit init;
-
-	Socket sock(SOCK_STREAM); 
-
-	IPAddress addr("127.0.0.1", 4000);
-	sock.Bind(&addr);
-	sock.Listen();
-	sock.Accept();
+	// 최종 사용자 코드
+	// => 사용하기 쉬워 졌습니다.
+	// => 복잡 한 과정을 단순화 하는 상위 계층의 클래스 때문에!!!
+	TCPServer server;
+	server.Start("100.100.100.100", 4000);
 
 }
