@@ -10,13 +10,30 @@
 
 class Cursor
 {
+	// 규칙 #1. private 생성자
+private:
+	Cursor() {}
+
+	// 규칙 #2
+
+	// 규칙 #3. 오직 한개의 객체를 만들어 반환하는 static 멤버 함수
+public:
+	static Cursor& get_instance()
+	{
+		static Cursor instance;
+		return instance;
+	}
 };
-
-
 int main()
 {
-	Cursor c1, c2;
+	Cursor& c1 = Cursor::get_instance();
+	Cursor& c2 = Cursor::get_instance();
+
+	std::cout << &c1 << ", " << &c2 << std::endl;
+
+//	Cursor c1, c2;
 }
+
 
 
 
