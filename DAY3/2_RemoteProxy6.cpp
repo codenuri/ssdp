@@ -6,6 +6,8 @@ int main()
 {
 	ICalc* calc = load_proxy();	
 
+	calc->
+
 	delete calc; 
 
 }
