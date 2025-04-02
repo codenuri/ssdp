@@ -1,6 +1,13 @@
 #include <iostream>
 
 
+// CRTP 기술로
+// => "non-virtual" 함수를 "virtual" 처럼 동작하게 하는 기술
+// => 가상함수의 오버헤드를 없애기 위해 사용하는 C++ 만의 패턴!!(C++ IDioms)
+// 
+
+// MS office 를 만들때 사용한 "WTL" 이라는 라이브러리가 사용.
+// => 그외에도 아주 많은 라이브러리가 사용
 
 template<typename T>
 class Window
