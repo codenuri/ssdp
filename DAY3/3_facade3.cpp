@@ -68,7 +68,8 @@ public:
 class TCPServer
 {
 	NetworkInit init;
-	Socket sock(SOCK_STREAM); 
+//	Socket sock(SOCK_STREAM); // 클래스 멤버로 객체가 있을때 () 초기화는에러
+	Socket sock{SOCK_STREAM};	// {} 로 해야 합니다.
 public:
 	void Start(const char* ip, short port)
 	{
