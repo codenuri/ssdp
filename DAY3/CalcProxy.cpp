@@ -34,3 +34,14 @@ ICalc* create()
 // 함수 이름은 "이름"으로 함수를 찾을수 있습니다.!!
 // => 다시 빌드 필요 없습니다.
 //----------------------------------------
+// 빌드 하는 법
+// linux 용 c++ 컴파일 : g++
+// visual studio 가 제공하는 c++ 컴파일러 : cl.exe 
+
+// 윈도우 시작 버튼 - "developer ...." 입력
+// => developer command prompt for vs2022 실행
+// => "calcproxy.cpp" 소스가 있는 폴더로 이동후
+
+// => cl calcproxy.cpp /LD     로 빌드하면 "CalcProxy.dll" 생성됩니다.
+//							   /LD 옵션이 DLL 로 빌드하라는 옵션
+//								경고는 무시하고, "calcproxy.dll" 생성만확인	
