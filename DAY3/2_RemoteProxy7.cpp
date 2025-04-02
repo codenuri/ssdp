@@ -30,6 +30,8 @@ int main()
 	// -> 와 * 연산을 지원해야 합니다.
 	int n1 = calc1->Add(10, 20);
 	int n2 = (*calc1).Sub(10, 20);
+
+	std::cout << n1 << ", " << n2 << std::endl;
 }
 
 
