@@ -6,7 +6,7 @@ class Singleton
 {
 private:
 	Singleton() {}
-	Singleton(const Cursor&) = delete;
+	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
 
 	static Singleton* sinstance;
