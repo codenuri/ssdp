@@ -3,10 +3,22 @@
 // ICalc.h
 struct ICalc
 {
+	// 참조계수 기반으로 객체의 수명을 관리한다면
+	// 참조계수 관련 함수는 반드시 인터페이스 에 있어야 합니다.
+	virtual void AddRef() = 0;
+	virtual void Release() = 0;
+
+
 	virtual int Add(int, int) = 0;
 	virtual int Sub(int, int) = 0;
 	virtual ~ICalc() {}
 };
+
+
+
+
+
+
 
 
 
