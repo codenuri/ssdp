@@ -42,7 +42,11 @@ int main()
 
 
 
+// 위코드가 "effective-c++" 책의 저자인 scott-meyer 가 만든 코드입니다.
+// => "meyer's singleton" 이라고 부르고
+// => 현재 C++ 에서 가장 좋은 방식으로 알려진 코드
 
+// => 쉽고, 안전한 코드.
 
 
 
