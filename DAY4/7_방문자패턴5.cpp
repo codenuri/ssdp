@@ -17,8 +17,6 @@ struct IMenuVisitor
 
 
 
-
-
 class BaseMenu
 {
 	std::string title;
@@ -92,7 +90,20 @@ public:
 
 
 
+// 실제 메뉴 방문자
+class MenuTitleChangeVisitor : public IMenuVisitor
+{
+	std::string pstring;
+	std::string mstring;
+public:
+	MenuTitleChangeVisitor(const std::string& s1, std::string& s2)
+		:pstring(s1), mstring(s2) {	}
 
+	void visit(MenuItem* m) override
+	{
+	}
+
+};
 
 
 int main()
