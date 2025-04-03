@@ -37,22 +37,38 @@ public:
 	slist_iterator(Node<T>* p = nullptr)
 		: current(p) {}
 
+	// 이제 약속된 방법으로 이동만 하면됩니다.
+	T& next() override 
+	{
+		T& tmp = current->data;
+		current = current->next; // 리스트이동
+		return tmp;
+	}
+
+	bool hasNext() override
+	{
+		return current != nullptr;
+	}
+
 };
 
-slist_iterator<int> p(300);
+//slist_iterator<int> p(300번지);
 
 
 
-
-
-
-
-
-template<typename T> struct slist
+// 모든 컬렉션은 반복자를 꺼낼수 있어야 합니다
+// => ICollection 인터페이스 구현
+template<typename T> 
+struct slist : public ICollection<T>
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
+
+	IIterator<T>* iterator() override
+	{
+		return new slist_iterator<T>( ? );
+	}
 };
 
 
