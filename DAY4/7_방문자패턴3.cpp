@@ -28,7 +28,7 @@ public:
 	using std::list<T>::list;   // std::list<T> 타입이름,
 								// list 는생성자이름
 
-	void accept(IVisitor<T>* v) override
+	void accept(IVisitor<T>* v) 
 	{
 		// 자신의 모든 요소를 방문자에 보내면 됩니다
 		for (auto& e : *this)
