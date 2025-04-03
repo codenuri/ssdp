@@ -22,6 +22,10 @@ public:
 
 // 도형을 만드는 팩토리
 
+// 새로운 도형을 추가하면 공장 코드는 수정 되어야 합니다
+// => 여러곳이 아닌 공장 한곳만 변경하면 되므로
+// => 코드 수정을 최소화 할수 있습니다.
+
 class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
@@ -55,8 +59,6 @@ int main()
 			if (s != nullptr)
 				v.push_back(s);
 		}
-
-
 
 		else if (cmd == 9)
 		{
