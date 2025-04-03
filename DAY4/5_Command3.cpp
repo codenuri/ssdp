@@ -37,6 +37,14 @@ public:
 	AddRectCommand(std::vector<Shape*>& v) : v(v) {}
 
 	void execute() override { v.push_back(new Rect); }
+	bool can_undo() override { return true; }
+
+	void undo() override
+	{
+		Shape* s = v.back();
+		v.pop_back();
+		delete s;
+	}
 };
 
 
