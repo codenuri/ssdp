@@ -65,9 +65,10 @@ struct slist : public ICollection<T>
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
 
+
 	IIterator<T>* iterator() override
 	{
-		return new slist_iterator<T>( ? );
+		return new slist_iterator<T>( head );
 	}
 };
 
@@ -89,3 +90,19 @@ int main()
 		std::cout << it->next() << std::endl;
 	}
 }
+
+// iterator 란 결국
+// => 컬렉션(list등)의 1번째 요소를 가리키는 포인터를 가지고 있다가
+// => 약속된 규칙대로 이동/요소접근 하는것
+
+// C++이 생각하는 위 방식의 단점.  
+
+// #1. 반복자를 꺼내는 s.iterator()의 구현을 보세요
+// =>
+
+// #2. next() 함수는 가상함수 입니다.
+
+
+// #3. 배열을 순회 방법을 생각해 보세요
+
+
