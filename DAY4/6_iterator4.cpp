@@ -25,9 +25,21 @@ struct ICollection
 	virtual IIterator<T>* iterator() = 0;
 	virtual ~ICollection() {}
 };
+//-------------------------------------------------------
+// 아래 코드가 싱글리스트 반복자 입니다.
+// => 어렵지 않습니다.
 
+template<typename T>
+class slist_iterator : public IIterator<T>
+{
+	Node<T>* current;
+public:
+	slist_iterator(Node<T>* p = nullptr)
+		: current(p) {}
 
+};
 
+slist_iterator<int> p(300);
 
 
 
