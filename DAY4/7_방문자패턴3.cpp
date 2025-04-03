@@ -23,6 +23,11 @@ template<typename T>
 class MyList : public std::list<T>
 {
 public:
+	// 생성자 상속 문법 : 기반 클래스 모든 생성자를 MyList 도
+	//					사용할수 있게 해달라는 것
+	using std::list<T>::list;   // std::list<T> 타입이름,
+								// list 는생성자이름
+
 	void accept(IVisitor<T>* v) override
 	{
 		// 자신의 모든 요소를 방문자에 보내면 됩니다
@@ -31,11 +36,9 @@ public:
 	}
 };
 
-
-
 int main()
 {
-	std::list<int> s = { 1,2,3,4,5,6,7,8,9,10 };
+	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
 
 	TwiceVisitor<int> tv;
 	s.accept(&tv);			
