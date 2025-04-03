@@ -5,6 +5,19 @@
 // std::list : 모든 요소가 동일 타입, 선형 자료구조
 // PoupMenu  : 요소의 타입이 다를수 있고, Tree 구조
 
+class MenuItem;
+class PopupMenu;
+
+struct IMenuVisitor
+{
+	virtual void visit(MenuItem* m) = 0;
+	virtual void visit(PopupMenu* m) = 0;
+	virtual ~IMenuVisitor() {}
+};
+
+
+
+
 
 class BaseMenu
 {
