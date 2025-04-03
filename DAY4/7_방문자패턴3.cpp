@@ -43,8 +43,8 @@ int main()
 	TwiceVisitor<int> tv;
 	s.accept(&tv);			
 
-//	ShowVisitor<int> sv;	
-//	s.accept(&sv);
+	ShowVisitor<int> sv;	
+	s.accept(&sv);
 
 
 }
