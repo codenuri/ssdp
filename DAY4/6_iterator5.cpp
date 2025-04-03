@@ -89,6 +89,16 @@ int main()
 		std::cout << *first << std::endl;
 		++first;
 	}
+
+	/*
+	// C#
+	IEnumerator<int> e = s.GetEnumerator();
+
+	while (e.MoveNext())
+	{
+		WriteLine("{}", e.Current);
+	}
+	*/
 }
 
 
