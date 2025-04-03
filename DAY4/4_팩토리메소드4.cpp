@@ -50,7 +50,7 @@ struct OSX
 	// => 타입이름만 있으므로 컴파일 시간에만 사용
 };
 
-template<typename T >
+template<typename T > 
 class Dialog
 {
 public:
