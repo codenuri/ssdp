@@ -47,9 +47,38 @@ public:
 	}
 };
 
+class AddCircleCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	AddCircleCommand(std::vector<Shape*>& v) : v(v) {}
 
+	void execute() override { v.push_back(new Circle); }
+	bool can_undo() override { return true; }
 
+	void undo() override
+	{
+		Shape* s = v.back();
+		v.pop_back();
+		delete s;
+	}
+};
 
+class DrawCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	DrawCommand(std::vector<Shape*>& v) : v(v) {}
+
+	void execute() override 
+	{ 
+		for (auto s : v) s->draw();
+	}
+
+	bool can_undo() override { return true; }
+
+	void undo() override  {	system("cls");	}
+};
 
 int main()
 {
