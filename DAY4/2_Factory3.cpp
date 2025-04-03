@@ -67,17 +67,29 @@ public:
 	static Shape* create() { return new Rect; }
 
 	// static 멤버 데이타가 언제 생성되는지 생각해 보세요
+	// => 결국 전역변수와 유사하므로, main 함수 이전에 생성자가 호출됩니다
 	static AutoRegister ar;
 };
 AutoRegister Rect::ar(1, &Rect::create);
 
+/*
+						// Rect::ar 의 생성자 호출
+Rect* r1 = new Rect; // Rect 생성자 호출
+Rect* r2 = new Rect; // Rect 생성자 호출
+Rect* r3 = new Rect; // Rect 생성자 호출
+					 // 즉, Rect 생성자는 "객체당 한번씩" 호출
 
-Rect* r1 = new Rect;
-Rect* r2 = new Rect;
-Rect* r3 = new Rect;
-
-
-
+// C#
+class Car
+{
+	public Car() {} // 인스턴스 생성자
+	static Car() {} // static 생성자
+};
+	
+Car c1 = new Car();	// static 생성자가 먼저 호출되고
+					// instance 생성자 호출
+Car c2 = new Car();	// instance 생성자 호출
+*/
 
 
 
@@ -91,6 +103,8 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	inline static AutoRegister ar{ 2, &Circle::create };
 };
 
 
@@ -103,8 +117,9 @@ int main()
 
 	ShapeFactory& factory = ShapeFactory::getInstance();
 
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
+	// main 함수 실행전에 이미 도형은 공장에 등록되었습니다.
+//	factory.register_shape(1, &Rect::create);
+//	factory.register_shape(2, &Circle::create);
 
 
 	while (1)
