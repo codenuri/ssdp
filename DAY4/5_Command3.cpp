@@ -80,21 +80,38 @@ public:
 	void undo() override  {	system("cls");	}
 };
 
+#include <stack>
+
 int main()
 {
 	std::vector<Shape*> v;
+
+	std::stack<ICommand*> undo_stack;
+
+	ICommand* command;
 
 	while (1)
 	{
 		int cmd;
 		std::cin >> cmd;
 
-		if (cmd == 1) v.push_back(new Rect);
-		else if (cmd == 2) v.push_back(new Circle);
+		if (cmd == 1)
+		{
+			command = new AddRectCommand(v);
+			command->execute();
+			undo_stack.push(command);
+		}
+		else if (cmd == 2)
+		{
+			command = new AddCircleCommand(v);
+			command->execute();
+			undo_stack.push(command);
+		}
 		else if (cmd == 9)
 		{
-			for (auto s : v)
-				s->draw();
+			command = new DrawCommand(v);
+			command->execute();
+			undo_stack.push(command);
 		}
 	}
 }
