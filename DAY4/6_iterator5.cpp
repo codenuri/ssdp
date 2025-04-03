@@ -99,6 +99,9 @@ int main()
 		WriteLine("{}", e.Current);
 	}
 	*/
+
+	// 참고 : Fluent Python 책에 Python iterator 만드는 여러개
+	//	      기술있습니다. 학습해 보세요.
 }
 
 
