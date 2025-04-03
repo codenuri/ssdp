@@ -36,6 +36,11 @@ public:
 };
 
 
+// 아래 Factory 는 
+// => 자주 사용되는 객체의 견본을 보관했다가
+// => 필요할때 "복사(clone)" 에 의해 객체를 생성합니다.
+// 이런 디자인 기법을 "prototype" 이라고 합니다.
+
 class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
@@ -48,16 +53,14 @@ public:
 		prototype_map[key] = c;
 	}
 
-
 	Shape* create(int key)
 	{
 		Shape* p = nullptr;
-
 		auto it = prototype_map.find(key);
 
 		if (it != prototype_map.end())
 		{
-			p = it->clone();	
+			p = it->second->clone();	
 		}
 		return p;
 	}
