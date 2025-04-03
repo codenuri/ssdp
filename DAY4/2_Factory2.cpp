@@ -3,6 +3,10 @@
 #include <map>
 #include "Helper.h"
 
+// 이 단계의 핵심
+// => static 멤버 함수로 객체를 만드는 기술에 대해서 많은 생각해 해보세요
+
+
 class Shape
 {
 public:
