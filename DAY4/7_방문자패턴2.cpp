@@ -21,7 +21,7 @@ int main()
 	
 	// 방법 #2. 방문자 패턴을 사용합니다.
 	TwiceVisitor<int> tv;
-	s.Accept(&tv);		// tv 가 s의 모든 요소를 2배로 합니다.
+	s.Accept(&tv);			// tv 가 s의 모든 요소를 2배로 합니다.
 
 
 	ShowVisitor<int> sv;	// 방문하는 요소를 출력하는 방문자
