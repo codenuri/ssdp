@@ -86,14 +86,22 @@
 // 객체지향 디자인 패턴의 핵심 #4.
 // 객체를 생성하는 다양한 기술을 알아 두세요
 
-Rect rc;
+1. Rect rc;		// {} 벗어날때 자동파괴
+				// 필요없을때 즉시 파괴 할수 없다
 
-Rect* rc = new Rect;
+2. Rect* rc = new Rect;	// 가장 자유로운 방법
+						// 단, 자유로운것은 항상 좋은 것은 아니다.
 
-Rect& rc = Rect::get_instance();
+// 아래 처럼 static 함수로 객체를 만드는 것을 꼭 기억하세요
+3. Rect* rc = Rect::create();	
+				// 오직 한개의 객체만 만들게 하고 싶다. - 싱글톤
+				// 속성이 동일하면 공유하자	- 플라이 웨이트
+				// 객체 생성에 이름을 부여해서 가독성있게 - Color::FromRgb(1,1,1)
+				// 생성함수를 자료구조에 보관했다가 사용 - ShapeFactory
+// RUST : let s1 = String::from("AAA")
+//        let s2 = String::new("AAA")  <= new 가 static 함수 이름
 
+Rect* rc = sample->clone(); // 복사본으로 객체 생성 
+							// prototype 패턴
 
-Rect* rc = sample->clone();
-
-
-Rect* rc = factory.create();
+Rect* rc = factory.create();	// factory 도입
