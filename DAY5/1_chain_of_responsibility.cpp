@@ -85,8 +85,8 @@ int main()
 				// method chaining 
 				// 메소드(함수)를 연속적으로 호출하는 기술
 
-	t1.handle(7); // Team1 이 해결
-//	t1.handle(2);
-//	t1.handle(3);
-//	t1.handle(13);
+//	t1.handle(7); // Team1 이 해결
+//	t1.handle(2); // Team1 => Team2 해결
+//	t1.handle(3); // Team1 => Team2 => Team3 해결
+	t1.handle(13); // 해결 안됨.
 }
