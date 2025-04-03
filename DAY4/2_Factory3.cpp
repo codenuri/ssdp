@@ -51,7 +51,8 @@ public:
 };
 
 // 전역변수의 생성자가 호출되는 시점을 생각해 보세요
-AutoRegister ar(1, &Rect::create);
+// => main 함수가 실행되기전, 프로그램 처음시작될때 호출
+//AutoRegister ar(1, &Rect::create);
 
 
 
@@ -64,10 +65,16 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	// static 멤버 데이타가 언제 생성되는지 생각해 보세요
+	static AutoRegister ar;
 };
+AutoRegister Rect::ar(1, &Rect::create);
 
 
-
+Rect* r1 = new Rect;
+Rect* r2 = new Rect;
+Rect* r3 = new Rect;
 
 
 
