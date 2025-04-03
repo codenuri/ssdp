@@ -96,14 +96,23 @@ class MenuTitleChangeVisitor : public IMenuVisitor
 	std::string pstring;
 	std::string mstring;
 public:
-	MenuTitleChangeVisitor(const std::string& s1, std::string& s2)
-		:pstring(s1), mstring(s2) {	}
+	MenuTitleChangeVisitor(const std::string& s1, const std::string& s2)
+		: pstring(s1), mstring(s2) {	}
 
 	void visit(MenuItem* m) override
 	{
+		auto s = m->get_title() + mstring;
+		m->set_title(s);
 	}
 
+	void visit(PopupMenu* m) override
+	{
+		auto s = m->get_title() + pstring;
+		m->set_title(s);
+	}
 };
+
+
 
 
 int main()
