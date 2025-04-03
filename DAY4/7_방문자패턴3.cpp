@@ -2,6 +2,12 @@
 #include <list>
 #include <vector>
 
+// 방문자 패턴
+// => 요소 한개에 대한 연산을 정의(컬렉션과 요소의 연산을 분리)
+// => 요소에 대한 순회는 외부가 아닌 내부에서 처리
+// => 외부에서는 복합객체의 내부 구조를 알필요 없다.
+
+
 // 방문자의 인터페이스
 template<typename T> 
 struct IVisitor
@@ -23,6 +29,13 @@ class ShowVisitor : public IVisitor<T>
 {
 public:
 	void visit(T& e) { std::cout << e << std::endl; }
+};
+
+template<typename T>
+class ZeroVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { e = 0; }
 };
 
 
