@@ -18,6 +18,15 @@ public:
 	void visit(T& e) { e *= 2; }
 };
 
+template<typename T>
+class ShowVisitor : public IVisitor<T>
+{
+public:
+	void visit(T& e) { std::cout << e << std::endl; }
+};
+
+
+
 // std::list 로 부터 상속받아서 "방문자패턴기능" 추가
 template<typename T>
 class MyList : public std::list<T>
@@ -47,6 +56,11 @@ int main()
 	s.accept(&sv);
 
 
+	ZeroVisitor<int> zv; // 방문하는 요소를 0으로 
+	s.accept(&zv);
+
+
+	s.accept(&sv); // 다시 출력
 }
 
 
