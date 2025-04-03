@@ -116,19 +116,20 @@ int main()
 
 		else if (cmd == 0)
 		{
-			if (undo_stack.empty()) break;
-
-			command = undo_stack.top();
-			undo_stack.pop();
-
-			if (command->can_undo())
+			if (!undo_stack.empty())
 			{
-				command->undo();	
-			}
-			delete command; // Redo 를 지원하려면 여기서 지우지 말고
-							// Redo 스택에 넣으세요
-							// 복습할때 만들어 보세요
 
+				command = undo_stack.top();
+				undo_stack.pop();
+
+				if (command->can_undo())
+				{
+					command->undo();
+				}
+				delete command; // Redo 를 지원하려면 여기서 지우지 말고
+								// Redo 스택에 넣으세요
+								// 복습할때 만들어 보세요
+			}
 		}
 	}
 }
