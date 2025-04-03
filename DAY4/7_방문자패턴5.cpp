@@ -39,6 +39,15 @@ class MenuItem : public BaseMenu
 {
 	int id;
 public:
+	void accept(IMenuVisitor* visitor)
+	{
+		// 자신만 전달하면 됩니다.
+		visitor->visit(this);
+
+	}
+
+
+
 	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
 	void command() override
@@ -52,6 +61,34 @@ class PopupMenu : public BaseMenu
 {
 	std::vector<BaseMenu*> v;
 public:
+
+	// PopupMenu 에 방문자가 방문할때
+	// => 이 부분이 이예제의 핵심
+	void accept(IMenuVisitor* visitor)
+	{
+		// #1. 자신을 먼저 방문자에 전달
+		visitor->visit(this);
+
+
+		// #2. 하위 메뉴도 방문자에 전달하면 안됩니다.
+		// => 직계자식만 전달되고, 손자는 전달 안됩니다.
+		for (auto m : v)
+		{
+			// visitor->visit(m); // 이렇게 하지 말라는 것
+
+			// 자식메뉴에 방문자를 방문 시켜야 합니다.
+			m->accept(visitor);
+		}
+	}
+
+
+
+
+
+
+
+
+
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
 	void add_menu(BaseMenu* p) { v.push_back(p); }
