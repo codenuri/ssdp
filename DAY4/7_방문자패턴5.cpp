@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <conio.h> 
+// std::list : 모든 요소가 동일 타입, 선형 자료구조
+// PoupMenu  : 요소의 타입이 다를수 있고, Tree 구조
 
 
 class BaseMenu
@@ -13,8 +15,13 @@ public:
 
 	std::string get_title() const { return title; }
 
+	void set_title(const std::string& t) { title = t; }
+
+
 	virtual void command() = 0;
 };
+
+
 
 
 class MenuItem : public BaseMenu
@@ -92,6 +99,11 @@ int main()
 	pm2->add_menu(new MenuItem("RED", 21));
 	pm2->add_menu(new MenuItem("GREEN", 22));
 	pm2->add_menu(new MenuItem("BLUE", 23));
+
+
+	MenuTitleChangeVisitor v(" >", " *"); // 메뉴 타이틀을 변경하는 방문자
+	
+	root->accept(&v);
 
 
 	root->command();
