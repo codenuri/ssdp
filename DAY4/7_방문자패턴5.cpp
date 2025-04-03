@@ -30,6 +30,8 @@ public:
 
 
 	virtual void command() = 0;
+
+	virtual void accept(IMenuVisitor* visitor) = 0;
 };
 
 
