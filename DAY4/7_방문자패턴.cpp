@@ -20,6 +20,7 @@ int main()
 	}
 
 	// 위 코드의 내부 원리.. 컴파일러가 아래 코드로 변경합니다.
+	// => 즉, 반복자가 있는 타입(iterable type) 만 사용가능합니다.
 	auto first = s.begin();
 	auto last = s.end();
 
