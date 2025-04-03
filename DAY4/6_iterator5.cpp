@@ -10,58 +10,67 @@ template<typename T> struct Node
 };
 
 
-template<typename T>
-struct IIterator
-{
-	virtual bool hasNext() = 0;
-	virtual T& next() = 0;
-	virtual ~IIterator() {}
-};
-
-template<typename T>
-struct ICollection
-{
-	virtual IIterator<T>* iterator() = 0;
-	virtual ~ICollection() {}
-};
 
 
 template<typename T>
-class slist_iterator : public IIterator<T>
+class slist_iterator 
 {
 	Node<T>* current;
 public:
-	slist_iterator(Node<T>* p = nullptr)
-		: current(p) {
-	}
+	slist_iterator(Node<T>* p = nullptr): current(p) {}
 
-	T& next() override
+	// 다음으로 이동하고 요소에 접근하는 것을
+	// => 실제 포인터와 동일한 방법으로 합니다.
+	// => 연산자 재정의 기술
+
+	// C++규칙 : operator++ 은 자신을 참조로 반환해야 한다.
+	//           (그래야 연속 사용가능 ++(++p))
+	inline slist_iterator& operator++()
 	{
-		T& tmp = current->data;
 		current = current->next; 
-		return tmp;
+		
+		return *this;
 	}
 
-	bool hasNext() override
+	inline T& operator*() { return current->data; }
+	
+	// 포인터와 유사하게 사용하려면 ==, != 가 있어야 합니다.
+	inline bool operator==(const slist_iterator& other)
 	{
-		return current != nullptr;
+		return current == other.current;
 	}
-
+	inline bool operator!=(const slist_iterator& other)
+	{
+		return current != other.current;
+	}
 };
 
+
+
 template<typename T>
-struct slist : public ICollection<T>
+struct slist 
 {
 	Node<T>* head = 0;
 public:
 	void push_front(const T& a) { head = new Node<T>(a, head); }
 
 
-	IIterator<T>* iterator() override
+	inline slist_iterator<T> begin()
 	{
-		return new slist_iterator<T>(head);
+//		slist_iterator<T> it(head);
+//		return it;
+
+		return slist_iterator<T>(head); // new 사용안함!
 	}
+
+	inline slist_iterator<T> end()
+	{
+		return slist_iterator<T>(nullptr); 
+	}
+
 };
+
+
 
 
 int main()
@@ -72,13 +81,13 @@ int main()
 	s.push_front(30);
 	s.push_front(40);
 
+	auto first = s.begin();
+	auto last = s.end();
 
-
-	auto it = s.iterator();
-
-	while (it->hasNext())
+	while (first != last)
 	{
-		std::cout << it->next() << std::endl;
+		std::cout << *first << std::endl;
+		++first;
 	}
 }
 
