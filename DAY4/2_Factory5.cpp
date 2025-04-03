@@ -8,6 +8,8 @@ class Shape
 public:
 	virtual void draw() = 0;
 	virtual ~Shape() {}
+
+	virtual Shape* clone() = 0;
 };
 
 class Rect : public Shape
@@ -16,6 +18,8 @@ public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
 
 	static Shape* create() { return new Rect; }
+
+	virtual Rect* clone() override { return new Rect(*this); }
 };
 
 
@@ -27,6 +31,8 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	virtual Circle* clone() override { return new Circle(*this); }
 };
 
 
@@ -34,14 +40,12 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-		using CREATOR = Shape * (*)(); 
-
-	std::map<int, CREATOR> create_map;
+	std::map<int, Shape*> prototype_map;
 
 public:
-	void register_shape(int key, CREATOR c)
+	void register_shape(int key, Shape* c)
 	{
-		create_map[key] = c;
+		prototype_map[key] = c;
 	}
 
 
@@ -49,11 +53,11 @@ public:
 	{
 		Shape* p = nullptr;
 
-		auto it = create_map.find(key);
+		auto it = prototype_map.find(key);
 
-		if (it != create_map.end())
+		if (it != prototype_map.end())
 		{
-			p = it->second();	
+			p = it->clone();	
 		}
 		return p;
 	}
