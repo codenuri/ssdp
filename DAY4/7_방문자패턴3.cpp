@@ -18,11 +18,18 @@ public:
 	void visit(T& e) { e *= 2; }
 };
 
-
-
-
-
-
+// std::list 로 부터 상속받아서 "방문자패턴기능" 추가
+template<typename T>
+class MyList : public std::list<T>
+{
+public:
+	void accept(IVisitor<T>* v) override
+	{
+		// 자신의 모든 요소를 방문자에 보내면 됩니다
+		for (auto& e : *this)
+			v->visit(e);
+	}
+};
 
 
 
@@ -31,10 +38,10 @@ int main()
 	std::list<int> s = { 1,2,3,4,5,6,7,8,9,10 };
 
 	TwiceVisitor<int> tv;
-	s.Accept(&tv);			
+	s.accept(&tv);			
 
-	ShowVisitor<int> sv;	
-	s.Accept(&sv);
+//	ShowVisitor<int> sv;	
+//	s.accept(&sv);
 
 
 }
