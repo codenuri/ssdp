@@ -68,6 +68,21 @@ public:
 	IEdit* CreateEdit()     override { return new OSXEdit; }
 };
 
+class GradientDialog : public Dialog
+{
+public:
+	IButton* CreateButton() override 
+	{ 
+		auto p = new OSXButton;	// 타입을 결정하고
+
+		// p 의 색상을 Gradient 로 바꾸고..
+		// 추가로 다양한 설정후에
+
+		return p;  // 반환
+	}
+	IEdit* CreateEdit()     override { return new OSXEdit; }
+};
+
 int main(int argc, char** argv)
 {
 
