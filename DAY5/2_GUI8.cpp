@@ -54,10 +54,7 @@ public:
 			parent->handle_lbutton_down();
 	}
 
-
-
-
-	virtual void lbutton_down() {}
+	virtual bool lbutton_down() { return false; }
 	virtual void key_down() {}
 };
 
@@ -65,21 +62,22 @@ public:
 class MainWindow : public Window
 {
 public:
-	void lbutton_down() override
+	bool lbutton_down() override
 	{
 		std::cout << "MainWindow lbutton_down\n";
+		return true;
 	}
 };
 
 class ImageView : public Window
 {
 public:
-	/*
-	void lbutton_down() override
+	bool lbutton_down() override
 	{
 		std::cout << "ImageView lbutton_down\n";
+		return true;
 	}
-	*/
+	
 };
 
 int main()
