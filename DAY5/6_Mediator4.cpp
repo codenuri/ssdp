@@ -25,7 +25,6 @@ public:
 			f(hint);	
 		}
 	}
-
 };
 
 void foo(void* p)        { std::cout << "foo : " << (int)p << std::endl; }
@@ -37,8 +36,8 @@ int main()
 	NotificationCenter nc;
 
 	nc.addObserver("LOWBATTERY", &foo);
-	nc.addObserver("LOWBATTERY", &goo);
-	nc.addObserver("DISCONNECT_WIFI", &goo);
+	nc.addObserver("LOWBATTERY",      std::bind(&goo, _1, 1) );
+	nc.addObserver("DISCONNECT_WIFI", std::bind(&goo, _1, 2) );
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
 	nc.postNotificationWithName("LOWBATTERY", (void*)30);
