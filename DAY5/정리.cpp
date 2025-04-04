@@ -29,7 +29,7 @@
 
 // 행위 패턴 (11개)
 
-// 변하는 것 분리 : template method, strategy
+// 변하는 것 분리 : template method, strategy, state
 
 // 동일한 방법으로 접근     : iterator
 // 동일한 방법으로 연산수행 : visitor
@@ -39,6 +39,26 @@
 
 // 명령을 캡슐화 해서 undo/redo 를 가능하게 : command
 
+// 객체가 자신의 상태를 스스로 저장/복구 : memento
 
+// 객체간의 관계가 복잡하면 중재자를 만들어라 : mediator
+//						M:N 의 관계를 1 : N 로 변경하는 패턴
+
+// interpreter 패턴 : 컴파일러의 파서를 만들때 사용하던 기술
+//					 지금은 거의 사용안함.
+// - 교재 마지막 페이지에 23개 정리되어 있습니다. 시험볼때 참고 하세요
+//-----------------------------
+// C++ IDioms
+// Policy Base Design : 정책 클래스를 template 인자로 교체
+//							std::vector<int, debug_alloc<int>> 
+
+// CRTP : 기반 클래스가 파생 클래스 이름을 사용하도록하는 기술
+
+// RAII : 자원의 할당/해지 는 생성자/소멸자를 활용해라 std::lock_guard
+
+// Thin Template : 클래스 템플릿 만들때 T를 사용하지 않은 멤버는
+//				   템플릿이 아닌 기반 클래스를 만들어서 제공해라..
+
+// static factory method : 자신를 객체를 static member function
 
 
