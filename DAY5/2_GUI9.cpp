@@ -34,7 +34,10 @@ public:
 		switch (msg)
 		{
 		case WM_LBUTTONDOWN:
-			self->handle_lbutton_down();
+			if (self->handle_preview_lbutton_down() == true)
+			{
+				self->handle_lbutton_down();
+			}
 			break;
 
 		case WM_KEYDOWN:
@@ -44,19 +47,19 @@ public:
 		return 0;
 	}
 
+	bool handle_preview_lbutton_down()
+	{
+		if (parent != nullptr)
+		{
+			if (parent->handle_preview_lbutton_down() == false)
+				return false;
+		}
+
+		return preview_lbutton_down();			
+	}
+
 	void handle_lbutton_down()
 	{
-		// preview 처리
-
-		// #1.부모에 먼저 전달
-		if (parent != nullptr)
-			parent->handle_lbutton_down();
-
-		if (preview_lbutton_down() == false)
-			return;
-		//-------------------------
-		// lbutton_down() 처리
-
 		if (lbutton_down() == true)
 			return;
 
@@ -76,7 +79,8 @@ public:
 	virtual bool preview_lbutton_down() 
 	{ 
 		std::cout << "MainWindow preview\n";
-		return false; 
+//		return false; // 더이상 진행하지 말라
+		return true; 
 	}
 
 	bool lbutton_down() override
@@ -89,6 +93,13 @@ public:
 class ImageView : public Window
 {
 public:
+	virtual bool preview_lbutton_down()
+	{
+		std::cout << "ImageView preview\n";
+//		return false;
+		return true; 
+	}
+
 	bool lbutton_down() override
 	{
 		std::cout << "ImageView lbutton_down\n";
