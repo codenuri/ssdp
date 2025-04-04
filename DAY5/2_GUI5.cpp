@@ -4,14 +4,13 @@
 
 #include <map>
 
-class Window;
-
-std::map<int, Window*> this_map;  // <window번호, this> 를 보관하는 맵
-
 
 class Window
 {
 	int handle;
+
+	inline static std::map<int, Window*> this_map;  // <window번호, this> 를 보관하는 맵
+
 public:
 	void create(const std::string& title)
 	{
@@ -54,11 +53,9 @@ public:
 	}
 };
 
-
-
 int main()
 {
-	Window w;
+	MainWindow w;
 	w.create("A");
 
 	ec_process_message();
