@@ -41,6 +41,14 @@ int main()
 
 	// 배터리 모듈쪽에서 배터리가 부족해지면
 	nc.postNotificationWithName("LOWBATTERY", (void*)30);
+
+	// 복습시 아래 처럼 발전시켜 보세요
+	// => 우선순위를 부여 할수 있고
+	// => 스레드로 호출될수 있도록 해보세요
+	// Poco 라는 C++ 오픈소스 네트워크 라이브러리가 아래 처럼되어 있습니다.
+//	nc.addObserver("LOWBATTERY", &f1, 우선순위_10);
+//	nc.addObserver("LOWBATTERY", &f2, 우선순위_20);
+//	nc.addObserver("LOWBATTERY", &f3, 우선순위_30, NEW_THREAD);
 }
 
 
