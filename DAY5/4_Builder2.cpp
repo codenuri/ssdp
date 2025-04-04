@@ -21,17 +21,19 @@ struct IBuilder
 	virtual ~IBuilder() {}
 };
 
-
 class Director
 {
+	IBuilder* builder = nullptr;
 public:
+	void set_builder(IBuilder* b) { builder = b; }
+
 	Character construct()
 	{
-		Character c;
-		c = c + Hat("야구모자");
-		c = c + Uniform("파란색티셔츠");
-		c = c + Shoes("운동화");
-		return c;
+		// 이 클래스는 변하지 않은 만드는 공정(순서)만 가지고 있습니다
+		builder->make_hat();
+		builder->make_uniform();
+		builder->make_shoes();
+		return builder->get_result();
 	}
 };
 
