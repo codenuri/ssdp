@@ -11,11 +11,9 @@ class Window
 	std::vector<Window*> child_vec;
 	Window* parent = nullptr;
 public:
-
 	void add_child(Window* child)
 	{
 		child->parent = this;
-
 		child_vec.push_back(child);
 
 		// 이제 C 함수로 실제 자식윈도우로 부착
