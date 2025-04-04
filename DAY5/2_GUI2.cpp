@@ -18,7 +18,7 @@ class Window
 public:
 	void create(const std::string& title)
 	{
-
+		handle = ec_make_window(&foo, title);
 	}
 };
 
