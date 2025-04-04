@@ -7,7 +7,7 @@
 // C 언어의 타이머 개념을 가지고 클래스를 만들어 봅시다.
 class Clock
 {
-	static std::map<int, Clock*> this_map;
+	inline static std::map<int, Clock*> this_map;
 
 	std::string name;
 public:
