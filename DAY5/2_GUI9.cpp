@@ -73,6 +73,12 @@ public:
 class MainWindow : public Window
 {
 public:
+	virtual bool preview_lbutton_down() 
+	{ 
+		std::cout << "MainWindow preview\n";
+		return false; 
+	}
+
 	bool lbutton_down() override
 	{
 		std::cout << "MainWindow lbutton_down\n";
