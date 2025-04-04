@@ -13,11 +13,20 @@ public:
 		handle = ec_make_window(&event_loop, title);
 	}
 
+	// 아래 코드는 왜?? 에러가 발생할까요 ??
+	// 해결책은 뭘까요 ?
+	// => 다음소스에서 해결
 	static int event_loop(int hwnd, int msg, int a, int b)
 	{
 		switch (msg)
 		{
-		case WM_LBUTTONDOWN: lbutton_down(); break;
+		case WM_LBUTTONDOWN: 
+	//		x = 0;   // this->x = 0
+			lbutton_down();		// this->lbutton_down(); 인데
+								// 현재는 static 멤버 함수안에 있으므로
+								// this 가 없습니다.
+			break;
+
 		case WM_KEYDOWN:     key_down(); break;
 		}
 		return 0;
