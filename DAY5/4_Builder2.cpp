@@ -37,11 +37,36 @@ public:
 	}
 };
 
+// 각각의 공정을 만드는 빌더(세부 부품을 만들어내는 클래스)
+class Korean : public IBuilder
+{
+	Character c;
+public:
+	void make_hat() override        { c += Hat("갓\n"); }
+	void make_uniform() override    { c += Uniform("한복\n"); }
+	void make_shoes() override      { c += Shoes("짚신\n"); }
+	Character get_result() override { return c; }
+};
 
+class American : public IBuilder
+{
+	Character c;
+public:
+	void make_hat() override { c += Hat("야구모자\n"); }
+	void make_uniform() override { c += Uniform("양복\n"); }
+	void make_shoes() override { c += Shoes("구두\n"); }
+	Character get_result() override { return c; }
+};
 
 int main()
 {
+	Korean k;
+	American a;
+	
 	Director d;
+	d.set_builder(&k);  //<== 국가 선택을 변경하면 이곳을 변경
+//	d.set_builder(&a);
+
 	Character c = d.construct();
 	std::cout << c << std::endl;
 
