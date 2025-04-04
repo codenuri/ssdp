@@ -13,12 +13,15 @@ int main()
 //	std::ranges::reverse_view rv(tv);
 //	std::ranges::filter_view  fv(rv, [](int n) { return n % 2 == 0; });
 
+
 	// #2. syntax sugar 
 	// => 위 코드와 완전히 동일한 코드인데, 사용하기 쉽게 만들어 놓은것
 	auto fv = v | std::views::take(5)
 				| std::views::reverse
 				| std::views::filter([](int n) { return n % 2 == 0; });
 
+	// C#
+//	var c = arr.Where(람다조건식).OrderBy(..).Reverse();
 
 
 	for (auto e : fv) // 4, 2
