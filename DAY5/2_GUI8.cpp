@@ -75,7 +75,9 @@ public:
 	bool lbutton_down() override
 	{
 		std::cout << "ImageView lbutton_down\n";
-		return true;
+	//	return true;	// 이벤트 처리를 종료해 달라.
+		return false;   // 이벤트를 고리에 따라 계속 전달해달라.
+						// 즉, 부모윈도우에도 전달
 	}
 	
 };
@@ -93,3 +95,11 @@ int main()
 	ec_process_message();
 }
 
+// 위처럼 자식 윈도우 이벤트를 부모윈도우에도 보내는 기술을
+
+// IOS (cocoa touch) : responder chain 이라고 하고
+// WPF : bubbling event
+
+// MFC : command routing 이라고 합니다.
+
+// 모두 "chain of responsibility" 의 응용입니다.
