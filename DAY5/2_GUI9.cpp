@@ -46,6 +46,17 @@ public:
 
 	void handle_lbutton_down()
 	{
+		// preview 贸府
+
+		// #1.何葛俊 刚历 傈崔
+		if (parent != nullptr)
+			parent->handle_lbutton_down();
+
+		if (preview_lbutton_down() == false)
+			return;
+		//-------------------------
+		// lbutton_down() 贸府
+
 		if (lbutton_down() == true)
 			return;
 
@@ -53,6 +64,7 @@ public:
 			parent->handle_lbutton_down();
 	}
 
+	virtual bool preview_lbutton_down() { return true; }
 	virtual bool lbutton_down() { return false; }
 	virtual void key_down() {}
 };
