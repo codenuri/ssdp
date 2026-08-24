@@ -74,6 +74,20 @@ public:
 	}
 };
 
+// 이메일 주소이 유효성을 확인하는 기능이 필요 하다
+// edit2.cpp 라면
+// => Edit 의 파생 클래스를 만들어서
+// => validate() override 해서 이메일 주소 확인 기능 추가
+// => template method 패턴의 전형적인 예제
+
+// edit3.cpp 라면
+// => Edit 와 관련없다
+// => IValidator 의 규칙만 지키면 된다.
+// => 즉, Validator 자체만 만들면 되고, 누가 사용(edit 또는 다른 입력 도구)하는지 몰라도 된다
+// => "strategy" 라는 패턴을 사용한것
+
+
+
 int main()
 {
 	Edit e;
