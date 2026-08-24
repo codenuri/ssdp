@@ -34,14 +34,15 @@ int main()
 		else if (cmd == 2) v.push_back(new Circle);
 		else if (cmd == 9)
 		{
-			for (auto s : v)
-				s->draw();
+			for (auto s : v)	// 여기서 s 의 타입은 Shape*
+				s->draw();		// Shape 안에 draw()가 없으므로 
+								// 이코드에서 에러!
 		}
 	}
 }
 // 위 코드는 에러 입니다.
 // => 어디서, 왜 에러일까요 ?
-// => 해결책을 생각해 보세요 
+// => 해결책을 생각해 보세요 => 다음 소스
 
 
 
