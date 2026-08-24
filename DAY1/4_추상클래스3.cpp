@@ -39,7 +39,11 @@ class HDCamera : public ICamera
 public:
 	void take() { std::cout << "Take HD Picture" << std::endl; }
 };
-
+class UHDCamera : public ICamera
+{
+public:
+	void take() { std::cout << "Take UHD Picture" << std::endl; }
+};
 int main()
 {
 	People p;
@@ -47,7 +51,10 @@ int main()
 	p.use_camera(&c);
 
 	HDCamera hc;
-	p.use_camera(&hc); // ???
+	p.use_camera(&hc); // ok
+
+	UHDCamera uhc;		// 새로운 제품(UHDCamera) 가 나왔지만
+	p.use_camera(&uhc); // ok   People 을 수정하지 않아도 사용가능하다
 }
 
 
