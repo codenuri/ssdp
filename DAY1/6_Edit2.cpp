@@ -27,7 +27,7 @@ public:
 
 			if (c == 13) break; 
 
-			if (isdigit(c))
+			if (validate(c)) // 변해야 하는 정책은 "별도의 가상함수" 사용
 			{
 				data.push_back(c);
 				std::cout << c;
