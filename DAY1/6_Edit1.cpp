@@ -14,7 +14,8 @@ public:
 
 		while (1)
 		{
-			char c = _getch(); // 1자 입력
+			char c = _getch();  // 1자 입력
+
 			if (c == 13) break; // enter 입력
 
 			if (isdigit(c))
