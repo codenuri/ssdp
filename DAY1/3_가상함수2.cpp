@@ -16,8 +16,12 @@ int main()
 	// #1. 아래 코드는 문제 없는 코드
 	// Derived d;
 
-	// #2.
-	Derived* p = new Derived;
+	// #2. 아래 코드도 문제 없는 코드
+//	Derived* p = new Derived;
+//	delete p;
+
+	// #3. 아래 코드가 이번 예제의 핵심
+	Base* p = new Derived;
 	delete p;
 
 }	
