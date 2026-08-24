@@ -38,9 +38,19 @@ int main()
 			{
 				// 해결책 #1. 캐스팅
 				// => Shape* 인 s 를 Rect*, Circle* 로 캐스팅 후에 사용
+				// => dynamic_cast 로 조사후 사용
 
+				// 전통적인 if 문	   : if (조건식 조사)
+				// C++17의 새로운 if 문 : if (초기화 구문; 조건식조사) 
 
-				s->draw();
+				if (Rect* r = dynamic_cast<Rect*>(s); r != nullptr)
+				{
+					r->draw();
+				}
+				else if	(Circle* c = dynamic_cast<Circle*>(s); c != nullptr)
+				{
+					c->draw();
+				}
 			}
 		
 		}
