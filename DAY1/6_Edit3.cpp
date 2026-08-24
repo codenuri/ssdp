@@ -67,6 +67,11 @@ public:
 	{
 		return s.size() < cnt && isdigit(c);
 	}
+	
+	bool is_complete(const std::string& s) override
+	{
+		return s.size() == cnt;
+	}
 };
 
 int main()
