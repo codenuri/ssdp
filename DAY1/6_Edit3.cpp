@@ -55,9 +55,26 @@ public:
 	}
 };
 
+// 이제 validation 정책을 가진 다양한 클래스를 만들면 됩니다.
+// => 규칙 : IValidator 인터페이스 구현
+class LimitDigitValidator : public IValidator
+{
+	int cnt;
+public:
+	LimitDigitValidator(int n) : cnt(n) {}
+
+	bool validate(const std::string& s, char c) override
+	{
+		return s.size() < cnt && isdigit(c);
+	}
+};
+
 int main()
 {
 	Edit e;
+	LimitDigitValidator v(5);
+	e.set_validator(&v);  // edit 에게 validation 정책을 전달합니다
+
 	while (1)
 	{
 		std::cout << e.get_data() << std::endl;
