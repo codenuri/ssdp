@@ -38,9 +38,25 @@ public:
 	}
 };
 
+// 위 설계의 의도
+// Edit 의 Validation 정책을 변경하려면
+// 1. Edit 의 파생 클래스를 만든다
+// 2. 약속된 가상함수인 "validate" 를 override 해서 validation 정책 제공
+
+class NumEdit : public Edit
+{
+public:
+	bool validate(char c) override
+	{
+		return isdigit(c);
+	}
+};
+
 int main()
 {
-	Edit e;
+//	Edit e;
+	NumEdit e;
+
 	while (1)
 	{
 		std::cout << e.get_data() << std::endl;
