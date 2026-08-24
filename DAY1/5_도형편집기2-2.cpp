@@ -3,6 +3,7 @@
 
 // 핵심 #3. 모든 도형의 공통의 특징(draw)이 있다면 기반 클래스에도 있어야 한다
 // => 그래야 기반 클래스(Shape*) 타입으로 해당 특징을 사용할수 있다
+// => 문법적인 규칙이 아닌 디자인 규칙
 
 
 
@@ -11,6 +12,8 @@ class Shape
 	int color = 0;
 public:
 	virtual ~Shape() {}
+
+	void draw() { std::cout << "draw Shape\n"; }
 };
 
 class Rect : public Shape
