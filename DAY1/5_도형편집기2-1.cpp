@@ -20,6 +20,11 @@ class Circle : public Shape
 public:
 	void draw() { std::cout << "draw Circle\n"; }
 };
+class Triangle : public Shape
+{
+public:
+	void draw() { std::cout << "draw Triangle\n"; }
+};
 
 int main()
 {
@@ -51,13 +56,20 @@ int main()
 				{
 					c->draw();
 				}
-			}
-		
+			}		
 		}
 	}
 }
+// 위 코드는 컴파일/실행 문제 없습니다.
+// => 좋은 디자인 일까요 ?
 
+// 위 코드는 새로운 도형(Triangle) 이 추가되면
+// => main 의 if 문이 추가되어야 합니다.
+// => OCP 를 만족할수 없습니다.
+// => if ~ else, switch ~ case 는 새로운 요소 추가시 항상 변해야 합니다..!
+// => 더이상 추가될것이 없을때 사용해야 합니다
 
+// 결국 위 코드는 좋은 디자인이 아닙니다
 
 
 
