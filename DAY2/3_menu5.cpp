@@ -15,21 +15,29 @@
 //					교재의 각 패턴 설명에 있는 클래스 다이어 그램과 같은 형태
 
 
+// 모든 종류의 메뉴를 하나의 컨테이너에 보관하려면
+// => 모든 메뉴의 공통의 기반 클래스 필요
 
+class BaseMenu
+{
+	std::string title;
+public:
+	BaseMenu(const std::string& title) : title(title) {}
 
-
-
+	virtual ~BaseMenu() {}
+	
+	std::string get_title() const { return title; }
+};
 
 
 
 class MenuItem
 {
-	std::string title;
 	int id;
 public:
 	MenuItem(const std::string& title, int id) : title(title), id(id) {}
 
-	std::string get_title() const { return title; }
+
 
 	void command()
 	{
