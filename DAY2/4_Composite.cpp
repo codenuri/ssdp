@@ -29,17 +29,26 @@ public:
 
 	int get_size() override
 	{
-		return ? ;
+		return size;
 	}
 };
+
 class Folder : public Component
 {
+	std::vector<Component*> v;
 public:
 	Folder(const std::string& name) : Component(name) {}
 
+	void add(Component* c) { v.push_back(c); }
+
+
 	int get_size() override
 	{
-		return ? ;
+		int sz = 0;
+		for (auto c : v)
+			sz += c->get_size();
+
+		return sz;
 	}
 
 };
