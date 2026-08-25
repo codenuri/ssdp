@@ -54,6 +54,13 @@ class PopupMenu : public BaseMenu
 public:
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
+	~PopupMenu()
+	{
+		for (auto m : v)
+			delete m;
+	}
+
+
 	void add(BaseMenu* m) { v.push_back(m); }
 
 	void command()
