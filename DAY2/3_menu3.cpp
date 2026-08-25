@@ -27,10 +27,31 @@ class PopupMenu
 public:
 	PopupMenu(const std::string& title) : title(title) {}
 
-	void add(MenuItem* m) {    }
+	void add(MenuItem* m) { v.push_back(m); }
+
+	// 핵심 : 팝업메뉴 선택시, 자신이 보관중인 모든 MenuItem 출력하고, 선택 받기
+	void command()
+	{
+		auto sz = v.size();
+
+		for (int i = 0; i < sz; i++)
+		{
+			std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+		}
+
+		std::cout << sz + 1 << ". 종료\n";
+
+		std::cout << "메뉴를 선택하세요 >> ";
+
+		int cmd;
+		std::cin >> cmd;
+
+		// 선택된 메뉴 실행
+		v[cmd - 1]->command();
+
+	}
 
 };
-
 
 int main()
 {
