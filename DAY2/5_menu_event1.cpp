@@ -20,19 +20,7 @@ public:
 
 
 
-class MenuItem : public BaseMenu
-{
-	int id;
-public:
-	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
-	void command()
-	{
-		std::cout << get_title() << "메뉴 선택됨\n";
-
-		_getch();
-	}
-};
 
 class PopupMenu : public BaseMenu
 {
@@ -77,12 +65,35 @@ public:
 	}
 	BaseMenu* submenu(int idx) { return v[idx]; }
 };
+//------------------------------------------------
+class MenuItem : public BaseMenu
+{
+	int id;
+	void(*handler)(); // 메뉴 선택시 수행될 함수의 주소 보관
+public:
+	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
+	void set_handler(void(*f)()) { handler = f; }
 
+	void command()
+	{
+		// 여기서 MenuItem 선택시 기능을 직접 구현하면
+		// "모든 MenuItem 이 동일한 기능을 수행하게 된다"
+		// 그래서 여기서 직접 구현하면 안되고
+		// 여기서는 "등록된 핸들러 함수" 를 다시 호출
+		handler();		
+	}
+};
+void foo() { std::cout << "PC종료 구현\n"; _getch(); }
+void goo() { std::cout << "색상변경 구현\n"; _getch(); }
 int main()
 {
-	MenuItem m("PC종료", 11);
+	MenuItem m1("PC종료", 11);
+	m1.set_handler(&foo);
+	
+	MenuItem m2("색상변경", 12);
+	m2.set_handler(&goo);
 
-	m.command(); // 실제 "PC종료" 작업을 수행해야 합니다.
+	m1.command(); // 실제 "PC종료" 작업을 수행해야 합니다.
 }
 
 
