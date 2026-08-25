@@ -32,7 +32,7 @@ class MemberFunctionPointer : public Callback
 	void(T::* handler)();
 
 public:
-	MemberFunctionPointer(T* target, void(T::*f)() ) 
+	MemberFunctionPointer(T* target, void(T::*f)() )
 		: target(target), handler(f) {}
 
 	void execute()
@@ -44,7 +44,7 @@ public:
 class Dialog
 {
 public:
-	void close(int id) { std::cout << "Dialog close\n"; }
+	void close() { std::cout << "Dialog close\n"; }
 };
 
 void foo() { std::cout << "foo\n"; }
