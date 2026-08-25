@@ -33,7 +33,7 @@ public:
 	{
 		while (1)
 		{
-			system("cls"); 
+			system("cls");
 
 			auto sz = v.size();
 
@@ -50,10 +50,10 @@ public:
 			std::cin >> cmd;
 
 
-			if (cmd == sz + 1) 
+			if (cmd == sz + 1)
 				break;
 
-			if (cmd < 0 || cmd > sz + 1) 
+			if (cmd < 0 || cmd > sz + 1)
 				continue;
 
 			v[cmd - 1]->command();
@@ -79,11 +79,10 @@ int main()
 
 	PopupMenu pm("오늘의 점심 메뉴");
 
-	pm.add(&kimbab); // 핵심??? 될까요 ?? 되도록 하려면 어떻게 해야 할까요 ?
-					 // => 다음 소스에서 해결
+	pm.add(&kimbab); 
 	pm.add(&m9);
 
-	pm.command(); 
+	pm.command();
 
 }
 
