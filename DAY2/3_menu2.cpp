@@ -9,6 +9,20 @@
 
 class MenuItem
 {
+	std::string title;
+//	std::string shortcut;
+	int id;
+public:
+	MenuItem(const std::string& title, int id) : title(title), id(id) {}
+	
+	std::string get_title() const { return title; }
+
+	void command()
+	{
+		std::cout << get_title() << "메뉴 선택됨\n";
+
+		_getch(); // 아무 키나 누를때 까지 잠시 대기			
+	}
 
 };
 
