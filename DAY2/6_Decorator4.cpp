@@ -68,6 +68,14 @@ int main()
 	e.draw();
 
 	Frame f(&e); 
-	f.draw();
+	f.draw(); // 기능 추가후 사용
+	img.draw(); // 기능 추가전 사용
+	/*
+	// 아래 처럼 하면 안되나요 ?
+	img.add_filter(&e);
+	img.add_filter(&f);
+	img.draw(); // 기능 2개 추가후 그림.!!
+	// 단점. 원래 그림을 그릴수 없습니다.
+	*/
 }
 
