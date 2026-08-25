@@ -91,6 +91,11 @@ public:
 
 };
 
+// 메뉴 이벤트를 처리할 함수들
+
+void color_red()   { std::cout << "색상을 Red로  변경\n"; _getch(); }
+void color_green() { std::cout << "색상을 green로 변경\n"; _getch(); }
+
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
@@ -99,15 +104,18 @@ int main()
 
 	root->add(p1);
 	root->add(p2); // root 하위 메뉴로 부착
+	
+	p2->add(new MenuItem("RED",   21, &color_red));
+	p2->add(new MenuItem("GREEN", 22, &color_green));
+	p2->add(new MenuItem("BLUE",  23, []() { std::cout << "blue\n"; _getch(); }));
+
+	p2->add(new MenuItem("WHITE", 24));
 
 	p1->add(new MenuItem("HD", 11));
 	p1->add(new MenuItem("FHD", 12));
 	p1->add(new MenuItem("UHD", 13));
 
-	p2->add(new MenuItem("RED", 21));
-	p2->add(new MenuItem("GREEN", 22));
-	p2->add(new MenuItem("BLUE", 23));
-	p2->add(new MenuItem("WHITE", 24));
+
 
 	root->command();
 
