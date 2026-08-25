@@ -32,22 +32,39 @@ public:
 	// 핵심 : 팝업메뉴 선택시, 자신이 보관중인 모든 MenuItem 출력하고, 선택 받기
 	void command()
 	{
-		auto sz = v.size();
-
-		for (int i = 0; i < sz; i++)
+		while (1)
 		{
-			std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+			system("cls"); // 화면 지우기
+
+			auto sz = v.size();
+
+			for (int i = 0; i < sz; i++)
+			{
+				std::cout << i + 1 << ". " << v[i]->get_title() << '\n';
+			}
+
+			std::cout << sz + 1 << ". 종료\n";
+
+			std::cout << "메뉴를 선택하세요 >> ";
+
+			int cmd;
+			std::cin >> cmd;
+
+
+			if (cmd == sz + 1) // 종료 메뉴 선택
+				? ;
+
+			if (cmd < 0 || cmd > sz + 1) // 잘못된 입력
+				? ;
+
+
+			// 선택된 메뉴 실행
+			v[cmd - 1]->command();
+
 		}
 
-		std::cout << sz + 1 << ". 종료\n";
 
-		std::cout << "메뉴를 선택하세요 >> ";
 
-		int cmd;
-		std::cin >> cmd;
-
-		// 선택된 메뉴 실행
-		v[cmd - 1]->command();
 
 	}
 
