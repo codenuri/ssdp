@@ -12,7 +12,7 @@ int main()
 	// C 언어 함수 포인터 : "함수의 주소" 를 보관하는 타입
 	// std::function<>   : 호출 가능한 "모든 것을" 보관하는 타입
 
-	std::function<void()> f;
+	std::function<void()> f; // 함수 포인터를 발전시켜서 만든 도구
 
 	f = &foo; // 함수포인터
 
