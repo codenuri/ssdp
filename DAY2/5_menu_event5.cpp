@@ -96,6 +96,24 @@ public:
 void color_red()   { std::cout << "색상을 Red로  변경\n"; _getch(); }
 void color_green() { std::cout << "색상을 green로 변경\n"; _getch(); }
 
+
+void change_resolution(int id)
+{
+	switch (id)
+	{
+	case 1: std::cout << "HD\n"; break;
+	case 2: std::cout << "FHD\n"; break;
+	}
+	_getch();
+}
+
+class Dialog
+{
+public:
+	void close() { std::cout << "Dialog close\n"; _getch(); }
+};
+
+
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
@@ -109,11 +127,14 @@ int main()
 	p2->add(new MenuItem("GREEN", 22, &color_green));
 	p2->add(new MenuItem("BLUE",  23, []() { std::cout << "blue\n"; _getch(); }));
 
-	p2->add(new MenuItem("WHITE", 24));
+	Dialog dlg;
 
-	p1->add(new MenuItem("HD", 11));
-	p1->add(new MenuItem("FHD", 12));
-	p1->add(new MenuItem("UHD", 13));
+	p2->add(new MenuItem("WHITE", 24, [&dlg]() { dlg.close(); }));
+
+
+	p1->add(new MenuItem("HD", 11, []() { change_resolution(1); }));
+	p1->add(new MenuItem("FHD", 12, []() { change_resolution(2); }));
+	p1->add(new MenuItem("UHD", 13, []() { change_resolution(3); }));
 
 
 
