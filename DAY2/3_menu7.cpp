@@ -75,7 +75,7 @@ public:
 		}
 
 	}
-
+	BaseMenu* submenu(int idx) { return v[idx]; }
 };
 
 int main()
@@ -83,11 +83,11 @@ int main()
 	PopupMenu* root = new PopupMenu("ROOT");
 
 	root->add(new PopupMenu("색상변경"));
-	root->add(new MenuItem("화면끄기", 11);
+	root->add(new MenuItem("화면끄기", 11));
 
 
 	// #1. submenu() 를 만들어 봅시다
-	auto m = root->submenu(0);
+	auto m = root->submenu(0);	// m 은 "색상변경" 메뉴
 	
 
 
