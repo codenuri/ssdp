@@ -85,28 +85,25 @@ public:
 
 	void add_handler(HANDLER h) { handler_vector.push_back(h); }
 
-
-
-
-	void set_handler(void(*f)()) { handler = f; }
-
 	void command()
 	{
-		handler();
+		// 등록된 모든 핸들러를 실행
+		for (auto f : handler_vector)
+		{
+			f();
+		}
 	}
 };
 
-
-
 void foo() { std::cout << "PC종료 구현\n"; _getch(); }
 void goo() { std::cout << "색상변경 구현\n"; _getch(); }
+
 int main()
 {
-	MenuItem m1("PC종료", 11);
-	m1.set_handler(&foo);
+	MenuItem m1("PC종료",   11, &foo);
+	MenuItem m2("색상변경", 12, &goo);
 
-	MenuItem m2("색상변경", 12);
-	m2.set_handler(&goo);
+	m1.add_handler([]() { std::cout << "PC종료를 람다 표현식으로\n"; });
 
 	m1.command(); 
 }
