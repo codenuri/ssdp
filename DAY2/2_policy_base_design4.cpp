@@ -3,6 +3,13 @@
 
 // 방법 #3. policy base design 사용
 
+// "변하는 것(메모리할당/해제 정책) 을 다른 클래스로 분리한것
+
+// strategy 패턴      : 인터페이스를 사용해서 정책 클래스를 교체
+// policy base design : template 인자를 사용해서 정책 클래스를 교체
+
+
+
 
 // policy_base_design3.cpp 의 특징
 // => 함수 이름을 약속하기 위해서 "인터페이스 사용"
@@ -51,8 +58,8 @@ public:
 
 int main()
 {
-	vector<int, malloc_allocator<int> > v;
-	
+	vector<int, malloc_allocator<int> > v;	
+//	vector<int, other_allocator<int> > v;
 
 	v.resize(10);
 
