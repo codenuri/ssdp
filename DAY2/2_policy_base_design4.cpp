@@ -18,8 +18,10 @@
 
 // 핵심 #1. 인터페이스로 함수 이름을 약속하지 말자
 
-
-template<typename T, typename Alloc>
+// std::allocator<T> : C++ 표준에서 제공하는 표준 할당기
+//						allocate/deallocate 함수가 있고
+//						new/delete 로 구현
+template<typename T, typename Alloc = std::allocator<T> >
 class vector
 {
 	T* ptr = nullptr;
@@ -58,8 +60,10 @@ public:
 
 int main()
 {
-	vector<int, malloc_allocator<int> > v;	
+//	vector<int, malloc_allocator<int> > v;	
 //	vector<int, other_allocator<int> > v;
+
+	vector<int> v; // std::allocator 로 메모리 할당/해제
 
 	v.resize(10);
 
