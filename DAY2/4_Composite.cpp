@@ -14,21 +14,34 @@ class Component
 public:
 	Component(const std::string& name) : name(name) {}
 	
+	virtual ~Component() {}
+
 	// 파일 : 자신만의 크기 있음
 	// 폴더 : 자신만의 크기는 없음. 하지만 크기를 구할수는 있음
 	virtual int get_size() = 0;
 };
 
-
-
-
-class File  
+class File : public Component
 {
+	int size;
 public:
+	File(const std::string& name, int sz) : Component(name), size(sz) {}
+
+	int get_size() override
+	{
+		return ? ;
+	}
 };
-class Folder 
+class Folder : public Component
 {
 public:
+	Folder(const std::string& name) : Component(name) {}
+
+	int get_size() override
+	{
+		return ? ;
+	}
+
 };
 
 
