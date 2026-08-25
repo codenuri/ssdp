@@ -70,9 +70,9 @@ int main()
 	// img 객체에 기능 추가 객체를 사용해서 기능을 추가 합니다.
 
 	Emoticon e(&img);
-	e.draw();
+	e.draw();		// "그림 + 이모티콘" 출력
 
 	Frame f(&img);
-	f.draw();
+	f.draw();		// "그림 + 액자" 출력
 }
 
