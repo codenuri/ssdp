@@ -38,7 +38,7 @@ int main()
 {
 //	std::vector<int> v; // std::vector<int, std::allocator<T>> v 와 동일
 	
-	std::vector<int, debug_alloc<int>> v;
+	std::vector<int, debug_alloc<int>> v(3);
 
 	std::cout << "-----------------" << std::endl;
 
@@ -53,4 +53,9 @@ int main()
 
 }
 
+// 현재 예제는
+// => Policy Base Design 으로 메모리 할당 정책을 변경하고 있습니다.
+
+// C++ 표준 라이브러리는 "메모리 할당/해제" 정책 외에도
+// 다양한 정책 교체를 위해서 "Policy Base Design" 사용하고 있습니다.
 
