@@ -66,5 +66,7 @@ int main()
 	zd.write("hello"); 
 }
 
+// 구글에서 "C# Stream" 검색
+
 
 
