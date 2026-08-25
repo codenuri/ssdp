@@ -12,13 +12,13 @@ public:
 	T* allocate(std::size_t sz)
 	{
 		void* ptr = malloc(sizeof(T) * sz);
-		printf("[allocate] %p, %ul\n", ptr, sz);
+		printf("[allocate] %p, %u\n", ptr, sz);
 		return static_cast<T*>(ptr);
 	}
 	void deallocate(T* ptr, std::size_t sz)
 	{
 		free(ptr);
-		printf("[deallocate] %p, %ul\n", ptr, sz);
+		printf("[deallocate] %p, %u\n", ptr, sz);
 	}
 
 	// C++ 표준 할당기를 만들때는 아래 3개도 필요
