@@ -30,6 +30,12 @@ public:
 class Emoticon : public Image
 {
 public:
+//	Emoticon() {}  // Emoticon() : Image() {}
+
+	// Image 에 디폴트 생성자가 없으므로 아래 처럼 해야 합니다.
+	Emoticon(const std::string& url) : Image(url) {} 
+
+
 	void draw()
 	{
 		std::cout << "#######################\n"; // 추가된 기능
@@ -41,6 +47,9 @@ public:
 class Frame : public Image
 {
 public:
+	using Image::Image; // 생성자 상속 문법
+						// Image 가 가진 모든 생성자를 물려 받게 된다
+						// 즉, Emoticon 의 생성자와 유사한 역활
 	void draw()
 	{
 		std::cout << "$$$$$$$$$$$$$$$$$$$$$$$\n"; // 추가된 기능
@@ -54,9 +63,10 @@ int main()
 	Image img("www.image.com/car.png");
 	img.draw();
 
-	Emoticon e;
+	Emoticon e("www.image.com/car.png");
 	e.draw();
-	Frame f;
+
+	Frame f("www.image.com/car.png");
 	f.draw();
 }
 
