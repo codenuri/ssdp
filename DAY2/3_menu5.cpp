@@ -27,7 +27,16 @@ public:
 	virtual ~BaseMenu() {}
 	
 	std::string get_title() const { return title; }
+
+	// 모든 메뉴의 공통의 특징은 반드시 기반 클래스에도 있어야 한다
+	virtual void command()  = 0; // 디폴트 구현을 해줄 것은 없으므로
+								 // 파생 클래스에게 반드시 만들라고 지시 정도면 충분
+								// 단, 이 선언도 없다면 
+								// BaseMenu* 로는 command 호출 안됨
 };
+
+
+
 
 class MenuItem : public BaseMenu
 {
