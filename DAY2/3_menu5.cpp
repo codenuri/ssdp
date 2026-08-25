@@ -29,15 +29,11 @@ public:
 	std::string get_title() const { return title; }
 };
 
-
-
-class MenuItem
+class MenuItem : public BaseMenu
 {
 	int id;
 public:
-	MenuItem(const std::string& title, int id) : title(title), id(id) {}
-
-
+	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
 	void command()
 	{
@@ -46,15 +42,15 @@ public:
 		_getch();
 	}
 };
-class PopupMenu
+
+class PopupMenu : public BaseMenu
 {
-	std::string title;
-	std::vector<MenuItem*> v;
+	std::vector<BaseMenu*> v;
 
 public:
-	PopupMenu(const std::string& title) : title(title) {}
+	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
-	void add(MenuItem* m) { v.push_back(m); }
+	void add(BaseMenu* m) { v.push_back(m); }
 
 	void command()
 	{
