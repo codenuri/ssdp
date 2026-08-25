@@ -60,7 +60,7 @@ public:
 
 int main()
 {
-	Image img("www.image.com/car.png");
+	Image img("www.image.com/car.png");	// Image : 클래스   img : 객체
 	img.draw();
 
 	Emoticon e("www.image.com/car.png");
@@ -70,5 +70,15 @@ int main()
 	f.draw();
 }
 
+// 질문 #1. 위 코드는 
+// 1. 객체에 대한 기능 추가  
+// 2. 클래스에 대한 기능 추가 => 정답..
+// => 상속은 객체가 아닌 클래스에 기능이 추가된다
+// => 위 코드에서 이미 그림은 "img" 객체가 다운 받았다!!!
+// => 다운 받은 "img" 객체에 기능이 추가된것은 아니다
+
+// 질문 #2. Emoticon 과 Frame 의 추가 기능을 동시에 사용하려면 
+// => 다시 파생  클래스 필요
+// class FrameEmoticon : public Frame, public Emoticon {};   같은 형태
 
 
