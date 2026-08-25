@@ -88,8 +88,11 @@ int main()
 	// #1. submenu() 를 만들어 봅시다
 	auto m = root->submenu(0);	// m 은 "색상변경" 메뉴
 
+
 	// #2. 아래 코드를 생각해 봅시다. 왜 에러일까요 ? 해결책도 생각해 봅시다.
 	root->submenu(0)->add(new MenuItem("RED", 31)); // error
+	//     ^ 결과가 "PopupMenu" 는 맞지만
+	//       반환 타입이 BaseMenu* 이므로 add 를 사용할수 없다
 
 
 	root->command();
