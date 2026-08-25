@@ -19,6 +19,18 @@ public:
 		_getch(); 			
 	}
 };
+class PopupMenu
+{
+	std::string title;
+	std::vector<MenuItem*> v;
+
+public:
+	PopupMenu(const std::string& title) : title(title) {}
+
+	void add(MenuItem* m) {    }
+
+};
+
 
 int main()
 {
