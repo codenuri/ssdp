@@ -62,6 +62,19 @@ int main()
 */
 
 
+// 그냥 C++ shared_ptr 하면 안되나요 ?
+/*
+{
+	std::shared_ptr<ICalc> p1(load_proxy()); // new 자체가 DLL 내부
+
+} // <- p1 파괴. std::shared_ptr 은 소멸자에서 delete 하고 있습니다.
+  // <- 우리에게 필요한 것은 delete 는 DLL 내부에서 하고
+//      스마트 포인터 파괴시 "Release()" 를 호출하는 기능 필요
+*/
+// 그래서 표준에 std::shared_ptr 이 있지만
+// 많은 오픈소스가 목적에 맞는 자신만의 스마트 포인터를 다시 만들어서 사용하고 있습니다
+
+
 
 
 
