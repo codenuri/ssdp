@@ -16,17 +16,39 @@ class sp
 {
 	T* obj;
 public:
-	sp(T* p = nullptr) : obj(p) {} 
-	sp(const sp& other) : obj(other.obj) {}
-	~sp() {}
+	sp(T* p = nullptr) : obj(p) 
+	{ 
+		if (obj != nullptr) obj->AddRef(); 
+	}
+
+	sp(const sp& other) : obj(other.obj) 
+	{
+		if (obj != nullptr) obj->AddRef();
+	}
+	~sp() 
+	{
+		if (obj != nullptr) obj->Release();
+	}
+
+	// 모든 스마트 포인터의 핵심 기술
+	// -> 와 * 연산자를 재정의 해서 Raw Pointer 처럼 사용가능하게 한다.
+	T* operator->() { return obj; }
+	T& operator*() { return *obj; }
 };
 
 int main()
 {
 	sp<ICalc> calc1 = load_proxy(); // sp<ICalc> calc1(load_proxy()); 
 	sp<ICalc> calc2 = calc1;
+
+	int n1 = calc1->Add(1, 2);
+	int n2 = calc2->Sub(1, 2);
+
+	std::cout << n1 << ", " << n2 << std::endl;
+
 }
 
+/*
 int main()
 {
 	ICalc* calc1 = load_proxy();
@@ -37,7 +59,7 @@ int main()
 	calc1->Release();
 	calc2->Release();
 }
-
+*/
 
 
 
