@@ -28,6 +28,8 @@ public:
 	void work(IDNS* dns)
 	{
 		std::cout << dns->get_host_ip("www.samsung.com") << std::endl;
+
+		std::cout << dns->get_host_ip("www.naver.com") << std::endl;
 	}
 };
 
@@ -53,12 +55,12 @@ public:
 };
 
 
-
-
 int main()
 {
 	Machine m;
-
-	DNS dns;
+	
+	// 이제 사용자들에게 DNS 대신 CacheDNS 를 사용하게 한다
+	//DNS dns;
+	CacheDNS dns;
 	m.work(&dns);
 }
