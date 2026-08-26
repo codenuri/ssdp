@@ -1,0 +1,18 @@
+﻿#include <iostream>
+#include <list>
+#include <vector>
+#include <deque>
+#include <stack> // 이 안에 있는 stack 이 Adapter8.cpp 와 유사
+#include <queue>
+
+int main()
+{
+	std::stack<int> s1;
+	std::stack<int, std::vector<int>> s2;
+	std::stack<int, std::list<int>> s3;
+
+	s1.push(10); // 내부적으로 std::deque 의 push_back() 사용
+
+	std::queue<int> q1;
+	std::queue<int, std::list<int>> q2;
+}
