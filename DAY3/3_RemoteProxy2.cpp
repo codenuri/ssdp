@@ -1,23 +1,43 @@
-﻿// #1. server.zip 압축 푸세요
-// => 새로운 visual studio 에서 열어보세요
-// => "빌드시 32bit(x86) 으로 해야 합니다."
-
-
-#define USING_GUI
+﻿#define USING_GUI
 #include "cppmaster.h"
+
+// remoteproxy1.cpp 와 같이
+// => C 스타일의 IPC 관련 함수를 직접 사용하면
+
+// 단점
+// #1. 모든 Client 개발자가 IPC 기술을 알아야 한다.
+// => 서버는 한개 지만 Client 는 여러개 일수 있다
+
+// #2. 서버 장애시 "모든 클라이언트에서 각각 처리 해야 한다"
+
+// #3. 덧셈은 1, 뺄셈은 2 와 같은 명령코드를 모두 알아야 한다
+// => 실제 명령 코드는 많을수 있다
+
+//-------------------------------------------
+// Proxy 패턴을 사용해 봅시다.
+// => 서버를 대신하는 클래스를 제공합니다.
+// => "Remote Proxy" 라고 불리는 기술
+
+class Calc
+{
+	int server;
+public:
+	Calc() { };
+
+	int Add(int a, int b) { }
+	int Sub(int a, int b) { }
+};
+
 
 int main()
 {
-	// 1. 서버의 핸들을 얻어 옵니다.
 	int server = ec_find_server("Calc");
 
 	std::cout << "서버 번호 : " << server << std::endl;
 
 
-	// 2. 서버에 명령코드와 파라미터를 전달합니다.
-	// => int 값 3개 전달
-	int n1 = ec_send_server(server, 1, 10, 20); // 10 + 20 의 결과좀 달라
-	int n2 = ec_send_server(server, 2, 10, 20); // 10 - 20 의 결과좀 달라
+	int n1 = ec_send_server(server, 1, 10, 20);
+	int n2 = ec_send_server(server, 2, 10, 20);
 
 	std::cout << n1 << ", " << n2 << std::endl;
 
