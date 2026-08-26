@@ -18,12 +18,12 @@ class HardwareMediaPlayer : public IMediaPlayer
 public:
 	void play() { std::cout << "using Hardware Codec\n"; }
 };
-
-
-
 class People
 {
 public:
+	// 아래 코드는 인터페이스로 전달 받으므로
+	// 다양한 Player 를 받을수 있습니다
+	// => 약한 결합을 사용한 교체 가능한 설계
 	void use(IMediaPlayer* p)
 	{
 		p->play();
