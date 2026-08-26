@@ -32,11 +32,20 @@ public:
 };
 
 
-
+// Decorator 
+// => 동일 인터페이스, 기능의 추가
 FileStream fs("a.txt");
 ZipDecorator zd(&fs);
 
-fs.write("hello");
-zd.write("hello");
+fs.write("hello"); 
+zd.write("hello"); // 사용법은 동일하지만 기능이 추가된것
+
+// Adapter
+// => 동일 기능, 인터페이스의 변경
+TextView tv("hello");
+ObjectAdapter oa(&tv);
+tv.show();
+oa.draw();	// 사용법이 다르지만, 기능은 동일
+
 
 
