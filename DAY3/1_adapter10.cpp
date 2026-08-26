@@ -19,8 +19,13 @@ int main()
 	// 기존 반복자와는 반대로 이동하는 reverse iterator
 	// ++ 연산을 하면 기존 반복자의 -- 호출
 	// -- 연산을 하면 기존 반복자의 ++ 호출
-	std::reverse_iterator first(v.end());
-	std::reverse_iterator last(v.begin());
+
+	auto it1 = v.begin();
+	auto it2 = v.end();
+
+	// reverse_iterator : ++ 을 -- 로 변경하는 adapter
+	std::reverse_iterator first(it2);
+	std::reverse_iterator last(it1);
 
 	while (first != last)
 	{
