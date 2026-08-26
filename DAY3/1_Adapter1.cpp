@@ -46,6 +46,10 @@ public:
 
 // TextView 를 도형편집기에서 사용가능하게 만들어 보자
 
+// Adapter 패턴
+// => 기존 클래스의 인터페이스(함수이름)를 시스템에 맞게 변경해주는 것을 만드는 디자인 패턴
+// => "인터페이스의 불일치를 해결"
+
 class Text : public TextView, public Shape
 {
 public:
