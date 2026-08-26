@@ -24,6 +24,9 @@ int main()
 	auto it2 = v.end();
 
 	// reverse_iterator : ++ 을 -- 로 변경하는 adapter
+	// 아래 코드에서 first, last 자체는 진짜 반복자 아님
+	// ++first : 내부적으로 보관하는 it2 에 대해서 "--it2"
+	// --first : 내부적으로 보관하는 it2 에 대해서 "++it2"
 	std::reverse_iterator first(it2);
 	std::reverse_iterator last(it1);
 
