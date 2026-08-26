@@ -12,8 +12,15 @@ int main()
 {
 	std::vector<int> v = { 1,2,3,4,5 };
 
-	auto first = v.begin();
-	auto last = v.end();
+	// 정방향 반복자 : ++ 연산을 하면 --> 방향으로 이동
+//	auto first = v.begin();
+//	auto last = v.end();
+
+	// 기존 반복자와는 반대로 이동하는 reverse iterator
+	// ++ 연산을 하면 기존 반복자의 -- 호출
+	// -- 연산을 하면 기존 반복자의 ++ 호출
+	std::reverse_iterator first(v.end());
+	std::reverse_iterator last(v.begin());
 
 	while (first != last)
 	{
