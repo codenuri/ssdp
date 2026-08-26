@@ -8,6 +8,7 @@
 
 #include "ICalc.h"
 
+/*
 ICalc* load_proxy()
 {
 	// #1. DLL load
@@ -23,6 +24,7 @@ ICalc* load_proxy()
 	// #3. 약속된 함수로 Proxy 객체를 생성해서 반환
 	return f();
 }
+*/
 
 int main()
 {
