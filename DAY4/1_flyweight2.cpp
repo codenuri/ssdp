@@ -50,6 +50,9 @@ int main()
 	Image* img2 = Image::create("www.naver.com/a.png");
 	img2->draw();
 
+	std::cout << img1 << std::endl;
+	std::cout << img2 << std::endl;
+
 }
 
 
