@@ -64,3 +64,25 @@ int main()
 	CacheDNS dns;
 	m.work(&dns);
 }
+
+// Proxy 패턴 : 기존 요소를 대신하는 것을 만드는 것
+// => 사용자에게 기존 요소 "대신에 사용" 하라는 것
+
+// #1. 완전히 새로운 DNS 클래스를 만든것이 아니다.
+// => CacheDNS 내부에서는 기존 DNS 클래스를 계속 사용하고 있다
+// => 대신 "Cache" 기능을 추가한것
+
+// #2. 그럼. DNS 에 "Cache" 기능 추가 이므로 "Decorator" 패턴 아닌가 ?
+
+// Decorator : 기존 객체도 계속 사용가능하고, 기능 추가후도 사용가능한것
+FileStream fs("a.txt");
+ZipDecorator zd(&fs);
+
+fs.write("hello"); // 기존 파일 객체 사용가능
+zd.write("hello"); // 기능 추가 후에도 사용가능
+
+// Proxy : 기존것을 사용하지 말고, "대신에 사용할 객체" 를 만든것
+//DNS dns;		// 기존 것을 대신
+CacheDNS dns;	// 할것을 제공하는 패턴		
+dns.get_host_ip("www.naver.com");
+
