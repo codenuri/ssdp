@@ -1,24 +1,12 @@
 ﻿#define USING_GUI
 #include "cppmaster.h"
 
+// 클라이언트 개발자는 서버 개발자에게 2개의 파일을 받아야 합니다.
 
-struct ICalc
-{
-	virtual int Add(int a, int b) = 0;
-	virtual int Sub(int a, int b) = 0;
+// ICalc.h       : Proxy 인터페이스가 있는 파일
+// CalcProxy.dll : Proxy 가 있는 DLL 파일
 
-	virtual ~ICalc() {}
-};
-
-class Calc : public ICalc
-{
-	int server;
-public:
-	Calc() { server = ec_find_server("Calc"); }
-
-	int Add(int a, int b) { return ec_send_server(server, 1, a, b); }
-	int Sub(int a, int b) { return ec_send_server(server, 2, a, b); }
-};
+#include "ICalc.h"
 
 
 int main()
