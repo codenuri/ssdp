@@ -66,10 +66,16 @@ public:
 // => 몇개의 클래스를 가지고 전형적인 몇가지 절차를 수행해야 합니다.
 // => 이런 절차를 책임지는 클래스를 제공합니다
 
+// facade
+// => 몇개의 타입과 복잡한 절차가 필요한 작업을
+// => 하나의 인터페이스로 해결하는 새로운 계층을 제공하라.
+// => facade 는 "건물의 정면" 이라는 의미
+// => C#, Python 이 수많은 facade 를 제공하는 언어.. 
+
 class TcpServer
 {
 	NetworkInit init;
-	Socket sock(SOCK_STREAM); // TCP 서버
+	Socket sock{ SOCK_STREAM };
 public:
 	void Start(const char* ip, short port)
 	{
@@ -77,10 +83,8 @@ public:
 		sock.Bind(&addr);
 		sock.Listen();
 		sock.Accept();
-
 	}
 };
-
 int main()
 {
 	// 이제 최종 사용자는 아래 처럼 사용합니다
