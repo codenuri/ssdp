@@ -29,6 +29,17 @@ public:
 	int Sub(int a, int b) { return ec_send_server(server, 2, a, b); }
 };
 
+// 위와 같은 Proxy Class 는 결국 "서버 개발자"가 만들어서 배포 하게 됩니다.
+
+// #1. Client 개발자를 IPC 관련 지식이 필요 없습니다
+
+// #2. 서버 장애시 "백업서버에 연결" 같은 처리도 Proxy 에서 해주면 됩니다.
+// => Client 개발자가 직접 장애 처리 할 필요 없습니다.
+
+// #3. 이제 1, 2 같은 명령이 아닌 Add(), Sub() 의 호출입니다.
+
+
+
 int main()
 {
 	Calc* calc = new Calc;
