@@ -31,6 +31,8 @@ public:
 
 class ImageFactory
 {
+	MAKE_SINGLETON(ImageFactory)
+
 	std::map<std::string, Image*> image_map;
 public:
 	Image* create(const std::string& url)
@@ -51,12 +53,11 @@ public:
 
 };
 
-
-
 int main()
 {
 	// 공장을 먼저 짓고
-	ImageFactory factory;
+	// => 싱글톤이므로 싱글톤 규칙으로 얻는다
+	ImageFactory& factory = ImageFactory::get_instance();
 
 	// 공장을 통해서 Image 를 생성한다
 	Image* img1 = factory.create("www.naver.com/a.png");
