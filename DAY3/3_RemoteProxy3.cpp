@@ -34,6 +34,9 @@ int main()
 
 	// OCP 을 만족하기 위해 인터페이스 기반의 "약한결합" 으로 사용해야 합니다.
 
+	ICalc* calc = new ? ; // ? 를 어떻게 해야할까 ?
+
+
 	int n1 = calc->Add(10, 20);
 	int n2 = calc->Sub(10, 20);
 
