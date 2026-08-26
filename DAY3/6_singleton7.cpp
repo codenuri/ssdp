@@ -1,32 +1,37 @@
 ﻿#include <iostream>
 #include <mutex>
 
-class Cursor
+class Singleton
 {
 private:
-	Cursor() {}
-	Cursor(const Cursor&) = delete;
-	Cursor operator=(const Cursor&) = delete;
+	Singleton() {}
+	Singleton(const Singleton&) = delete;
+	Singleton operator=(const Singleton&) = delete;
 
-	static std::mutex mtx;
-	static Cursor* sinstance;
+	// inline static 문법 : static 멤버 데이타의 외부 선언이 없어도 됩니다 - C++17 부터
+	inline static std::mutex mtx;
+	inline static Singleton* sinstance;
 public:
-
-	static Cursor& get_instance()
+	static Singleton& get_instance()
 	{
 		std::lock_guard<std::mutex> g(mtx);
 
 		if (sinstance == nullptr)
 		{
-			sinstance = new Cursor;
+			sinstance = new Singleton;
 		}
 
 		return *sinstance;
 	}
 };
-Cursor* Cursor::sinstance = nullptr;
-std::mutex Cursor::mtx;
 
+
+// Keyboard 클래스도 위와 같은 Singleton 기술을 사용하고 싶다
+
+class Keybooard : public Singleton
+{
+
+};
 
 
 int main()
@@ -34,6 +39,10 @@ int main()
 	Cursor& c1 = Cursor::get_instance();
 	Cursor& c2 = Cursor::get_instance();
 }
+
+
+
+
 
 
 
