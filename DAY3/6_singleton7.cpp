@@ -8,7 +8,7 @@
 template<typename T>
 class Singleton
 {
-private:
+protected:
 	Singleton() {}
 	Singleton(const Singleton&) = delete;
 	Singleton operator=(const Singleton&) = delete;
