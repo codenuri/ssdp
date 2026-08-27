@@ -8,14 +8,17 @@ class Shape
 public:
 	virtual void draw() = 0;
 	virtual ~Shape() {}
+
+	virtual Shape* clone() = 0;
 };
 
 class Rect : public Shape
 {
 public:
 	void draw() override { std::cout << "draw Rect" << std::endl; }
-
 	static Shape* create() { return new Rect; }
+
+	Shape* clone() override { return new Rect(*this); }
 };
 
 
@@ -29,6 +32,8 @@ public:
 	void draw() override { std::cout << "draw Circle" << std::endl; }
 
 	static Shape* create() { return new Circle; }
+
+	Shape* clone() override { return new Circle(*this); }
 };
 
 
@@ -36,15 +41,14 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-		using CREATOR = Shape * (*)();
-
-	std::map<int, CREATOR> create_map; 
+	// 이제 공장에는 견본 도형이 보관 됩니다.
+	std::map<int, Shape*> prototype_map; 
 
 public:
 
-	void register_shape(int type, CREATOR c)
+	void register_shape(int type, Shape* sample)
 	{
-		create_map[type] = c;
+		prototype_map[type] = sample;
 	}
 
 
@@ -52,11 +56,13 @@ public:
 	{
 		Shape* s = nullptr;
 
-		auto it = create_map.find(type);
+		auto it = prototype_map.find(type);
 
-		if (it != create_map.end())
+		if (it != prototype_map.end())
 		{
-			s = it->second(); 
+			// 등록된 복사본의 견본을 생성해서 반환
+			// => prototype 디자인 패턴의 핵심!
+			s = it->second->clone(); 
 		}
 		return s;
 	}
