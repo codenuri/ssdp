@@ -68,8 +68,22 @@ int main()
 {
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
-	factory.register_shape(1, &Rect::create);
-	factory.register_shape(2, &Circle::create);
+	// 아래 코드는 공장에 함수 포인터를 등록하지만
+	// => 결국 "클래스"를 등록하는 효과 입니다.
+//	factory.register_shape(1, &Rect::create);
+//	factory.register_shape(2, &Circle::create);
+
+	// 공장에 "자주사용하는 제품" 을 등록해 봅시다
+
+	Rect* blueRect  = new Rect;
+	Rect* redRect   = new Rect;
+	Circle* redCircle = new Circle;
+
+	factory.register_shape(1, blueRect);
+	factory.register_shape(2, redRect);
+	factory.register_shape(3, redCircle);
+
+
 
 
 	std::vector<Shape*> v;
