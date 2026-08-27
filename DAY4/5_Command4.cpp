@@ -29,6 +29,19 @@ struct ICommand
 	virtual ~ICommand() {}
 };
 
+// 사각형을 추가하는 명령
+class AddRectCommand : public ICommand
+{
+	std::vector<Shape*>& v;
+public:
+	AddRectCommand(std::vector<Shape*>& v) :v(v) {}
+
+	void execute() override {}
+	bool can_undo() { return false; }
+	void undo() {}
+};
+
+
 
 
 
