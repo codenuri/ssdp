@@ -148,7 +148,6 @@ public:
 	MenuTitleChangeVisitor(const std::string& s1, const std::string& s2)
 		: popupmenu_tag(s1), menuitem_tag(s2) {
 	}
-
 	void visit(MenuItem* mi) 
 	{
 		std::string title = mi->get_title();
@@ -158,7 +157,7 @@ public:
 	void visit(PopupMenu* pm)
 	{
 		std::string title = pm->get_title();
-		title += menuitem_tag;
+		title += popupmenu_tag;
 		pm->set_title(title);
 	}
 };
