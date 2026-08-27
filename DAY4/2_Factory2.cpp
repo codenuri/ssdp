@@ -53,7 +53,7 @@ class ShapeFactory
 {
 	MAKE_SINGLETON(ShapeFactory)
 
-	using CREATOR = Shape * (*)();
+	using CREATOR = Shape* (*)();
 
 	std::map<int, CREATOR> create_map; // <도형번호, 생성함수주소>
 	
@@ -69,10 +69,12 @@ public:
 	{
 		Shape* s = nullptr;
 
-		switch (type)
+		// map 에 등록된 함수 포인터로 객체 생성
+		auto it = create_map.find(type);
+
+		if (it != create_map.end())
 		{
-		case 1: s = new Rect; break;
-		case 2: s = new Circle; break;
+			s = it->second(); // value 가 등록된 함수 포인터
 		}
 		return s;
 	}
@@ -83,6 +85,11 @@ public:
 int main()
 {
 	ShapeFactory& factory = ShapeFactory::get_instance();
+
+	// 공장에 제품(도형)을 먼저 등록해야 합니다.
+	factory.register_shape(1, &Rect::create);
+	factory.register_shape(2, &Circle::create);
+
 
 	std::vector<Shape*> v;
 
