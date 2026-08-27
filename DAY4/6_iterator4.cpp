@@ -24,6 +24,16 @@ template<typename T> struct ICollection
 	virtual IIterator<T>* iterator() = 0;
 	virtual ~ICollection() {}
 };
+//---------------------------------
+// 아래 코드가 실제 slist 의 iterator 구현 코드
+template<typename T> class slist_iterator : public IIterator<T>
+{
+public:
+};
+
+
+
+
 
 
 
