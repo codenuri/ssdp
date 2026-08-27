@@ -49,12 +49,14 @@ int main()
 	s.push_front(30);
 	s.push_front(40);
 
-	auto p = s.begin();
+	auto first = s.begin();
+	auto last  = s.end();
 
-	std::cout << *p << std::endl; // 40
-	++p;
-	std::cout << *p << std::endl; // 30
-
+	while (first != last)
+	{
+		std::cout << *first << std::endl; 
+		++first;
+	}
 }
 
 
