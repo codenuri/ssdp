@@ -97,6 +97,11 @@ int main()
 	pm2->add_menu(new MenuItem("GREEN", 22));
 	pm2->add_menu(new MenuItem("BLUE", 23));
 
+	// 메뉴의 타이틀을 꾸미는 방문자
+	MenuTitleChangeVisitor v(" >", ""); // 팝업메뉴 : " >", 메뉴아이템:"" 추가
+
+	root->accept(&v);
+
 
 	root->command();
 
