@@ -11,14 +11,27 @@
 // => 그런데, 요소의 타입이 다를수 있고
 // => 각 타입마다 다르게 처리해야 한다면.. 아래 처럼
 
+class MenuItem;
+class PopupMenu;
+
 struct IMenuVisitor
 {
+	// 아래 처럼 만들면, MenuItem, PopupMenu 모두 한개의 함수에서
+	// 동일하게 처리하겠다는 의미
+//	virtual void visit(BaseMenu* mi) = 0;
+
+	// 다르게 동작하려면 아래 처럼
 	virtual void visit(MenuItem* mi) = 0;
 	virtual void visit(PopupMenu* pm) = 0;
 	virtual ~IMenuVisitor() {}
 };
 
-
+// 방문의 대상의 인터페이스
+struct IAcceptor
+{
+	virtual void accept(IMenuVisitor* v) = 0;
+	virtual ~IAcceptor() {}
+};
 
 
 
