@@ -35,7 +35,7 @@ struct IAcceptor
 
 
 
-class BaseMenu
+class BaseMenu :  public IAcceptor
 {
 	std::string title;
 public:
@@ -56,6 +56,15 @@ class MenuItem : public BaseMenu
 {
 	int id;
 public:
+
+	void accept(IMenuVisitor* visitor)
+	{
+		// MenuItem 은 하위메뉴가 없으므로
+		// 자신만 전달하면 됩니다.
+		visitor->visit(this);
+	}
+
+
 	MenuItem(const std::string& title, int id) : BaseMenu(title), id(id) {}
 
 	void command() override
@@ -65,7 +74,7 @@ public:
 	}
 };
 
-class PopupMenu : public BaseMenu, public Acceptor
+class PopupMenu : public BaseMenu
 {
 	std::vector<BaseMenu*> v;
 public:
@@ -73,10 +82,17 @@ public:
 	// 방문자를 받아들이는 함수 - 이 예제의 핵심
 	void accept(IMenuVisitor* visitor)
 	{
+		// 자신을 먼저 방문자에 전달
+		visitor->visit(this);
+		
+		for (auto m : v)
+		{
+			// 하위 메뉴도 방문자에 전달하면, 직계 자신만 전달된다.
+			// visitor->visit(m); // ?
 
-
-
-
+			// 아래 처럼, 하위 메뉴에게 다시 방문자를 accept 한다
+			m->accept(visitor);
+		}
 	}
 
 
@@ -122,7 +138,30 @@ public:
 
 
 
+// 이제 Menu 시스템에서 사용할 다양한 방문자 을 설계하면 됩니다.
 
+class MenuTitleChangeVisitor : public IMenuVisitor
+{
+	std::string popupmenu_tag;
+	std::string menuitem_tag;	
+public:
+	MenuTitleChangeVisitor(const std::string& s1, const std::string& s2)
+		: popupmenu_tag(s1), menuitem_tag(s2) {
+	}
+
+	void visit(MenuItem* mi) 
+	{
+		std::string title = mi->get_title();
+		title += menuitem_tag;
+		mi->set_title(title);
+	}
+	void visit(PopupMenu* pm)
+	{
+		std::string title = pm->get_title();
+		title += menuitem_tag;
+		pm->set_title(title);
+	}
+};
 
 
 int main()
