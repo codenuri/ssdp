@@ -162,7 +162,6 @@ public:
 	}
 };
 
-
 int main()
 {
 	PopupMenu* root = new PopupMenu("ROOT");
@@ -182,8 +181,7 @@ int main()
 	pm2->add_menu(new MenuItem("BLUE", 23));
 
 	// 메뉴의 타이틀을 꾸미는 방문자
-	MenuTitleChangeVisitor v(" >", ""); // 팝업메뉴 : " >", 메뉴아이템:"" 추가
-
+	MenuTitleChangeVisitor v(" >", "*"); // 팝업메뉴 : " >", 메뉴아이템:"" 추가
 	root->accept(&v);
 
 
@@ -194,3 +192,58 @@ int main()
 
 
 
+// std::list : 모두 같은 타입을 보관하고 iterator 로 순회 가능하고, range-for 사용가능
+//             => 외부에서 모든 요소 순회 가능합니다.
+//             => 방문자 사용할 필요 없습니다.
+//             => 그냥 range-for 사용하세요
+
+// 메뉴 시스템 : 외부에서 요소 열거 안되고
+//				타이틀 변경등의 가상함수 추가가 복잡해 지는 경우
+//				최초 부터 "visitor" 패턴으로 만들어 놓으면
+//				다양한 방문자 클래스 활용이 가능해 집니다.
+
+
+/*
+//-----------------------------
+class Shape {};
+class Rect   : public Shape {};
+class Circle : public Shape {};
+
+// 디자인 패턴을 사용해서 잘 설계된 시스템에서
+// 
+// 1. 타입을 추가하는 일은 "쉽다"  
+// => OCP 를 잘 사용했다면 "새로운 도형을 추가" 하는 일은 어렵지 않다
+
+// 2. 연산(가상함수)를 추가하는 일 - "어렵다"
+// => 모든 도형에 크기를 줄이는 deflate() 함수 추가 ?
+// => Shape 에도 추가하고, 모든 클래스에도 추가해서 각각 구현해야 한다.
+// => 즉, 모든 클래스가 변경된다
+
+
+// 그런데. 처음부터 Visitor 패턴으로 디자인 했다면
+// => deflate() 를 가상함수로 추가하지 말고
+// => DeflateVisitor 를 만들어서 shape_vector.accept(&v) 했다면
+//                              menu_root.accept(방문자) 처럼
+
+// 방문자 패턴의 의미
+// 1. 시스템에 "연산(가상함수)" 의 추가가 쉬워 진다
+// => 실제 가상함수를 추가하는 것이 아니라
+// => 가상함수가 할일을 수행하는 "visitor" 를 설계 하라는 것
+
+// 2. 타입의 추가 - 어렵다
+// => 현재 메뉴는 "MenuItem", "PopupMenu" 이고 방문자 인터페이스는 아래 코드 입니다.
+/*
+struct IMenuVisitor
+{
+	virtual void visit(MenuItem * mi) = 0;
+	virtual void visit(PopupMenu * pm) = 0;
+	virtual ~IMenuVisitor() {}
+};
+*/
+// => 이때 새로운 메뉴 타입 "SpecialMenu" 가 추가되면 위 인터페이스가 수정됩니다.
+// => 만들었던 모든 방문자를 수정되어야 합니다.
+// => 사실상 타입의 추가능 불가능 합니다
+
+
+// 전통적인 패턴 : 타입추가는 쉽지만, 연산의 추가가 어렵다(Shape 이하 모든 타입에 함수추가)
+// Visitor 도입 : 연산의 추가가 쉽지만(연산을 방문자로 구현), 타입추가가 어렵다
