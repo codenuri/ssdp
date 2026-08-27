@@ -100,6 +100,10 @@ int main()
 {
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
+	// 복습할때 아래 코드 구현해 보세요
+//	factory.show_sample(); // 등록된 모든 제품좀 보여줘..
+						   // 1. Rect
+						   // 2. Circle
 
 	std::vector<Shape*> v;
 
