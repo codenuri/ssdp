@@ -93,5 +93,9 @@ int main()
 
 	// 이제 문제(이벤트)를 1번째 객체에 전달하면
 	// 고리에 따라 이동하면서 문제를 해결합니다.
-	t1.handle(7);
+//	t1.handle(7);
+//	t1.handle(9);
+//	t1.handle(13);
+//	t1.handle(14);
+	t1.handle(2);
 }
