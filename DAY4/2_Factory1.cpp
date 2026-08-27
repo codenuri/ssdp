@@ -44,6 +44,8 @@ public:
 
 int main()
 {
+	ShapeFactory& factory = ShapeFactory::get_instance();
+
 	std::vector<Shape*> v;
 
 	while (1)
@@ -51,8 +53,14 @@ int main()
 		int cmd;
 		std::cin >> cmd;
 
-		if		(cmd == 1) v.push_back(new Rect);
-		else if (cmd == 2) v.push_back(new Circle);
+		if (cmd >= 1 && cmd <= 7) // 1 ~ 7 까지를 도형 번호로 예약
+		{
+			Shape* s = factory.create(cmd);
+
+			if (s != nullptr)
+				v.push_back(s);
+		}
+
 		else if (cmd == 9)
 		{
 			for (int i = 0; i < v.size(); i++)
