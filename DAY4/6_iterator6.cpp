@@ -26,7 +26,20 @@ public:
 	}
 
 	inline T& operator*() { return current->data; }
+
+	// slist_iterator(반복자)는 포인터와 사용법이 같아야 하므로
+	// == , != 연산이 지원되야 합니다.
+	bool operator==(const slist_iterator& other) const
+	{
+		return current == other.current;
+	}
+	bool operator!=(const slist_iterator& other) const
+	{
+		return current != other.current;
+	}
 };
+
+
 
 
 template<typename T> struct slist
@@ -39,6 +52,12 @@ public:
 	{
 		return slist_iterator<T>(head);
 	}
+	slist_iterator<T> end()
+	{
+		return slist_iterator<T>(nullptr);
+	}
+
+
 };
 
 int main()
