@@ -31,13 +31,13 @@ public:
 	// 다음으로 이동/요소 접근을 "raw pointer 동작 방식" 과 동일하게 하자
 	// => C++ 은 연산자 재정의가 된다.
 
-	slist_iterator& operator++()
+	inline slist_iterator& operator++()
 	{		
 		current = current->next;
 		return *this;
 	}
 	
-	T& operator*() { return current->data; }
+	inline T& operator*() { return current->data; }
 };
 
 
@@ -83,16 +83,20 @@ int main()
 // 문제점 #1. iterator() 함수 가 반환한 반복자는 "new" 로 생성된것
 // => 사용후, 사용자가 반드시 delete 해야 한다.
 // => 라이브러리가 new 했는데, 사용자가 delete 한다 ???  좋지 않다..
+// ================> 위 코드에서 해결!!. 반복자는 동적할당되지 않았다
+
 
 // 문제점 #2. C++ 에서 배열도 컨테이너 이다.
 //			 배열의 모든 요소 열거는 "raw pointer 를 사용해서 ++" 로 이동한다
 //		     하지만 위 코드는 next()로 이동
 //			일관성이 없다
+// ================> 위 코드에서 해결!!. ++로 이동
 
 // 문제점 #3. 다음으로 이동시 사용하는 "next()" 가 가상함수 이다
 //			  가상함수 호출의 오버헤드가 있다
 //			  next() 는 한번만 호출하는 것이 아니라 "루프안"에 있을수 있다
 //			  느리다!!
+// ================> 위 코드에서 해결!!. 가상함수 아님 inline 치환. 빠르다
 
 
 
