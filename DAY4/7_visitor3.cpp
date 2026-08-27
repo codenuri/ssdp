@@ -65,10 +65,25 @@ public:
 	}
 };
 
-class PopupMenu : public BaseMenu
+class PopupMenu : public BaseMenu, public Acceptor
 {
 	std::vector<BaseMenu*> v;
 public:
+
+	// 방문자를 받아들이는 함수 - 이 예제의 핵심
+	void accept(IMenuVisitor* visitor)
+	{
+
+
+
+
+	}
+
+
+
+
+
+
 	PopupMenu(const std::string& title) : BaseMenu(title) {}
 
 	void add_menu(BaseMenu* p) { v.push_back(p); }
