@@ -34,16 +34,16 @@ public:
 
 	void accept(IVisitor<T>* visitor)
 	{
-//		? ;
+		// 자신의 모든 요소를 방문자에게 전달
+		for (auto& e : *this)  // *this : 현재 자신은 list 이므로 range-for 가능
+		{
+			visitor->visit(e);
+		}
 	}
 };
-
-
-
 int main()
 {
-	std::list<int> s = { 1,2,3,4,5,6,7,8,9,10 };
-
+	MyList<int> s = { 1,2,3,4,5,6,7,8,9,10 };
 		
 	// #1. accept 는 다양한 방문자를 받아야 한다.
 	// => 모든 방문자의 인터페이스가 필요 하다
