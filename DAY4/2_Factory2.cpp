@@ -87,6 +87,8 @@ int main()
 	ShapeFactory& factory = ShapeFactory::get_instance();
 
 	// 공장에 제품(도형)을 먼저 등록해야 합니다.
+	// => 실제로는 함수 포인터를 등록하고 있지만, 결국 의미는 클래스 이름 등록의 의미
+	// => 새로운 도형이 추가되면 다른 곳은 변경할 필요 없이, 아래의 등록 코드만 추가하면됩니다
 	factory.register_shape(1, &Rect::create);
 	factory.register_shape(2, &Circle::create);
 
