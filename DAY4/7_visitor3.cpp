@@ -4,6 +4,24 @@
 #include <conio.h> 
 
 
+// list : 모든 요소가 동일타입, 선형적으로 데이터를 보관
+// Menu : 요소의 타입이 다름.   Tree 구조. 
+
+// 방문자 : 요소 한개에 대한 연산을 정의 하는 클래스
+// => 그런데, 요소의 타입이 다를수 있고
+// => 각 타입마다 다르게 처리해야 한다면.. 아래 처럼
+
+struct IMenuVisitor
+{
+	virtual void visit(MenuItem* mi) = 0;
+	virtual void visit(PopupMenu* pm) = 0;
+	virtual ~IMenuVisitor() {}
+};
+
+
+
+
+
 class BaseMenu
 {
 	std::string title;
