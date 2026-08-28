@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 
 // LSP 위반 예제
 class Rectangle 
@@ -35,6 +35,8 @@ public:
     }
 };
 
+// process 의 요구사항은 Rectangle 입니다.
+// => LSP 에 따르면 파생 클래스인 Square 를 보낼수 있어야 합니다.
 void process(Rectangle& r)
 {
     r.setWidth(5);
@@ -42,6 +44,8 @@ void process(Rectangle& r)
 
     std::cout << "Expected area = 50, actual area = " << r.area() << std::endl;
     // => 결과는 50을 예상합니다.
+    // => 하지만 Square 전달시 결과는 100 입니다.
+    // => LSP 을 위반한 사례 입니다.
 }
 
 int main()
