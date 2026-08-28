@@ -28,6 +28,7 @@ struct CarBuilder
 };
 
 // 다양한 자동차를 만드는 클래스들
+// => 각 빌더는 부품만 만들수 있고, 자동차 전체를 만드는 공정을 없습니다.
 class SportCarBuilder : public CarBuilder
 {
     Car c;
@@ -37,9 +38,6 @@ public:
     virtual void make_interior() { c.interior = "Sport Car interior"; }
     virtual Car  get_car()
     {
-        make_engine();
-        make_tire();
-        make_interior();
         return c;
     }
 };
@@ -53,9 +51,6 @@ public:
     virtual void make_interior() { c.interior = "Eco Car interior"; }
     virtual Car  get_car()
     {
-        make_engine();
-        make_tire();
-        make_interior();
         return c;
     }
 };
@@ -75,15 +70,39 @@ public:
     }
 };
 
-
-
 int main()
 {
     SportCarBuilder b1;
     EcoCarBuilder b2;
+
+    Director d;
+    d.construct(b1); // b1 으로 자동차 만들어 달라
+    d.construct(b2); // b2 으로 자동차 만들어 달라
+
     Car c1 = b1.get_car();
     Car c2 = b2.get_car();
 
     c1.show();
     c2.show();
 }
+
+// 복잡한 객체를 만드는데.
+// => 각 부품을 만드는 클래스와
+// => 부품을 가지고 전체 공정을 가진 클래스를 분리한것
+// => "동일한 공정으로 만드는데, 사용하는 부품이 다른 객체" 만들때 사용
+
+// 주의 
+// GoF's 패턴의 빌더 : 위 내용
+// Java 에서 이야기하는 빌더 : 아래 처럼 메소드 체이닝으로 객체를 만드는 것을 표현
+/*
+People p;
+p.set_name("Kim")
+    .set_age(20)
+    .set_height(180);
+    */
+
+
+
+
+
+
