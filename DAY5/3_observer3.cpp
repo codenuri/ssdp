@@ -49,6 +49,7 @@ public:
 		{
 			std::cout << "Data >>";
 			std::cin >> value;
+			data[0] = value;
 
 			notify(value);
 		}
@@ -83,8 +84,6 @@ public:
 		std::cout << std::endl;
 	}
 };
-
-
 
 
 
