@@ -75,12 +75,13 @@ int main()
 
 	// 처음에 그렸던 선과 동일하게 그리고 싶다.
 	// 방법 #1. 아래 처럼 다시 세팅하자
-	g.SetStrokeColor(0);
-	g.SetStrokeWidth(10);
-	g.DrawLine(0, 0, 100, 100);
+//	g.SetStrokeColor(0);
+//	g.SetStrokeWidth(10);
+//	g.DrawLine(0, 0, 100, 100);
 	
 	// 방법 #2. memento 패턴을 사용하자
 	g.Restore(token);	// token 발행 시점의 상태로 복구
+	g.DrawLine(0, 0, 100, 100);
 }
 
 // Memento 패턴
