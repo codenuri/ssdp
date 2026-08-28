@@ -33,13 +33,27 @@ public:
 
 		switch (msg)
 		{
-		case WM_LBUTTONDOWN:self->lbutton_down(); break;
+		case WM_LBUTTONDOWN:self->fire_lbutton_down(); break;
 		case WM_KEYDOWN:	self->key_down();	 break;
 		}
 		return 0;
 	}
 
-	virtual void lbutton_down() {}
+	// Chain Of Responsibiliy 패턴을 구현한 코드 입니다.
+	// => 앞에서 배운 "Handler::handle" 과 거의 동일합니다.
+	void fire_lbutton_down()
+	{
+		// #1. 자신이 먼저 이벤트를 처리할 기회 제공
+		if (lbutton_down() == true)
+			return;
+
+		// #2. 자신이 처리 하지 않은 경우 부모 윈도우가 있다면 전달
+		if (parent != nullptr)
+			parent->fire_lbutton_down();
+	}
+
+
+	virtual bool lbutton_down() { return false; }
 	virtual void key_down() {}
 };
 //------------------------
