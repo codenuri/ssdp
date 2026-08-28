@@ -99,9 +99,11 @@ int main()
 	HomeMediator hm(&ls, &ms);
 
 
-	ls.set_dark(true);
+	ls.set_dark(true);	// 전등 끄기. 아직움직임 없음
 //	ls.set_dark(false);
 
-	ms.set_motion(true);	// 움직임이 포착
+	ms.set_motion(true);	// 움직임이 포착 - 전등 켜짐
+	ls.set_dark(false);	    // 다시 밝아짐 - 전등 꺼짐
+
 	ms.set_motion(false);	// 움직임이 없다
 }
