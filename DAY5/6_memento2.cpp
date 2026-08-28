@@ -1,14 +1,47 @@
 ﻿// 8_메멘토 - 178
 #include <iostream>
 #include <vector>
-
+#include <map>
 
 class Graphics
 {
 	int penWidth = 1;
 	int penColor = 0;
 	int temporary_data;
+
+	// 저장될 데이타만 나타내는 타입
+	struct Memento
+	{
+		int penWidth;
+		int penColor;
+
+		Memento(int w, int c) : penWidth(w), penColor(c) {}
+	};
+	std::map<int, Memento*> memento_map;
 public:
+
+	int Save()
+	{
+		static int key = 0;
+		++key;
+
+		Memento* m = new Memento(penWidth, penColor);
+		memento_map[key] = m;
+		return key;
+	}
+
+	void Restore(int key)
+	{
+		auto it = memento_map.find(key);
+		
+		if (it != memento_map.end())
+		{
+			penWidth = it->second->penWidth;
+			penColor = it->second->penColor;
+		}
+	}
+
+
 	void DrawLine(int x1, int y1, int x2, int y2)
 	{
 	}
