@@ -52,7 +52,6 @@ public:
 			parent->fire_lbutton_down();
 	}
 
-
 	virtual bool lbutton_down() { return false; }
 	virtual void key_down() {}
 };
@@ -62,17 +61,21 @@ public:
 class MainFrame : public Window
 {
 public:
-	void lbutton_down() override
+	bool lbutton_down() override
 	{
 		std::cout << "MainFrame lbutton_down\n";
+
+		return true; 
 	}
 };
 class ImageView : public Window
 {
 public:
-	void lbutton_down() override
+	bool lbutton_down() override
 	{
 		std::cout << "ImageView lbutton_down\n";
+		
+		return true; // 이벤트 처리를 종료 해달라. 부모 윈도우에 보내지 말라는것
 	}
 };
 int main()
