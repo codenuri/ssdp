@@ -75,8 +75,10 @@ public:
 
 int main()
 {
+	// 관찰의 대상(Subject)
 	Table table;
 
+	// 관찰자들(Observer)
 	BarGraph bg;
 	PieGraph pg;
 
