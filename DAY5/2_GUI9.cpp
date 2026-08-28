@@ -14,6 +14,11 @@
 
 // => "template hosting 또는 thin template" 이라는 이름을 가진 C++ Idioms
 
+// => template 이 여러 타입에 대해서 instance 화 되어서
+//    코드 메모리가 증가하는 현상을 제거하기 위해서 사용하는 기술 입니다.
+
+
+
 // 아래 코드가 유명한 스타일 이므로
 // => 복습할때 잘 정리해 두세요
 // => 오픈소스에서 많이 볼수 있는 스타일 입니다.
@@ -59,8 +64,6 @@ public:
 		}
 		return 0;
 	}
-
-
 };
 
 class MainFrame : public Window<MainFrame>
