@@ -8,8 +8,9 @@ class Window
 	int handle;
 	inline static std::map<int, Window*> this_map;
 
-	Window* parent = nullptr; // 부모 윈도우는 한개!
-	std::vector<Window*> child_vector; // 자식 윈도우는 여러개
+	Window* parent = nullptr;			// 부모 윈도우는 한개!
+	std::vector<Window*> child_vector;	// 자식 윈도우는 여러개
+
 public:
 
 	void add_child(Window* child)
@@ -21,8 +22,6 @@ public:
 		// C 함수로 실제 GUI 에 자식윈도우로 부착
 		ec_add_child(this->handle, child->handle);
 	}
-
-
 
 
 
@@ -74,6 +73,8 @@ int main()
 
 	ImageView iv;
 	iv.create("ImageView");
+
+	w.add_child(&iv);
 
 	ec_process_message();
 }
