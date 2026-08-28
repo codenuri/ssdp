@@ -1,4 +1,4 @@
-// SOLID : SRP, OCP, LSP, ISP, DIP
+﻿// SOLID : SRP, OCP, LSP, ISP, DIP
 // => 객체지향 프로그램시 지켜야하는 5가지 원칙
 // => 디자인 패턴은 이 원칙을 지키기 위한 코딩 기술
 
@@ -12,7 +12,6 @@
 // => 상위 모듈은 하위모듈에 "직접(directly)" 의존하면 안된다.
 // => People::use_camera(HDCamera*); // bad - 강한 결합
 // => People::use_camera(ICamera*);  // good - 약한결합
-
 
 
 // SRP(Single Responsibility Principle )
@@ -30,15 +29,16 @@ struct IMP3
 	virtual void take_picture();
 };
 
+// 아래 처럼 하라는 의미
 struct IMP3
 {
-	virtual void play();
-	virtual void stop();
+	virtual void play() = 0;
+	virtual void stop() = 0;
 };
 
 struct Capture
 {
-	virtual void take_picture();
+	virtual void take_picture() = 0;
 };
 
 // C++ 은 다중 상속 되는데, Java, C# 은 안되지 않나요 ??
