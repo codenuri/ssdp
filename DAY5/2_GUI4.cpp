@@ -9,7 +9,7 @@ class Window
 	// this 를 자료구조 보관하는 아래 기술은 아주 유명합니다.
 	// 흔히 "this map" 이라고 부르고
 	// C++ 를 사용한 대부분의 GUI 라이브러리 내부에는 이 기술을 사용합니다
-	static std::map<int, Window*> this_map;
+	inline static std::map<int, Window*> this_map;
 
 public:
 	void create(const std::string& title)
