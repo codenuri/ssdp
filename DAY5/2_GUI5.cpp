@@ -40,16 +40,22 @@ public:
 	{
 		std::cout << "MainFrame lbutton_down\n";
 	}
-	void key_down() override
+};
+class ImageView : public Window
+{
+public:
+	void lbutton_down() override
 	{
-		std::cout << "MainFrame key_down\n";
+		std::cout << "ImageView lbutton_down\n";
 	}
 };
-
 int main()
 {
 	MainFrame w;
-	w.create("Hello");
+	w.create("MainFrame");
+
+	ImageView iv;
+	iv.create("ImageView");
 
 	ec_process_message();
 }
