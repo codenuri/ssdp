@@ -44,6 +44,8 @@ public:
 
 	void DrawLine(int x1, int y1, int x2, int y2)
 	{
+		std::cout << "[DrawLine] : Color : " << penColor
+				  << " Width : " << penWidth << std::endl;
 	}
 	void SetStrokeColor(int c) { penColor = c; }
 	void SetStrokeWidth(int w) { penWidth = w; }
